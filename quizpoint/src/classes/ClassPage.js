@@ -25,10 +25,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import AssignQuiz from "../teachingsuite/AssignQuiz"
-import GenerateInvite from "../teachingsuite/GenerateInvite"
+import GenerateInvite from "../teachingsuite/GenerateInvite";
 // responsive design
-import { useMediaQuery } from 'react-responsive'
-
+import { useMediaQuery } from 'react-responsive';
+// quiz doughnut chart
+import QuizPerformance from '../classes/QuizPerformance';
+import { Doughnut } from 'react-chartjs-2';
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -119,6 +121,7 @@ export default function ClassPage() {
                                         </CardContent>
                                         <CardActions>
                                             <Button size="small">You have finished this quiz.</Button>
+                                            <QuizPerformance correct="5" incorrect="5"/>
                                         </CardActions>
                                     </Card>
                                 </div>
@@ -212,7 +215,6 @@ export default function ClassPage() {
                                 <h2>Quizzes Completed</h2>
                                 <div className="quiz-grid">
                                     {quizTurnedCards}
-
                                 </div>
                             </div>
                         </div>
