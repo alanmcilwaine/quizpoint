@@ -121,7 +121,7 @@ export default function ClassPage() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect}/>
+                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
                                         </CardActions>
                                     </Card>
                                 </div>

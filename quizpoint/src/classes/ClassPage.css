@@ -1,6 +1,10 @@
 .class-home{
     margin-top:2%;
 }
+.class-body{
+    margin:0 4% 0 4%;
+}
+
 /* Main class header */
 .class-header {
     text-align: center;
