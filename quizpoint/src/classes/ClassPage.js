@@ -48,6 +48,7 @@ export default function ClassPage() {
     let classArray = []
     let { classId } = useParams()
 
+
     console.log(classId)
     useEffect(() => {
         if (loading === true) {
@@ -120,8 +121,7 @@ export default function ClassPage() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small">You have finished this quiz.</Button>
-                                            <QuizPerformance correct="5" incorrect="5"/>
+                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect}/>
                                         </CardActions>
                                     </Card>
                                 </div>
