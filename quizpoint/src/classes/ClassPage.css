@@ -2,7 +2,9 @@
     margin-top:2%;
 }
 .class-body{
-    margin:0 4% 0 4%;
+    margin:0 8% 0 8%;
+    padding: 1% 0 3% 0;
+    outline: 1px solid rgba(255, 255, 255, .25);
 }
 
 /* Main class header */
@@ -23,9 +25,11 @@
     justify-content:center;
     align-items:center;
 }
-.quick-actions > div > button {
-    text-decoration:none !important;
-    height:50px;
+.quick-actions > div > button > p{
+    text-transform:none !important;
+    margin:10px !important;
+    font-family: var(--main-font);
+    font-weight: 500;
 }
 /* each class card */
 .class-cards {
@@ -89,10 +93,25 @@ hr {
 /* container used for quiz cards in a grid */
 .quiz-grid {
     display: grid;
+    justify-items:center;
     grid-template-columns: 3fr 3fr 3fr;
     gap: 2%;
 }
 .doughnut-chart{
     width:180px;
     height:180px;
+}
+
+.quizassigned, .quizcompleted {
+    margin-left:1%;
+}
+.start-quiz-button{
+    text-transform:none !important;
+    font-family: var(--main-font);
+    outline:rgba(255, 255, 255, .25);
+    font-size: 0.9125rem;
+    background-color: var(--secondary-color);
+    color:white;
+    padding: 8px;
+    border-radius:4px;
 }
