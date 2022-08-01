@@ -74,7 +74,7 @@ export default function AssignQuiz(props) {
             })
             setDialog(false)
             alert.success(`Assigned ${allQuizzes.filter(qz => qz.value === _qzId)[0].label} successfully`)
-            // window.location.reload()
+            window.location.reload()
         }
 
 
