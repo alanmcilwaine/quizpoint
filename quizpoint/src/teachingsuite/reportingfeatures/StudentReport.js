@@ -571,9 +571,7 @@ export default function StudentReport() {
             </div>
         )
     } else {
-        let example = [
-            'u0lMN5qOyRNpkRgOyeyQ4woNHRu1'
-        ]
+
         return (
             <div className='student-report'>
                 <div className="student-report-studentinfo">

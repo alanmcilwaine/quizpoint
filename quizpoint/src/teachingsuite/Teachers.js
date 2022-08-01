@@ -194,7 +194,7 @@ export default function Teachers() {
                                     } else {
                                         setUserLoaded(snapshot.val())
                                         let data = snapshot.val()
-                                        console.log(data)
+                                        console.log(data)  
                                         console.log(data.classes)
 
                                         Object.keys(data.classes).forEach(key => {
