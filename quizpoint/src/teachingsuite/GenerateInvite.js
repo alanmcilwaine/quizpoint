@@ -43,7 +43,7 @@ export default function GenerateInvite(props) {
                 </DialogActions>
             </Dialog >
 
-            <Button onClick={() => setDialog(true)}>Invite Link</Button>
+            <Button onClick={() => setDialog(true)}><p>Invite Link</p></Button>
         </>
     )
 }

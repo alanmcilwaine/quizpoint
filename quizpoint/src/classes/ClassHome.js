@@ -218,6 +218,7 @@ export default function Classes() {
                     <div className="class-home">
                         <div className="class-header">
                             <h1>Your Classes</h1>
+                            <hr></hr>
                         </div>
                         <div className="class-body">
                             <div className="class-cards-mobile">
@@ -237,6 +238,7 @@ export default function Classes() {
                     <div className="class-home">
                         <div className="class-header">
                             <h1>Your Classes</h1>
+                            <hr></hr>
                         </div>
                         <div className="class-body">
                             <div className="class-cards">

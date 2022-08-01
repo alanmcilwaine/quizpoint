@@ -107,7 +107,8 @@ export default function ClassPage() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}>Start Quiz</Button>
+                                            <QuizPerformance correct={0} incorrect={0} total={1} />
+                                            <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                         </CardActions>
                                     </Card>
                                 </div>
@@ -121,7 +122,7 @@ export default function ClassPage() {
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect}/>
+                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
                                         </CardActions>
                                     </Card>
                                 </div>
@@ -184,7 +185,7 @@ export default function ClassPage() {
                         <div class="quick-actions">
                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                                 <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
-                                <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} >View Report</Button>
+                                <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
                                 <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                             </ButtonGroup>
                         </div>

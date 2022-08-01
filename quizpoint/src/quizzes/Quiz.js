@@ -8,7 +8,7 @@
 import axios from 'axios'
 
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams , Navigate} from "react-router-dom"
 import { storage } from "../services/firebase.js"
 
 // user model
@@ -94,14 +94,13 @@ export default function Quiz() {
                                 console.log("Snapshot does not exist")
                             }
                         })
-
                     } else if (result.isDenied) {
                         console.log("Quiz Not Completed")
                     }
                 })
-                return
             }
             setCurrentQuestion(currentQuestion + 1);
+            return
         },
         //When "Back" is clicked, cycle through to the last question
         lastQuestion: () => {
