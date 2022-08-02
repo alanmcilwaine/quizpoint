@@ -29,7 +29,6 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Fab from '@mui/material/Fab';
 
-
 /**========================================================================
  **                           Generate Push ID
  *?  What does it do? Generates push ids for firebase records (i.e quizzes, classes, users, etc.)

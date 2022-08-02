@@ -7,18 +7,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function QuizPerformance (props) {
     let data = {
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [props.correct, props.incorrect, (props.total - props.correct - props.incorrect)],
-            backgroundColor: [
-              'rgb(34 197 94)',
-              'rgb(244 63 94)',
-              'rgb(163 163 163)',
-            ],
-            borderWidth: 1,
-          },
-        ]
+      labels: ['Correct', 'Incorrect', 'Unanswered'],
+      datasets: [
+        {
+          data: [props.correct, props.incorrect, (props.total - props.correct - props.incorrect)],
+          backgroundColor: [
+            'rgb(34 197 94)',
+            'rgb(244 63 94)',
+            'rgb(163 163 163)',
+          ],
+          borderWidth: 1,
+        },
+      ]
     };
     return ( <div className="doughnut-chart"><Doughnut data={data}/></div> )
 }
