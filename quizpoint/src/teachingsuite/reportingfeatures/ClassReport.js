@@ -540,6 +540,10 @@ export default function StudentReport() {
                             // set a reference to prevent me from writng it out all the time
                             // for each question
                             let quizReference = snapshot.val().quizzes.active[currentQuiz].answers
+
+                            if (quizReference === undefined) {
+                                tableData.push(dataForUser)
+                            }
                             for (var index = 0; index < numOfQuest; index++) {
                                 // if it doesn't exist, skip!
                                 if (quizReference[index] === undefined) {
