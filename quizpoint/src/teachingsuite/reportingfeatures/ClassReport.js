@@ -567,10 +567,10 @@ export default function StudentReport() {
             // return components for reporting
             return (
                 // paper for styling and nice looks
-                <Paper elevation={3} className="paper-fix">
+                <Paper elevation={3} className="paper-fix" style={{ "marginBottom": 20 }}>
                     {/* Export buttons */}
-                    <button className='generic-button sml' onClick={() => generatePDF()}>Generate PDF</button>
-                    <button className='generic-button sml' onClick={() => generateExcel()}>Generate Excel</button>
+                    <button className='generic-button sml' onClick={() => generatePDF()}>Export PDF</button>
+                    <button className='generic-button sml' onClick={() => generateExcel()}>Export Excel</button>
                     {/* Table for viewing */}
                     <GenerateTable columns={columns} data={tableData} />
                     {/* Table for behind the scenes */}

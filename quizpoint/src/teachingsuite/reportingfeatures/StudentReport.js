@@ -137,7 +137,8 @@ export default function StudentReport() {
                         console.log(`${property}: ${quizReference[property].details.name}`);
                         optionArray.push({ name: quizReference[property].details.name, id: property, code: quizReference[property].details.code })
                     }
-                    if (quizReferenceCompleted !== null) {
+                    if (quizReferenceCompleted === undefined) {
+                    } else {
                         for (const property in quizReferenceCompleted) {
                             console.log(`${property}: ${quizReferenceCompleted[property].details.name}`);
                             optionArray.push({ name: quizReferenceCompleted[property].details.name, id: property, code: quizReferenceCompleted[property].details.code })
@@ -350,71 +351,66 @@ export default function StudentReport() {
                     if (snapshot.val() === null || undefined) {
                         return
                     } else {
-                        console.log(snapshot.val())
+                        // set up the users information
                         let dataForUser = {
-                            name: snapshot.val().name,
+                            name: snapshot.val().uid,
                             studentId: snapshot.val().studentID
                         }
+
                         if (snapshot.val().quizzes.turnedin[currentQuiz]) {
-                            if (snapshot.val().quizzes.turnedin[currentQuiz].details.progress === snapshot.val().quizzes.turnedin[currentQuiz].numofquestions) {
+                            console.log('turned in' + dataForUser.name)
+                            let route = snapshot.val().quizzes.turnedin[currentQuiz]
+                            if (route.details.progress === route.numofquestions) {
                                 dataForUser.completed = 'complete'
                             } else {
+                                // they have not completed it
                                 dataForUser.completed = 'incomplete'
                             }
-                            console.log('Hello!' + currentQuiz)
+                            // set a reference to prevent me from writng it out all the time
+                            // for each question
                             let quizReference = snapshot.val().quizzes.turnedin[currentQuiz].answers
-                            console.log(quizReference)
+                            for (var index = 0; index < numOfQuest; index++) {
+                                // if it doesn't exist, skip!
+                                if (quizReference[index] === undefined) {
 
-                            for (var index = 0; index < snapshot.val().quizzes.turnedin[currentQuiz].answers.length; index++) {
-                                console.log(snapshot.val().quizzes.turnedin[currentQuiz].answers[index])
-                                if (snapshot.val().quizzes.turnedin[currentQuiz].answers[index] === undefined) {
-                                    console.log(index)
                                 } else {
-                                    console.log(snapshot.val().quizzes.turnedin[currentQuiz].answers[index])
-                                    dataForUser['question' + index] = snapshot.val().quizzes.turnedin[currentQuiz].answers[index].status
+                                    // set up status for table
+                                    // i.e dataForUser.question1 = 'correct'
+                                    dataForUser['question' + index] = quizReference[index].status
 
                                 }
-                            }
+                            }                            // finished here, push to table
+                            console.log(dataForUser)
                             tableData.push(dataForUser)
                         } else {
-                            if (snapshot.val().quizzes.active[currentQuiz].details.progress === snapshot.val().quizzes.active[currentQuiz].numofquestions) {
+                            console.log('turned in' + dataForUser.name)
+                            let route = snapshot.val().quizzes.active[currentQuiz]
+                            if (route.details.progress === route.numofquestions) {
                                 dataForUser.completed = 'complete'
                             } else {
+                                // they have not completed it
                                 dataForUser.completed = 'incomplete'
                             }
-                            if (snapshot.val().quizzes.active[currentQuiz] === undefined || snapshot.val().quizzes.active[currentQuiz] === undefined) {
-                                console.log('Hello!' + currentQuiz)
-                                let quizReference = snapshot.val().quizzes.turnedin[currentQuiz].answers
-                                console.log(quizReference)
-                                for (var index = 0; index < quizReference.length; index++) {
-                                    if (quizReference[index] === undefined) {
+                            // set a reference to prevent me from writng it out all the time
+                            // for each question
+                            let quizReference = snapshot.val().quizzes.active[currentQuiz].answers
 
-                                    } else {
-                                        console.log(quizReference[index])
-                                        dataForUser['question' + index] = quizReference[index].status
-
-                                    }
-                                }
-                                tableData.push(dataForUser)
-                            } else {
-                                let quizReference = snapshot.val().quizzes.active[currentQuiz].answers
-                                if (quizReference === undefined) { } else {
-                                    console.log(quizReference)
-                                    for (var index = 0; index < quizReference.length; index++) {
-                                        console.log(quizReference[index])
-
-                                        if (quizReference[index] === undefined) {
-
-                                        } else {
-                                            console.log(quizReference[index])
-                                            dataForUser['question' + index] = quizReference[index].status
-
-                                        }
-                                    }
-
-                                }
+                            if (quizReference === undefined) {
                                 tableData.push(dataForUser)
                             }
+                            for (var index = 0; index < numOfQuest; index++) {
+                                // if it doesn't exist, skip!
+                                if (quizReference[index] === undefined) {
+
+                                } else {
+                                    // set up status for table
+                                    // i.e dataForUser.question1 = 'correct'
+                                    dataForUser['question' + index] = quizReference[index].status
+
+                                }
+                            }                            // finished here, push to table
+                            console.log(dataForUser)
+                            tableData.push(dataForUser)
                         }
                     }
                 })
