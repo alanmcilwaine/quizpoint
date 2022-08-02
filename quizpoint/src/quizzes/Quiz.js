@@ -8,7 +8,7 @@
 import axios from 'axios'
 
 import React, { useState, useEffect } from 'react'
-import { useParams , Navigate} from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { storage } from "../services/firebase.js"
 
 // user model
@@ -33,6 +33,7 @@ export default function Quiz() {
     const [loadingStatus, setLoadingStatus] = useState(true)
     const [chosenAnswers, setChosenAnswers] = useState({ answers: {}, details: {}, score: {} })
     const [correctAnswers, setCorrectAnswers] = useState()
+    let navigate = useNavigate();
     let { quizId } = useParams()
     let studentId = user.uid
     let quizPath = ref(db, `/schools/hvhs/quizzes/${quizId}`);
@@ -85,22 +86,26 @@ export default function Quiz() {
                                     }
                                     quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }  
                                 }
-
                                 update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/turnedin'), quizSave).then(() => {
                                     // update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/turnedin/', { notEnrolled: false }))
                                     remove(quizInStudentPath);
                                 });
+                                navigate('/Classes');
                             } else {
                                 console.log("Snapshot does not exist")
                             }
                         })
+
+                        
                     } else if (result.isDenied) {
                         console.log("Quiz Not Completed")
                     }
                 })
+            }else {
+                setCurrentQuestion(currentQuestion + 1);
+                return 
             }
-            setCurrentQuestion(currentQuestion + 1);
-            return
+
         },
         //When "Back" is clicked, cycle through to the last question
         lastQuestion: () => {
