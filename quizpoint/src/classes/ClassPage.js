@@ -18,7 +18,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
-
+import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -106,7 +106,7 @@ export default function ClassPage() {
                                                 {qz.name}
                                             </Typography>
                                         </CardContent>
-                                        <CardActions>
+                                        <CardActions style="height: 77%;">
                                             <QuizPerformance correct={0} incorrect={0} total={1} />
                                             <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                         </CardActions>

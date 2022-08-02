@@ -8,6 +8,8 @@ students on their ability to safely perform tasks in a workshop. This program al
 quizzes and setup a class, from there the program will self mark the students results, and display it in a
 easy to read format, allowing teachers extra time for other things!
 
+You can access a development version of this application at [quizpointnz.netlify.app](https://quizpointnz.netlify.app)
+
 ## Features
 
 - Self Marking ability

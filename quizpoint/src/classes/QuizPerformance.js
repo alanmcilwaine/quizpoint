@@ -7,10 +7,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function QuizPerformance(props) {
   let data = {
+    labels: ['Correct', 'Incorrect', 'Unanswered'],
     datasets: [
       {
-        labels: ['Correct', 'Incorrect'],
-        label: '# of Votes',
         data: [props.correct, props.incorrect, (props.total - props.correct - props.incorrect)],
         backgroundColor: [
           'rgb(34 197 94)',
