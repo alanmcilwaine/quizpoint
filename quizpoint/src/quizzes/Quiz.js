@@ -54,7 +54,29 @@ export default function Quiz() {
 
         })
     }, [])
-
+    function recordQuizResultInActive() {
+        console.log("recordQuizResultInActive(): Called ")
+        get(quizInStudentPath).then((snapshot) => {
+            if (snapshot.exists()) {
+                let quizSave = {};
+                quizSave[quizId] = snapshot.val();
+                console.log(quizSave)
+                let correctAnswers = 0;
+                let wrongAnswers = 0;
+                for (const key in quizSave[quizId].answers) {
+                    if (`${quizSave[quizId].answers[key].status}` === "correct") {
+                        correctAnswers++
+                    }
+                    if (`${quizSave[quizId].answers[key].status}` === "incorrect") {
+                        wrongAnswers++
+                    }
+                    quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }  
+                }
+                console.log("Saving Result")
+                update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/active'), quizSave)
+            }
+        })
+    }
     let quizHandler = {
         // When "Next" is clicked, cycle through to the next question
         nextQuestion: () => {
@@ -139,6 +161,7 @@ export default function Quiz() {
                     // Correct Answer
                     if (quiz.questions[currentQuestion].answer == answer) {
                         chosenAnswers.answers[currentQuestion] = { input: answer, question: quiz.questions[currentQuestion].name, status: "correct" };
+                        
                         // Wrong Answer
                     } else if (quiz.questions[currentQuestion].answer != answer) {
                         chosenAnswers.answers[currentQuestion] = { input: answer, question: quiz.questions[currentQuestion].name, status: "incorrect" };
@@ -148,6 +171,7 @@ export default function Quiz() {
             chosenAnswers.details = { code: quizId, name: quiz.title }
             console.log("Uploading Results...")
             update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/active/' + quizId), chosenAnswers);
+            recordQuizResultInActive();
             quizHandler.nextQuestion()
         },
 

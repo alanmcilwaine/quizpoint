@@ -6,6 +6,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //create a dataset for the chart MapPerformance that passes props for correct and incorrect
 
 function QuizPerformance(props) {
+  if (props.total === undefined) {
+    props.total = 1;
+    props.correct = 0;
+    props.incorrect = 0;
+  }
   let data = {
     labels: ['Correct', 'Incorrect', 'Unanswered'],
     datasets: [
@@ -22,7 +27,6 @@ function QuizPerformance(props) {
   };
   return (<div className="doughnut-chart"><Doughnut data={data} /></div>)
 }
-
 
 
 export default QuizPerformance;
