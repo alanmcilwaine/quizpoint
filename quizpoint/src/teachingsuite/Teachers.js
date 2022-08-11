@@ -194,7 +194,7 @@ export default function Teachers() {
                                     } else {
                                         setUserLoaded(snapshot.val())
                                         let data = snapshot.val()
-                                        console.log(data)  
+                                        console.log(data)
                                         console.log(data.classes)
 
                                         Object.keys(data.classes).forEach(key => {
@@ -536,7 +536,7 @@ export default function Teachers() {
                                                 {/* Basic Student information */}
                                                 <p>Name: {userLoaded.name}</p>
                                                 <p>Role: {translateRole(userLoaded.role)}</p>
-                                                <p>Student ID: {userLoaded.studentID}</p>
+                                                <p>Network ID: {userLoaded.studentID}</p>
                                                 <p>User ID: {userLoaded.uid}</p>
                                                 {/* when you click on link, it will send email */}
                                                 <p>Email: <a href={'mailto:' + userLoaded.email}>{userLoaded.email}</a></p>

@@ -152,7 +152,7 @@ export default function Quizzes() {
         return (
             <div className='quizpage'>
                 <div className="quiz-header">
-                    <h2>Quizzes by your school</h2>
+                    <h2>Quizzes created by your school</h2>
                     <button className="generic-button sml" onClick={() => navigate('/tcs/quizzes/create/' + generatePushID())} >Create Quiz</button>
                     <button className="generic-button sml" onClick={() => navigate('/tcs/quizzes/import/')}>Import Quiz</button>
                 </div>
