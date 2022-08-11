@@ -34,12 +34,14 @@
     transition-duration: 0.4s;
     margin-left: 0 !important;
     border-style: solid;
+    border-width: thin;
+    /* border: 1px */
 }
 
 .search-result:hover {
     cursor: pointer;
     background-color: #4E83C2;
-    border-style: dotted;
+    /* border-style: dotted; */
     color: white;
     /* filter: drop-shadow(0 0 0.75rem #4E83C2); */
     transform: translateY(-4px);

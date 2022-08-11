@@ -106,7 +106,7 @@ export default function ClassPage() {
                                                 {qz.name}
                                             </Typography>
                                         </CardContent>
-                                        <CardActions style="height: 77%;">
+                                        <CardActions>
                                             <QuizPerformance correct={0} incorrect={0} total={1} />
                                             <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                         </CardActions>
