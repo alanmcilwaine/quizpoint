@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 QuizPoint
+ * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
  * All rights reserved.
  */
 /*
@@ -62,24 +62,7 @@ export default function Classes() {
             function loadData() {
                 // console log
                 console.log('loading all students data')
-                //! this should check for each users role before pushing to array
-                // // wait for data
-                // onValue(pathRef, (snapshot) => {
-                //     // if there is no students, something definelty went wrong.
-                //     if (snapshot === undefined) {
-                //         console.log('ERROR - NO DATA FOUND')
 
-                //         // if students do exist
-                //     } else {
-                //         // set placeholder to object of students
-                //         const data = snapshot.val()
-                //         // for each student value
-
-
-                //         // finished loading, we can show page now
-                //
-                //     }
-                // })
                 var toBeat = 0;
                 var currentNum = 0
                 for (var a in user.classes) {
@@ -209,7 +192,7 @@ export default function Classes() {
             );
         } else {
             classCards = <div>
-                <p>No classes</p>
+                <p>You need to join a class, ask your teacher for an invite link.</p>
             </div>
         }
         if (isTabletOrMobile) {

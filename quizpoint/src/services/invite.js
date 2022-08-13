@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 QuizPoint
+ * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
  * All rights reserved.
  */
 
@@ -11,8 +11,8 @@ import { useState, useEffect } from "react";
  **   Data service Imports
  *========================**/
 import { user } from "../firebase/fb.user";
-import { db, dbFunctions } from '../services/firebase'
-import { ref, onValue, update } from "firebase/database";
+import { db, dbFunctions, dbFunctionsSync } from '../services/firebase'
+import { ref, onValue, update, set } from "firebase/database";
 /**======================
  **   MUI Imports
  *========================**/
@@ -57,15 +57,18 @@ export default function Invite() {
             quizzes: classObject.quizzes
         }
         // set up updates
-        const updates = {};
         // update data in class at class id in path students
-        dbFunctions.write('/schools/hvhs/classes/' + id + '/students/', dataToWrite)
+        dbFunctionsSync.write('/schools/hvhs/classes/' + id + '/students/', dataToWrite)
+        // set(ref(db, '/schools/hvhs/classes/' + id + '/students/'), dataToWrite);
+
         // update data in student at student id in path class
-        dbFunctions.write('/schools/hvhs/users/' + userId + '/classes/' + id, dataToWriteToUser)
+        dbFunctionsSync.write('/schools/hvhs/users/' + userId + '/classes/' + id, dataToWriteToUser)
+        // set(ref(db, '/schools/hvhs/users/' + userId + '/classes/' + id, { dataToWriteToUser }));
+        update(ref(db, 'schools/hvhs/users/' + user.uid + '/classes/'), { notEnrolled: null });
+
         // navigate home
-        navigate('/classes')
+        // navigate('/classes')
         // update data in firebase
-        return update(ref(db), updates)
 
     }
     // while state is loading...

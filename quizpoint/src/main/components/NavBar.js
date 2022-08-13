@@ -60,7 +60,6 @@ const NavBar = () => {
     const [dialogIsOpen, setDialogIsOpen] = useState(false)
 
     const openDialog = () => setDialogIsOpen(true)
-
     const closeDialog = () => setDialogIsOpen(false)
 
     const location = useLocation();
@@ -156,8 +155,8 @@ const NavBar = () => {
                         </Dropdown>
                     </Nav>
                     <Nav>
-                        <Navbar.Collapse className="nav-right">
-                            <Nav.Link className="profileLink" onClick={openDialog}>
+                        <Navbar.Collapse className="nav-right" onClick={openDialog}>
+                            <Nav.Link className="profileLink">
                                 <Avatar {...stringAvatar(user.name)} />{user.name}
                             </Nav.Link>
                         </Navbar.Collapse>
