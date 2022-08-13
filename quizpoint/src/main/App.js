@@ -10,6 +10,7 @@ import * as React from "react";
 import { useEffect, useState } from 'react';
 import ReactPWAInstallProvider, { useReactPWAInstall } from "react-pwa-install";
 import { Routes, Route } from "react-router-dom";
+import usePWA from 'react-pwa-install-prompt'
 
 /**======================
  **   Media Imports
@@ -113,28 +114,29 @@ function isObject(object) {
  *=============================================**/
 function App() {
   // progressive web app definition
-  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
   const [openDataUpdated, setOpenDataUpdated] = useState(false);
   //  dialog states
   const [openDialog, setDialog] = useState(false)
 
+  const { isStandalone, isInstallPromptSupported, promptInstall } = usePWA()
 
+  const onClickInstall = async () => {
+    const didInstall = await promptInstall()
+    if (didInstall) {
+      // User accepted PWA install
+    }
+  }
+
+  const renderInstallButton = () => {
+    if (isInstallPromptSupported && isStandalone)
+
+      return (
+        <button onClick={onClickInstall}>Prompt PWA Install</button>
+      )
+    return null
+  }
   let action
   // handle install click
-  const handleClick = () => {
-    pwaInstall({
-      title: "QuizPoint",
-      logo: myLogo,
-      features: (
-        <ul>
-          <li>Education platform for schools and communities</li>
-        </ul>
-      ),
-      description: "QuizPoint is a education platform that allows schools to test and educate students on relevant topics that they need testing on",
-    })
-      .then(() => alert("App installed successfully or instructions for install shown"))
-      .catch(() => alert("User opted out from installing"));
-  };
 
   // user not logged in
   if (user.authed === false) {
@@ -149,6 +151,7 @@ function App() {
               <Route path="*" element={<LandingPage />} />
               <Route path="/*" element={<LandingPage />} />
             </Routes>
+            {renderInstallButton()}
 
           </div>
         </GoogleOAuthProvider>
@@ -226,6 +229,7 @@ function App() {
                 <Route path="/logout" element={<LogOut />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
+              {renderInstallButton()}
 
             </div>
           </GoogleOAuthProvider >
@@ -233,6 +237,7 @@ function App() {
 
       );
     } else if (user.role === 'hod') {
+
       // return full components, with full access
       return (
         <ReactPWAInstallProvider enableLogging>
@@ -283,6 +288,7 @@ function App() {
                 <Route path="/logout" element={<LogOut />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
+              {renderInstallButton()}
 
             </div>
           </GoogleOAuthProvider >
@@ -309,6 +315,8 @@ function App() {
                 <Route path="/logout" element={<LogOut />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
+              {renderInstallButton()}
+
             </div>
           </GoogleOAuthProvider>
         </ReactPWAInstallProvider>

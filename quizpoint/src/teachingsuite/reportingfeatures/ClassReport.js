@@ -499,7 +499,7 @@ export default function StudentReport() {
                     } else {
                         // set up the users information
                         let dataForUser = {
-                            name: snapshot.val().uid,
+                            name: snapshot.val().name,
                             studentId: snapshot.val().studentID
                         }
 

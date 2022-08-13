@@ -299,9 +299,9 @@ export default function CreateGoogleClass(props) {
                     <h2>{classObj.name}</h2>
                     <p>{classObj.descriptionHeading}</p>
                 </CardContent>
-                <CardActions>
-                    <Button size="small" onClick={() => createClass(index)}>Select Me</Button>
-                </CardActions>
+                <Button size="small" onClick={() => createClass(index)}>Select Course</Button>
+
+
             </Card>
 
         )
