@@ -139,7 +139,7 @@ export default function Teachers() {
             } else {
                 setUserLoaded({})
             }
-            document.title = `Teachers | QuizPoint`
+            document.title = `All   Teachers | QuizPoint`
             console.log('Loading')
 
             // Currently fetching data
@@ -536,7 +536,7 @@ export default function Teachers() {
                                                 {/* Basic Student information */}
                                                 <p>Name: {userLoaded.name}</p>
                                                 <p>Role: {translateRole(userLoaded.role)}</p>
-                                                <p>Network ID: {userLoaded.studentID}</p>
+                                                <p>Student ID: {userLoaded.studentID}</p>
                                                 <p>User ID: {userLoaded.uid}</p>
                                                 {/* when you click on link, it will send email */}
                                                 <p>Email: <a href={'mailto:' + userLoaded.email}>{userLoaded.email}</a></p>
