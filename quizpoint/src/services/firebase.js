@@ -104,7 +104,7 @@ let dbFunctionsSync = {
     })
   },
   write: (_path, _data) => {
-    set(ref(db, _path), (_data))
+    update(ref(db, _path), (_data))
     console.log("dbFunctionsSync.write: Writing To => " + _path)
   }
 }

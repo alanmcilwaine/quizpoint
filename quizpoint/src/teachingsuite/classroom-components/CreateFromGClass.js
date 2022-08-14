@@ -92,7 +92,6 @@ export default function CreateGoogleClass(props) {
         let classRef = classes[_index]
         // setup class object
         let classObject = {}
-
         console.log("Creating Class")
         // prepare object
         classObject.code = classRef.id
