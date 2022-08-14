@@ -166,7 +166,7 @@ export default function Classes() {
         let classCards
         if (enrolled === true) {
             classCards = foundClasses.map((classInfo) =>
-                <div>
+                <div class="class-cards-class">
                     <Card sx={{ width: 280, height: 310 }} className="class-cards-element" onClick={() => navigate('/class/' + classInfo.code)}>
                         <CardActionArea>
                             <CardMedia
@@ -204,7 +204,7 @@ export default function Classes() {
                             <hr></hr>
                         </div>
                         <div className="class-body">
-                            <div className="class-cards-mobile">
+                            <div className="class-cards-mobile-home">
                                 {classCards}
                             </div>
 

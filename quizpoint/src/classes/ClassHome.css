@@ -36,11 +36,14 @@
 }
 
 /* mobile design */
-.class-cards-mobile {
-    margin-left: 11%;
+.class-cards-mobile-home {
     margin-top: 2%;
     display: grid;
     grid-template-columns: 3fr;
     grid-gap: 2%;
     text-align: center;
+}
+.class-cards-class{
+    display:flex;
+    justify-content:center;
 }

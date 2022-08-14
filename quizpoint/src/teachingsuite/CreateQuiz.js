@@ -96,6 +96,7 @@ export default function CreateQuiz() {
 =     *========================**/
     function updateCurrentQuestionAnswer(e) {
         tableRows[currentQuestion - 1].answer = e.target.value
+        console.log(tableRows)
     }
 
     /**======================

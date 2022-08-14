@@ -28,6 +28,8 @@
     .quizQuestionTitle > p{
         font-size:calc(30px + 1vw); 
         text-align:center;
+        margin-top:7%;
+        height:calc(fit-content + 20px);
     }
     .largeButtonGroup{
         display:none !important;
@@ -44,6 +46,7 @@
     }
     .quizQuestionTitle{
         justify-content:center;
+        height:calc(fit-content + 20px);
     }
     .smallButtonGroup, .smallButtonGroupLarge{
         display:inline-grid;
@@ -59,10 +62,11 @@
     }
 
     .smallButtonGroupLarge > button > p, .smallButtonGroup > button > p{
-        font-size:calc(8px + 1vw);
+        font-size:calc(12px + 0.8vw);
     }
     .quizTitle > p{
         text-align:center;
+        font-size:calc(30px + 0.5vw);
     }
     /* .smallButtonGroup > Button{
         font-size:2vw;
@@ -217,7 +221,6 @@
 }
 .quizQuestionAnswers {
     max-width:70%;
-    width:500px;
 }
 .quizQuestionAnswers > div , .quizNavigationButtons button{
     box-shadow:none !important;
