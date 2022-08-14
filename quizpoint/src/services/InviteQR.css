@@ -1,0 +1,14 @@
+.inviteDialog {
+    height: 50%;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.inviteText {
+    margin-top: 25%;
+}
+
+.inviteContent {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}

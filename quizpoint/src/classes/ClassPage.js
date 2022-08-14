@@ -31,6 +31,7 @@ import { useMediaQuery } from 'react-responsive';
 // quiz doughnut chart
 import QuizPerformance from '../classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
+import InviteQR from "../services/InviteQR"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -187,6 +188,7 @@ export default function ClassPage() {
                                 <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
                                 <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
                                 <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
+                                <InviteQR classObject={classObject}></InviteQR>
                             </ButtonGroup>
                         </div>
                     )
