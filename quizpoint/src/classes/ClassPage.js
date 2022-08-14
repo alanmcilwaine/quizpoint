@@ -182,31 +182,7 @@ export default function ClassPage() {
                         <hr></hr>
                     </div>
                     <div className="class-body">
-                        {isTabletOrMobile ? null : <Fade in={shouldFade}>
-                            <div className="class-page">
-                                <div className="class-header">
-                                    <h1>{classObject.className}</h1>
-                                    <hr></hr>
-                                </div>
-                                <div className="class-body">
-                                    {returnTeacherActions()}
-                                    <div className="quizassigned">
-                                        <h2>Quizzes Assigned</h2>
-                                        <div className="quiz-grid">
-                                            {quizCards}
-
-                                        </div>
-                                    </div>
-                                    <hr></hr>
-                                    <div className="quizcompleted">
-                                        <h2>Quizzes Completed</h2>
-                                        <div className="quiz-grid">
-                                            {quizTurnedCards}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Fade>}
+                        {isTabletOrMobile ? null : returnTeacherActions()}
                         <div className="quizassigned">
                             <h2>Quizzes Assigned</h2>
                             <div className="quiz-grid">
