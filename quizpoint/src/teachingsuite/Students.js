@@ -47,7 +47,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import { user } from '../firebase/fb.user';
-
+import QuizPerformance from '../classes/QuizPerformance';
 
 const rows = []
 
@@ -210,6 +210,7 @@ export default function Students() {
                                         if (data.quizzes.active.notEnrolled) {
 
                                         } else {
+                                            console.log(data.quizzes.active)
                                             Object.keys(data.quizzes.active).forEach(key => {
                                                 setActiveQuiz(prevQuiz => [...prevQuiz, data.quizzes.active[key]])
                                             })
@@ -574,6 +575,9 @@ export default function Students() {
                                                                 <Card className="class-card-content">
                                                                     <CardContent>
                                                                         <h6>{quizData.details.name}</h6>
+                                                                        {quizData.score ? <QuizPerformance correct={quizData.score.correct} incorrect={quizData.score.incorrect} total={quizData.score.total} /> : "An error has occured, we cannot show you the details at this point of time."}
+                                                                        {/*  */}
+
                                                                     </CardContent>
                                                                     <CardActions>
                                                                         <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">

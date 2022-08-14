@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react'
 
 // data services
-import { db, dbFunctions } from '../services/firebase'
+import { db, dbFunctions, dbFunctionsSync } from '../services/firebase'
 import { set, ref, onValue, update } from 'firebase/database'
 // UI
 import { alert } from '../services/Alert';
@@ -58,11 +58,16 @@ export default function AssignQuiz(props) {
             for (var i = 0; i < studentsArray.length; i++) {
                 let studentId = studentsArray[i]
                 console.log(studentId)
-                dbFunctions.write(`users/${studentId}/quizzes/active/${_qzId}`, {
+                dbFunctionsSync.write(`users/${studentId}/quizzes/active/${_qzId}`, {
                     details: {
                         code: _qzId,
                         name: allQuizzes.filter(qz => qz.value === _qzId)[0].label,
                         progress: 0
+                    },
+                    score: {
+                        correct: 0,
+                        incorrect: 0,
+                        total: 0,
                     }
                 })
                 let pathRef = ref(db, `/schools/hvhs/users/${studentId}/quizzes/active/notEnrolled`);

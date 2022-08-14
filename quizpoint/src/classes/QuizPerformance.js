@@ -6,16 +6,21 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //create a dataset for the chart MapPerformance that passes props for correct and incorrect
 
 function QuizPerformance(props) {
+  let quizInfo = {
+    total: props.total,
+    correct: props.correct,
+    incorrect: props.incorrect
+  }
   if (props.total === undefined) {
-    props.total = 1;
-    props.correct = 0;
-    props.incorrect = 0;
+    quizInfo.total = 1;
+    quizInfo.correct = 0;
+    quizInfo.incorrect = 0;
   }
   let data = {
     labels: ['Correct', 'Incorrect', 'Unanswered'],
     datasets: [
       {
-        data: [props.correct, props.incorrect, (props.total - props.correct - props.incorrect)],
+        data: [quizInfo.correct, quizInfo.incorrect, (quizInfo.total - quizInfo.correct - quizInfo.incorrect)],
         backgroundColor: [
           'rgb(34 197 94)',
           'rgb(244 63 94)',
