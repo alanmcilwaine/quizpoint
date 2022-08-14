@@ -60,10 +60,11 @@ export default function AssignQuiz(props) {
         if (classId !== undefined) {
             console.log(classId)
             console.log(props.classList)
+            console.log(studentsArray)
             for (var i = 0; i < studentsArray.length; i++) {
                 let studentId = studentsArray[i]
                 console.log(studentId)
-                dbFunctionsSync.write(`users/${studentId}/quizzes/active/${_qzId}`, {
+                dbFunctionsSync.write(`schools/hvhs/users/${studentId}/quizzes/active/${_qzId}`, {
                     details: {
                         code: _qzId,
                         name: allQuizzes.filter(qz => qz.value === _qzId)[0].label,
@@ -84,7 +85,7 @@ export default function AssignQuiz(props) {
             })
             setDialog(false)
             alert.success(`Assigned ${allQuizzes.filter(qz => qz.value === _qzId)[0].label} successfully`)
-            window.location.reload()
+            // window.location.reload()
         }
 
 

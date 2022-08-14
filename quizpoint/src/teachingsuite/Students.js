@@ -541,6 +541,7 @@ export default function Students() {
                                             <div className="user-content-right">
                                                 {/* Basic Student information */}
                                                 <p>Name: {userLoaded.name}</p>
+                                                <p>User ID: {userLoaded.uid}</p>
                                                 <p>Student ID: {userLoaded.studentID}</p>
                                                 {/* when you click on link, it will send email */}
                                                 <p>Email: <a href={'mailto:' + userLoaded.email}>{userLoaded.email}</a></p>
