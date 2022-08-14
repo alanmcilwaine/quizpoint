@@ -67,7 +67,7 @@ export default function Invite() {
         update(ref(db, 'schools/hvhs/users/' + user.uid + '/classes/'), { notEnrolled: null });
 
         // navigate home
-        // navigate('/classes')
+        navigate('/classes')
         // update data in firebase
 
     }

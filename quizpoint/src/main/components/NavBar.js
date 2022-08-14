@@ -155,12 +155,14 @@ const NavBar = () => {
                         </Dropdown>
                     </Nav>
                     <Nav>
-                        <Navbar.Collapse className="nav-right" onClick={openDialog}>
-                            <Nav.Link className="profileLink">
+                        <Navbar.Collapse className="nav-right">
+                            <Nav.Link className="profileLink" onClick={openDialog}>
                                 <Avatar {...stringAvatar(user.name)} />{user.name}
                             </Nav.Link>
                         </Navbar.Collapse>
                     </Nav>
+                    <UserDialog open={dialogIsOpen} onClose={closeDialog} />
+
                 </Container>
             </Navbar>
         )

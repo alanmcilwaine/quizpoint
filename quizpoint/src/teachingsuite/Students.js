@@ -506,7 +506,7 @@ export default function Students() {
                                         <div className="user-page-actions">
                                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                                                 <Button onClick={() => promoteSelectedStudent()}><ArrowUpwardOutlinedIcon></ArrowUpwardOutlinedIcon>  Promote Student</Button>
-                                                <Button onClick={() => navigate('/tcs/reports/student/' + userLoaded.uid)}><AssessmentOutlinedIcon></AssessmentOutlinedIcon> View Report</Button>
+                                                {/* <Button onClick={() => navigate('/tcs/reports/student/' + userLoaded.uid)}><AssessmentOutlinedIcon></AssessmentOutlinedIcon> View Report</Button> */}
                                                 <Button onClick={() => setClassOpen(true)}><SchoolOutlinedIcon></SchoolOutlinedIcon> Add Class</Button>
                                                 <Button onClick={() => deleteStudent()}><PersonRemoveOutlinedIcon></PersonRemoveOutlinedIcon> Remove Student</Button>
                                             </ButtonGroup>
@@ -577,7 +577,7 @@ export default function Students() {
                                                                     </CardContent>
                                                                     <CardActions>
                                                                         <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">
-                                                                            <Button><AssessmentOutlinedIcon /></Button>
+                                                                            {/* <Button><AssessmentOutlinedIcon /></Button> */}
                                                                         </ButtonGroup>
                                                                     </CardActions>
                                                                 </Card>

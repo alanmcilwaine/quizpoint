@@ -519,7 +519,7 @@ export default function Teachers() {
                                         <div className="user-page-actions">
                                             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                                                 <Button onClick={() => demoteTeacher()}><ArrowDownwardOutlinedIcon></ArrowDownwardOutlinedIcon>Demote Teacher</Button>
-                                                <Button onClick={() => navigate('/tcs/reports/student/' + userLoaded.uid)}><AssessmentOutlinedIcon></AssessmentOutlinedIcon> View Report</Button>
+                                                {/* <Button onClick={() => navigate('/tcs/reports/student/' + userLoaded.uid)}><AssessmentOutlinedIcon></AssessmentOutlinedIcon> View Report</Button> */}
                                                 <Button onClick={() => setClassOpen(true)}><SchoolOutlinedIcon></SchoolOutlinedIcon> Add Class</Button>
                                                 <Button onClick={() => deleteStudent()}><PersonRemoveOutlinedIcon></PersonRemoveOutlinedIcon> Remove Student</Button>
                                             </ButtonGroup>
