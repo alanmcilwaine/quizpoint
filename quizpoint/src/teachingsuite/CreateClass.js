@@ -79,6 +79,13 @@ export default function CreateClass() {
         classObject.code = id
         classObject.classCreator = user.name
         classObject.quizzes = false
+        classObject.students = {
+            [user.uid]: user.uid,
+        }
+        classObject.teachers = {
+            [user.uid]: user.uid,
+        }
+
         set(ref(db, 'schools/hvhs/classes/' + id), classObject);
         // then add class to teachers classes
         update(ref(db, 'schools/hvhs/users/' + user.uid + '/classes/' + id), {
