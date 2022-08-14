@@ -117,6 +117,7 @@ const NavBar = () => {
                             <Dropdown.Menu className="navbar-dropdown-menu position-absolute dropdown-menu-end">
                                 <Dropdown.Item href="/classes" className="">Your Classes</Dropdown.Item>
                                 <Dropdown.Item href="/tcs" className="">Teaching Home</Dropdown.Item>
+                                <Dropdown.Item href="/logout" className="">Logout</Dropdown.Item>
                                 {/* <Dropdown.Item href="/quiz/QUIZ_-N0mz6NlfZeKqS5CnxLf" className="">Test Quiz</Dropdown.Item> */}
                             </Dropdown.Menu>
                         </Dropdown>
@@ -150,7 +151,7 @@ const NavBar = () => {
                             <Dropdown.Toggle className="navbar-dropdown-toggle"></Dropdown.Toggle>
                             <Dropdown.Menu className="navbar-dropdown-menu position-absolute dropdown-menu-end">
                                 <Dropdown.Item href="/classHome" className="">Your Classes</Dropdown.Item>
-                                {/* <Dropdown.Item href="/tcs" className="">Teaching Home</Dropdown.Item> */}
+                                <Dropdown.Item href="/logout" className="">Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav>

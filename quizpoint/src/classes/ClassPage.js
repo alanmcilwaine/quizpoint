@@ -151,80 +151,80 @@ export default function ClassPage() {
 
     //! I CANNOT GET THIS WORKING, Allan did you want to have a try?
     if (loading === true) {
-        if (isTabletOrMobile) {
-            console.log(quizCards)
-            return (
-                <Fade in={shouldFade}>
-                    <div className="class-page-mobile">
-                        <div className="class-header-mobile">
-                            <h1>{classObject.className}</h1>
-                        </div>
-                        <div className="class-body-mobile">
-                            <div className="quizassigned-mobile">
-                                <h2>Quizzes Assigned</h2>
-                                <hr></hr>
+
+        function returnTeacherActions() {
+            console.log(user)
+            if (user.role === 'teacher' || user.role === 'hod') {
+                console.log(classObject)
+                for (var studentID in classObject.students) {
+                    classArray.push(studentID)
+                }
+                return (
+                    <div class="quick-actions">
+                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                            <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
+                            <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
+                            <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
+                            <InviteQR classObject={classObject}></InviteQR>
+                        </ButtonGroup>
+                    </div>
+                )
+            } else if (user.role === undefined) {
+                return
+            }
+        }
+        console.log(quizCards)
+        return (
+            <Fade in={shouldFade}>
+                <div className="class-page">
+                    <div className="class-header">
+                        <h1>{classObject.className}</h1>
+                        <hr></hr>
+                    </div>
+                    <div className="class-body">
+                        {isTabletOrMobile ? null : <Fade in={shouldFade}>
+                            <div className="class-page">
+                                <div className="class-header">
+                                    <h1>{classObject.className}</h1>
+                                    <hr></hr>
+                                </div>
+                                <div className="class-body">
+                                    {returnTeacherActions()}
+                                    <div className="quizassigned">
+                                        <h2>Quizzes Assigned</h2>
+                                        <div className="quiz-grid">
+                                            {quizCards}
+
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div className="quizcompleted">
+                                        <h2>Quizzes Completed</h2>
+                                        <div className="quiz-grid">
+                                            {quizTurnedCards}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Fade>}
+                        <div className="quizassigned">
+                            <h2>Quizzes Assigned</h2>
+                            <div className="quiz-grid">
                                 {quizCards}
                             </div>
-                            <hr></hr>
-                            <div className="quizcompleted">
-                                <h2>Quizzes Completed</h2>
-                            </div>
                         </div>
-
-                    </div>
-                </Fade>
-            )
-        } else {
-            function returnTeacherActions() {
-                console.log(user)
-                if (user.role === 'teacher' || user.role === 'hod') {
-                    console.log(classObject)
-                    for (var studentID in classObject.students) {
-                        classArray.push(studentID)
-                    }
-                    return (
-                        <div class="quick-actions">
-                            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
-                                <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
-                                <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
-                                <InviteQR classObject={classObject}></InviteQR>
-                            </ButtonGroup>
-                        </div>
-                    )
-                } else if (user.role === undefined) {
-                    return
-                }
-            }
-            console.log(quizCards)
-            return (
-                <Fade in={shouldFade}>
-                    <div className="class-page">
-                        <div className="class-header">
-                            <h1>{classObject.className}</h1>
-                            <hr></hr>
-                        </div>
-                        <div className="class-body">
-                            {returnTeacherActions()}
-                            <div className="quizassigned">
-                                <h2>Quizzes Assigned</h2>
-                                <div className="quiz-grid">
-                                    {quizCards}
-
-                                </div>
-                            </div>
-                            <hr></hr>
-                            <div className="quizcompleted">
-                                <h2>Quizzes Completed</h2>
-                                <div className="quiz-grid">
-                                    {quizTurnedCards}
-                                </div>
+                        <hr></hr>
+                        <div className="quizcompleted">
+                            <h2>Quizzes Completed</h2>
+                            <div className="quiz-grid">
+                                {quizTurnedCards}
                             </div>
                         </div>
                     </div>
-                </Fade>
-            )
-        }
+                </div>
+            </Fade>
+        )
+
     } else {
         return (
             <div>

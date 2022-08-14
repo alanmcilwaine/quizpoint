@@ -54,7 +54,7 @@ export default function InviteQR(props) {
                                 logoWidth={100}
                                 logoHeight={100}
                                 size={500}
-                                value={inviteLink}
+                                value={`https://quizpointnz.netlify.app/invite/${props.classObject.code}`}
                                 eyeRadius={12} // 5 pixel radius for all corners of all positional eyes
                             />
                         </div>
