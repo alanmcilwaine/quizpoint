@@ -18,6 +18,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button'
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
 
 export default function AssignQuiz(props) {
     const [loading, setloading] = useState(true)
@@ -92,11 +97,26 @@ export default function AssignQuiz(props) {
             <Dialog
                 open={openDialog}
                 fullWidth={true}
+                fullScreen
+
                 maxWidth={'md'}
                 onClose={() => setDialog(false)}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
+                <AppBar sx={{ position: 'relative' }} color={'transparent'}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={() => setDialog(false)}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+
+                    </Toolbar>
+                </AppBar>
                 <DialogTitle id="alert-dialog-title">
                     {"Assign a quiz"}
                 </DialogTitle>

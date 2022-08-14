@@ -32,6 +32,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import HashLoader from "react-spinners/HashLoader";
 import FormControl from '@mui/material/FormControl';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
 
 /**======================
  **   Stylesheet Imports
@@ -152,11 +157,24 @@ export default function Reporting() {
                 open={studentOpen}
                 onClose={handleClose}
                 fullWidth={true}
-
+                fullScreen
                 maxWidth={'lg'}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
+                <AppBar sx={{ position: 'relative' }} color={'transparent'}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={() => handleClose()}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+
+                    </Toolbar>
+                </AppBar>
                 <DialogTitle id="alert-dialog-title">
                     {"Select a Student"}
                 </DialogTitle>
@@ -215,11 +233,24 @@ export default function Reporting() {
                 open={classOpen}
                 onClose={handleClose}
                 fullWidth={true}
-
+                fullScreen
                 maxWidth={'lg'}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
+                <AppBar sx={{ position: 'relative' }} color={'transparent'}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={() => handleClose()}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+
+                    </Toolbar>
+                </AppBar>
                 <DialogTitle id="alert-dialog-title">
                     {"Select a class"}
                 </DialogTitle>

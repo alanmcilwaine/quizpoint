@@ -26,7 +26,7 @@ export default function InviteQR(props) {
                 onClose={() => setDialog(false)}
             >
                 {/* app bar for title */}
-                <AppBar sx={{ position: 'relative' }}>
+                <AppBar color={'transparent'} sx={{ position: 'relative' }}>
                     <Toolbar>
                         <IconButton
                             edge="start"

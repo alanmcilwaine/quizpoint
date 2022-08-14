@@ -48,6 +48,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import { user } from '../firebase/fb.user';
 import QuizPerformance from '../classes/QuizPerformance';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
 
 const rows = []
 
@@ -416,11 +421,24 @@ export default function Students() {
                 open={classOpen}
                 onClose={handleClose}
                 fullWidth={true}
-
+                fullScreen
                 maxWidth={'md'}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
+                <AppBar sx={{ position: 'relative' }} color={'transparent'}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={() => setClassOpen(false)}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+
+                    </Toolbar>
+                </AppBar>
                 <DialogTitle id="alert-dialog-title">
                     {"Select a class"}
                 </DialogTitle>

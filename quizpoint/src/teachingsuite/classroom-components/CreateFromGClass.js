@@ -318,7 +318,7 @@ export default function CreateGoogleClass(props) {
                     TransitionComponent={Transition}
                 >
                     {/* app bar for title */}
-                    <AppBar sx={{ position: 'relative' }}>
+                    <AppBar color={'transparent'} sx={{ position: 'relative' }}>
                         <Toolbar>
                             <IconButton
                                 edge="start"
