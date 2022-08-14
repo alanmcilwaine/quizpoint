@@ -15,7 +15,8 @@ import { QRCode } from 'react-qrcode-logo';
 
 import './InviteQR.css'
 export default function InviteQR(props) {
-    let inviteLink = `https://quizpointnz.netlify.app/invite/${props.classObject.id}`
+    console.log(props)
+    let inviteLink = `https://quizpointnz.netlify.app/invite/${props.classObject.code}`
     const [openDialog, setDialog] = useState(false)
     function QRInvite() {
         return (
