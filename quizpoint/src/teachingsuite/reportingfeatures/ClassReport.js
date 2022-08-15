@@ -208,23 +208,21 @@ export default function StudentReport() {
                                     // if cell doesn't exist
                                     if (cell.value === undefined) {
                                         // user hasn't completed
-                                        return <TableCell {...cell.getCellProps()}>N/C</TableCell>
-
-                                    } else if (cell.value === 'correct') {
-                                        // user has completed and answered correctly
                                         return <TableCell {...cell.getCellProps()}>
-                                            Y
+                                            Not Complete
                                         </TableCell>
+                                    }
+                                    else if (cell.value === 'correct') {
+                                        // return a green checkbox with a tooltip
+                                        return null
                                     } else if (cell.value === 'incorrect') {
-                                        // user has completed and answered incorrectly
-                                        return <TableCell {...cell.getCellProps()}>
-                                            N
-                                        </TableCell>
+                                        // return a red checkbox with a tooltip
+                                        return null
                                     }
                                     else if (cell.value === 'complete') {
                                         // user has completed quiz
                                         return <TableCell {...cell.getCellProps()}>
-                                            Quiz Complete
+                                            Complete
                                         </TableCell>
                                     }
                                     else if (cell.value === 'incomplete') {
@@ -365,6 +363,27 @@ export default function StudentReport() {
 
                 ],
             },
+        ]
+        let columnsForPDF = [
+            {
+                Header: 'Completion Table',
+                columns: [
+                    {
+                        Header: 'Name',
+                        accessor: 'name',
+                    },
+                    {
+                        Header: 'Student ID',
+                        accessor: 'studentId',
+                    },
+                    {
+                        Header: 'Completed',
+                        accessor: 'completed',
+                    },
+
+                ],
+            },
+
         ]
         // if the report is for one person
         if (props.type === 'single') {
@@ -532,30 +551,40 @@ export default function StudentReport() {
                         } else {
                             console.log('turned in' + dataForUser.name)
                             let route = snapshot.val().quizzes.active[currentQuiz]
-                            if (route.details.progress === route.numofquestions) {
-                                dataForUser.completed = 'complete'
+                            if (!route) {
+
                             } else {
-                                // they have not completed it
-                                dataForUser.completed = 'incomplete'
+                                if (route.details.progress === route.numofquestions) {
+                                    dataForUser.completed = 'complete'
+                                } else {
+                                    // they have not completed it
+                                    dataForUser.completed = 'incomplete'
+                                }
                             }
                             // set a reference to prevent me from writng it out all the time
                             // for each question
-                            let quizReference = snapshot.val().quizzes.active[currentQuiz].answers
+                            if (!snapshot.val().quizzes.active[currentQuiz]) {
 
-                            if (quizReference === undefined) {
-                                tableData.push(dataForUser)
-                            }
-                            for (var index = 0; index < numOfQuest; index++) {
-                                // if it doesn't exist, skip!
-                                if (quizReference[index] === undefined) {
+                            } else {
 
-                                } else {
-                                    // set up status for table
-                                    // i.e dataForUser.question1 = 'correct'
-                                    dataForUser['question' + index] = quizReference[index].status
 
+                                let quizReference = snapshot.val().quizzes.active[currentQuiz].answers
+
+                                if (quizReference === undefined) {
+                                    tableData.push(dataForUser)
                                 }
-                            }                            // finished here, push to table
+                                for (var index = 0; index < numOfQuest; index++) {
+                                    // if it doesn't exist, skip!
+                                    if (!quizReference[index]) {
+
+                                    } else {
+                                        // set up status for table
+                                        // i.e dataForUser.question1 = 'correct'
+                                        dataForUser['question' + index] = quizReference[index].status
+
+                                    }
+                                }
+                            }                     // finished here, push to table
                             console.log(dataForUser)
                             tableData.push(dataForUser)
                         }
@@ -575,7 +604,7 @@ export default function StudentReport() {
                     {/* Table for viewing */}
                     <GenerateTable columns={columns} data={tableData} />
                     {/* Table for behind the scenes */}
-                    <GeneratePDFTable columns={columns} data={tableData} />
+                    <GeneratePDFTable columns={columnsForPDF} data={tableData} />
 
                 </Paper>
             )
@@ -591,47 +620,26 @@ export default function StudentReport() {
     function generatePDF() {
         let quizName = optionArray.filter(qz => qz.code === quizIdToView)[0].name
 
-        // if the number of questions is greater than
-        if (numOfQuest > 10) {
-            // create a new document with landscape orentation
-            const doc = new jsPDF({
-                orientation: 'landscape',
-                format: 'a2'
+        // create a new document with portait orentation
+        const doc = new jsPDF()
+        // get the table data from the hidden table
+        autoTable(doc, { html: '#reportTableToExport' })
+        doc.setFontSize(12)
+        // set header
+        // i.e QuizPoint | Report generated for QUIZ_ABCWEDF (will be fixed soon)
+        doc.text(`${classObject.className}'s report generated for ${quizName} `, 10, 10);
 
-            })
-            // get the table data from the hidden table
-            autoTable(doc, { html: '#reportTableToExport' })
-            // set header
-            // i.e QuizPoint | Report generated for QUIZ_ABCWEDF (will be fixed soon)
-            doc.text(`QuizPoint | ${classObject.className} report generated for ${quizName} `, 10, 10);
-            // set footer
-            doc.setFontSize(9);
-            // i.e Quiz Point | Generated by Max Webb
-            doc.text(`QuizPoint | Generated by ${user.name}`, 10, 280);
-            // set file name upon download
-            // i.e 10PTEC report for QUIZ_ABCWEDF -  Generated by Max Webb
-            let documentName = `${classObject.className} report for ${quizName} - Generated ${today} `
-            // perform save request
-            doc.save(documentName + '.pdf')
-        } else {
-            // create a new document with portait orentation
-            const doc = new jsPDF()
-            // get the table data from the hidden table
-            autoTable(doc, { html: '#reportTableToExport' })
-            // set header
-            // i.e QuizPoint | Report generated for QUIZ_ABCWEDF (will be fixed soon)
-            doc.text(`QuizPoint | Report generated for ${quizName} `, 10, 10);
-            // set footer
+        // set footer
 
-            doc.setFontSize(9);
-            // i.e Quiz Point | Generated by Max Webb
-            doc.text(`QuizPoint | Generated by ${user.name}`, 10, 280);
-            // set file name upon download
-            // i.e 10PTEC report for QUIZ_ABCWEDF -  Generated by Max Webb
-            let documentName = `${classObject.className} report for ${quizName} - Generated ${today} `
-            // perform save request
-            doc.save(documentName + '.pdf')
-        }
+        doc.setFontSize(9);
+        // i.e Quiz Point | Generated by Max Webb
+        doc.text(`QuizPoint | Generated by ${user.name}`, 10, 280);
+        // set file name upon download
+        // i.e 10PTEC report for QUIZ_ABCWEDF -  Generated by Max Webb
+        let documentName = `${classObject.className} report for ${quizName} - Generated ${today} `
+        // perform save request
+        doc.save(documentName + '.pdf')
+
     }
 
     /**==============================================
