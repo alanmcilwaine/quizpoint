@@ -334,7 +334,8 @@ export default function Students() {
                 set(pathRef, null)
                 setUID("")
                 Swal.fire('Deleted!', '', 'success')
-                window.location.reload()
+                setUID('')
+                setUID(userLoaded.uid)
             } else if (result.isDenied) {
                 Swal.fire('Student has not been deleted', '', 'info')
             }
@@ -405,8 +406,8 @@ export default function Students() {
                             confirmButtonText: 'All good'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.reload()
-
+                                setUID('')
+                                setUID(userLoaded.uid)
                             }
                         })
                     }
@@ -466,6 +467,40 @@ export default function Students() {
                 </DialogActions>
             </Dialog>
         )
+    }
+
+    function resubQuiz() {
+        let newUserQuizRef = userActiveQuiz
+        try {
+            for (var index = 0; index < newUserQuizRef.length; index++) {
+
+                newUserQuizRef[index].answers = null
+                newUserQuizRef[index].score = {
+                    total: 0,
+                    incorrect: 0,
+                    correct: 0
+                }
+                if (!newUserQuizRef[index].details) {
+
+                } else {
+                    newUserQuizRef[index].details.progress = 0
+                    let pathRef = ref(db, `/schools/hvhs/users/${userLoaded.uid}/quizzes/active/${newUserQuizRef[index].details.code}`)
+                    let turnedInRef = ref(db, `/schools/hvhs/users/${userLoaded.uid}/quizzes/turnedin/`)
+                    update(pathRef, newUserQuizRef[index])
+                    update(turnedInRef, {})
+                }
+
+            }
+        } finally {
+            const completionCallback = setTimeout(function () {
+                console.log('Completed resubmission')
+                setUID('')
+                setUID(userLoaded.uid)
+
+            }, 0)
+        }
+
+
     }
 
     const [search, setSearch] = useState(allStudents);
@@ -579,9 +614,11 @@ export default function Students() {
                                         </div>
                                         <div className="banner-quiz">
                                             {/* Banner 3 - Quiz */}
-                                            <h5><QuizOutlinedIcon></QuizOutlinedIcon> Quiz History</h5>
+                                            <h5><QuizOutlinedIcon></QuizOutlinedIcon> Quiz History </h5>
                                         </div>
                                         <div className="user-quizhistory">
+                                            <button className='generic-button' onClick={() => resubQuiz()}>Force recompletion on all quizzes</button>
+
                                             {/* Quiz Section */}
                                             <div className="classCards-row">
                                                 {/* Mapped Quiz Active Cards */}

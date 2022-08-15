@@ -333,7 +333,8 @@ export default function Teachers() {
                 set(pathRef, null)
                 setUID("")
                 Swal.fire('Deleted!', '', 'success')
-                window.location.reload()
+                setUID('')
+                setUID(userLoaded.uid)
             } else if (result.isDenied) {
                 Swal.fire('Teacher has not been deleted', '', 'info')
             }
