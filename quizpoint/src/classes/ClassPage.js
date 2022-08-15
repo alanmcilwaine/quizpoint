@@ -32,6 +32,7 @@ import { useMediaQuery } from 'react-responsive';
 import QuizPerformance from '../classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
 import InviteQR from "../services/InviteQR"
+import ClassProgress from "../services/ClassProgress"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -109,6 +110,7 @@ export default function ClassPage() {
                                         </CardContent>
                                         <CardActions>
                                             <QuizPerformance correct={0} incorrect={0} total={1} />
+                                            {user.role === 'teacher' ? <ClassProgress studentList={classObject.students}></ClassProgress> : null}
                                             <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                         </CardActions>
                                     </Card>
@@ -124,6 +126,8 @@ export default function ClassPage() {
                                         </CardContent>
                                         <CardActions>
                                             <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
+                                            {user.role === 'teacher' ? <ClassProgress quizId={qz.code} studentList={data.students}></ClassProgress> : null}
+
                                         </CardActions>
                                     </Card>
                                 </div>
