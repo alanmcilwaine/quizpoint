@@ -100,38 +100,76 @@ export default function ClassPage() {
                                 }
 
                             })
-                            addQuizCard(quizActive.map((qz) =>
-                                <div className="quiz-card">
-                                    <Card sx={{ width: 280, height: 310 }}>
-                                        <CardContent>
-                                            <Typography variant="h6">
-                                                {qz.name}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <QuizPerformance correct={0} incorrect={0} total={1} />
-                                            {user.role === 'teacher' ? <ClassProgress studentList={classObject.students}></ClassProgress> : null}
-                                            <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
-                                        </CardActions>
-                                    </Card>
-                                </div>
-                            ))
-                            addQuizTurnedInCard(quizTurnedIn.map((qz) =>
-                                <div className="quiz-card">
-                                    <Card sx={{ width: 280, height: 310 }}>
-                                        <CardContent>
-                                            <Typography variant="h6">
-                                                {qz.name}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
-                                            {user.role === 'teacher' ? <ClassProgress quizId={qz.code} studentList={data.students}></ClassProgress> : null}
 
-                                        </CardActions>
-                                    </Card>
-                                </div>
-                            ))
+                            if (!data.students) {
+                                addQuizTurnedInCard(quizTurnedIn.map((qz) =>
+                                    <div className="quiz-card">
+                                        <Card sx={{ width: 280, height: 310 }}>
+                                            <CardContent>
+                                                <Typography variant="h6">
+                                                    {qz.name}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
+                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                ))
+                                addQuizCard(quizActive.map((qz) =>
+                                    <div className="quiz-card">
+                                        <Card sx={{ width: 280, height: 310 }}>
+                                            <CardContent>
+                                                <Typography variant="h6">
+                                                    {qz.name}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <QuizPerformance correct={0} incorrect={0} total={1} />
+                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
+                                                <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                ))
+                            } else {
+                                addQuizTurnedInCard(quizTurnedIn.map((qz) =>
+                                    <div className="quiz-card">
+                                        <Card sx={{ width: 280, height: 310 }}>
+                                            <CardContent>
+                                                <Typography variant="h6">
+                                                    {qz.name}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
+                                                {user.role === 'teacher' ? <ClassProgress quizId={qz.code} studentList={data.students}></ClassProgress> : null}
+
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+
+                                ))
+                                addQuizCard(quizActive.map((qz) =>
+                                    <div className="quiz-card">
+                                        <Card sx={{ width: 280, height: 310 }}>
+                                            <CardContent>
+                                                <Typography variant="h6">
+                                                    {qz.name}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <QuizPerformance correct={0} incorrect={0} total={1} />
+                                                {user.role === 'teacher' ? <ClassProgress studentList={classObject.students}></ClassProgress> : null}
+                                                <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                ))
+
+                            }
+
                             // for each student value
                             console.log(data)
 
