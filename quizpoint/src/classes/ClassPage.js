@@ -168,6 +168,8 @@ export default function ClassPage() {
                         <ButtonGroup variant="contained" aria-label="outlined primary button group">
                             <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
                             <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
+                            <Button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></Button>
+
                             <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                             <InviteQR classObject={classObject}></InviteQR>
                         </ButtonGroup>
