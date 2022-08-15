@@ -2,7 +2,7 @@
     .quizContainer{
         width:95vw;
         padding:0px !important;
-        height:85vh;
+        height:95vh;
     }
     .quizContainer > .quizQuestionTitle{
         order:1;
@@ -26,7 +26,7 @@
         object-fit:cover;
     }
     .quizQuestionTitle > p{
-        font-size:calc(30px + 1vw); 
+        font-size:calc(10px + 3.5vw); 
         text-align:center;
         margin-top:7%;
         height:calc(fit-content + 20px);
@@ -62,7 +62,7 @@
     }
 
     .smallButtonGroupLarge > button > p, .smallButtonGroup > button > p{
-        font-size:calc(12px + 0.8vw);
+        font-size:calc(8px + 0.5vw);
     }
     .quizTitle > p{
         text-align:center;
@@ -148,6 +148,9 @@
     display:grid;
     grid-template-columns:250px 250px !important;
     align-items:flex-end;
+}
+.hasMoreThanFourButtons > button {
+    height: 90px;
 }
 
 .quizButtons{

@@ -18,6 +18,14 @@
     border-radius: 15px !important;
 }
 
+.class-join-a-class-alert {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
 .class-cards {
     margin-top: 2%;
     display: grid;

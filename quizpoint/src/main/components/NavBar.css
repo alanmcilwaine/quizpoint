@@ -11,6 +11,13 @@
     .nav-right {
         display: block;
     }
+    .navbar-links {
+        font-size: 1.2em;
+        margin-left: auto;
+        margin-right: 2%;
+        padding-right: 0 !important;
+    }
+    
 }
 
 @media screen and (min-width:1000px) {
@@ -25,6 +32,13 @@
     .nav-right {
         display: block;
     }
+    .navbar-links {
+        font-size: 1.2em;
+        margin-left: 2%;
+        margin-right: 2%;
+        padding-right: 0 !important;
+    }
+    
 }
 
 .navbar-dropdown {
@@ -52,12 +66,6 @@
     margin-right: 4%;
 }
 
-.navbar-links {
-    font-size: 1.2em;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-right: 0 !important;
-}
 
 .nav-link {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;

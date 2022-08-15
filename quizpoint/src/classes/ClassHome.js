@@ -192,7 +192,7 @@ export default function Classes() {
             );
         } else {
             classCards = <div>
-                <p>You need to join a class, ask your teacher for an invite link.</p>
+                <p class="class-join-a-class-alert">You need to join a class, ask your teacher for an invite link.</p>
             </div>
         }
         if (isTabletOrMobile) {
