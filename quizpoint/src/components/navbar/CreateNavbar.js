@@ -52,7 +52,7 @@ const CreateNavbar = (props) => {
                             </Disclosure.Button>
                         </div>
 
-                        <div className="pr-7 items-start hidden sm:block">
+                        <div className=" items-start hidden sm:block">
                             <a href="/classes"><img className="w-auto h-12" src={Logo} alt="Logo"/></a>
                         </div>
 
