@@ -74,6 +74,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
  **   Stylesheet Imports
  *========================**/
 import "./App.css";
+import Home from "./pages/tcs/Home";
 /**==============================================
  **              deepEqual
  @credit https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
@@ -203,7 +204,7 @@ function App() {
                 {/* Teaching Suite routes */}
                 {localStorage.authToken ?
                   <>
-                    <Route path="/tcs" element={<TeachingHome />} />
+                    <Route path="/tcs" element={<Home />} />
                     <Route path="/tcs/students/:type" element={<Students />} />
                     <Route path="/tcs/user/:id" element={<TeacherStudent />} />
                     <Route path="/tcs/teachers/:type" element={<Teachers />} />
