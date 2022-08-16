@@ -5,12 +5,12 @@
 
 
 import { useParams, useNavigate } from "react-router-dom"
-import { user } from '../firebase/fb.user'
+import { user } from '../../components/firebase/fb.user.js'
 import React, { useState, useEffect } from 'react'
 import './ClassPage.css'
 // database
-import { db } from '../services/firebase'
-import { alert } from '../services/Alert'
+import { db } from '../../services/firebase'
+import { alert } from '../../services/Alert'
 // components from libs
 import { ref, onValue } from "firebase/database";
 // compenets from ui
@@ -24,15 +24,15 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import AssignQuiz from "../teachingsuite/AssignQuiz"
-import GenerateInvite from "../teachingsuite/GenerateInvite";
+import AssignQuiz from "../../teachingsuite/AssignQuiz"
+import GenerateInvite from "../../teachingsuite/GenerateInvite";
 // responsive design
 import { useMediaQuery } from 'react-responsive';
 // quiz doughnut chart
-import QuizPerformance from '../classes/QuizPerformance';
+import QuizPerformance from '../../components/classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
-import InviteQR from "../services/InviteQR"
-import ClassProgress from "../services/ClassProgress"
+import InviteQR from "../../services/InviteQR"
+import ClassProgress from "../../services/ClassProgress"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 /**======================
  **   Data service Imports
  *========================**/
-import { user } from "../firebase/fb.user";
+import { user } from "../components/firebase/fb.user";
 import { db, dbFunctions, dbFunctionsSync } from '../services/firebase'
 import { ref, onValue, update, set } from "firebase/database";
 /**======================

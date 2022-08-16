@@ -15,51 +15,51 @@ import usePWA from 'react-pwa-install-prompt'
 /**======================
  **   Media Imports
  *========================**/
-import myLogo from "./components/icon.svg";
+import myLogo from "./media/icon.svg";
 
 /**======================
  **   Data service Imports
  *========================**/
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { user } from '../firebase/fb.user.js';
+import { user } from './components/firebase/fb.user.js';
 import { getDatabase, ref, onValue } from "firebase/database";
 
 /**======================
  **   Page/Component Imports
  *========================**/
-import { LogOut } from '../services/Login'
-import ClassHome from '../classes/ClassHome'
-import LandingPage from "../home/LandingPage";
-import ClassPage from '../classes/ClassPage'
-import UserPage from '../User/UserPage'
-import Quiz from '../quizzes/Quiz'
-import TeachingHome from '../teachingsuite/Dashboard'
-import NotFoundPage from './404'
-import Invite from '../services/invite'
-import NavBar from './components/NavBar'
+import { LogOut } from './services/Login'
+import ClassHome from './pages/classes/ClassHome'
+import LandingPage from "./home/LandingPage";
+import ClassPage from './pages/classes/ClassPage'
+import UserPage from './User/UserPage'
+import Quiz from './quizzes/Quiz'
+import TeachingHome from './teachingsuite/Dashboard'
+import NotFoundPage from './main/404'
+import Invite from './services/invite'
+import NavBar from './components/navbar/NavBar'
 
 /**======================
  *?   Teaching Suite components
  *========================**/
-import Students from "../teachingsuite/Students";
-import Classes from "../teachingsuite/Classes";
-import Quizzes from "../teachingsuite/Quizzes";
-import Reporting from "../teachingsuite/Reporting";
-import RedirectLegacy from '../services/RedirectLegacy'
-import TeacherStudent from "../User/UserPageTeacher";
-import CreateClass from "../teachingsuite/CreateClass";
-import CreateQuiz from "../teachingsuite/CreateQuiz";
-import EditQuiz from "../teachingsuite/EditQuiz";
-import ClassReport from "../teachingsuite/reportingfeatures/ClassReport";
-import StudentReport from "../teachingsuite/reportingfeatures/StudentReport";
-import ReAuthenticateTeacher from "../teachingsuite/ReAuthTeacher";
-import GlobalReAuthTeacher from "../teachingsuite/GlobalReAuth"
-import Setup from '../teachingsuite/Setup'
+import Students from "./teachingsuite/Students";
+import Classes from "./teachingsuite/Classes";
+import Quizzes from "./teachingsuite/Quizzes";
+import Reporting from "./teachingsuite/Reporting";
+import RedirectLegacy from './services/RedirectLegacy'
+import TeacherStudent from "./User/UserPageTeacher";
+import CreateClass from "./teachingsuite/CreateClass";
+import CreateQuiz from "./teachingsuite/CreateQuiz";
+import EditQuiz from "./teachingsuite/EditQuiz";
+import ClassReport from "./teachingsuite/reportingfeatures/ClassReport";
+import StudentReport from "./teachingsuite/reportingfeatures/StudentReport";
+import ReAuthenticateTeacher from "./teachingsuite/ReAuthTeacher";
+import GlobalReAuthTeacher from "./teachingsuite/GlobalReAuth"
+import Setup from './teachingsuite/Setup'
 /**======================
  *?   Teaching Suite components
  *========================**/
-import HODHome from '../hod/Home'
-import Teachers from "../teachingsuite/Teachers";
+import HODHome from './hod/Home'
+import Teachers from "./teachingsuite/Teachers";
 
 /**======================
  **   MUI Imports
@@ -67,7 +67,7 @@ import Teachers from "../teachingsuite/Teachers";
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
-import InputGoogleForm from "../teachingsuite/InputForm";
+import InputGoogleForm from "./teachingsuite/InputForm";
 import Stack from '@mui/material/Stack';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 /**======================

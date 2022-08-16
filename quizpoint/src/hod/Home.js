@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-import { user } from '../firebase/fb.user.js';
+import { user } from '../components/firebase/fb.user.js';
 export default function Home() {
     return (
         <h1>Welcome, {user.name}</h1>

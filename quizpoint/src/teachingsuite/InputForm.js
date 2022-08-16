@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 /**======================
  **   Data service Imports
  *========================**/
-import { user } from '../firebase/fb.user'
+import { user } from '../components/firebase/fb.user'
 import axios from 'axios'
 import { set } from "firebase/database";
 import { db } from '../services/firebase'

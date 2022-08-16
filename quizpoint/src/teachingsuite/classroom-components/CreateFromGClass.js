@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom"
 /**======================
  **   Data service Imports
  *========================**/
-import { user } from '../../firebase/fb.user'
+import { user } from '../../components/firebase/fb.user'
 import axios from 'axios'
 import { ref, set, update } from "firebase/database";
 import { db } from '../../services/firebase'

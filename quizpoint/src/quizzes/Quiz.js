@@ -12,7 +12,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { storage } from "../services/firebase.js"
 
 // user model
-import { user } from '../firebase/fb.user.js';
+import { user } from '../components/firebase/fb.user.js';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 // styling

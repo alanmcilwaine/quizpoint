@@ -4,7 +4,7 @@
  */
 
 import * as React from 'react';
-import { user } from '../firebase/fb.user.js';
+import { user } from '../components/firebase/fb.user.js';
 import { useNavigate } from "react-router-dom"
 
 // material ui

@@ -4,7 +4,7 @@
  */
 //* Import statements
 import { useParams } from "react-router-dom"
-import { user } from '../firebase/fb.user'
+import { user } from '../components/firebase/fb.user'
 import './UserPage.css'
 import { Card, ListGroup, Button } from 'react-bootstrap';
 

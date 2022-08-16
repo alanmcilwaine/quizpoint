@@ -5,7 +5,7 @@
 //* Import statements
 
 // Styles and user import
-import { user } from '../firebase/fb.user'
+import { user } from '../components/firebase/fb.user'
 import './UserPage.css'
 import './UserPageTeacher.css'
 

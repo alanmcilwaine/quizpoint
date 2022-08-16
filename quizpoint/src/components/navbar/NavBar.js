@@ -5,10 +5,10 @@
 
 import { Navbar, Nav, Dropdown, Container } from 'react-bootstrap';
 import './NavBar.css';
-import logo from './logo.svg'
-import icon from './icon.svg'
+import logo from '../../media/logo.svg'
+import icon from '../../media/icon.svg'
 // import {user} from '.'
-import { user } from '../../firebase/fb.user'
+import { user } from '../firebase/fb.user'
 import Image from 'react-bootstrap/Image'
 import { useLocation } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -18,7 +18,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { useEffect, useState } from 'react';
-import UserDialog from './UserDialog';
+import UserDialog from '../../main/components/UserDialog';
 
 function urlContains(url, value) {
     return ~url.indexOf(value);

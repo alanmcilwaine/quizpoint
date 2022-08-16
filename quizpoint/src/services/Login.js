@@ -5,7 +5,7 @@
 
 // Import Statements
 
-import { setUserObjectLocal } from "../firebase/fb.user"
+import { setUserObjectLocal } from "../components/firebase/fb.user"
 import { Image, Button } from 'react-bootstrap'
 import logOutBack from './media/logoutback.png'
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut, signInWithCustomToken } from "firebase/auth";

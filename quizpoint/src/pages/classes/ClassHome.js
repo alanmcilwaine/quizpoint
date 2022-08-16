@@ -8,12 +8,12 @@
  *
  */
 // import statements
-import { user } from '../firebase/fb.user.js';
+import { user } from '../../components/firebase/fb.user.js';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 // import { db, ref } from '../services/firebase.js';
 // database
-import { db } from '../services/firebase'
+import { db } from '../../services/firebase'
 // components from libs
 import { ref, onValue } from "firebase/database";
 import './ClassHome.css'

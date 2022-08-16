@@ -23,7 +23,7 @@ import { useParams } from 'react-router-dom'
  **   Data Service Imports
  *========================**/
 import { db } from '../../services/firebase'
-import { user } from '../../firebase/fb.user.js';
+import { user } from '../../components/firebase/fb.user.js';
 import { ref, onValue } from "firebase/database";
 /**======================
  **   Data Handling Imports

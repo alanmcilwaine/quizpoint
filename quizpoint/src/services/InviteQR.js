@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Dialog from '@mui/material/Dialog';
-import logo from '../main/components/logo.svg'
+import logo from '../media/logo.svg'
 import { QRCode } from 'react-qrcode-logo';
 import jsPDF from "jspdf";
 
