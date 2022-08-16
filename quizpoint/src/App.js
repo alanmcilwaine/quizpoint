@@ -36,7 +36,7 @@ import Quiz from './quizzes/Quiz'
 import TeachingHome from './teachingsuite/Dashboard'
 import NotFoundPage from './main/404'
 import Invite from './services/invite'
-import NavBar from './components/navbar/NavBar'
+import Navbar from './components/navbar/Navbar'
 
 /**======================
  *?   Teaching Suite components
@@ -193,7 +193,7 @@ function App() {
 
               </Snackbar>
               {/* < NavBar /> */}
-              <NavBar />
+              <Navbar />
               <Routes>
                 <Route path="/" element={<ClassHome />} />
                 <Route path="/classes" element={<ClassHome />} />
@@ -249,7 +249,7 @@ function App() {
 
               </Snackbar>
               {/* < NavBar /> */}
-              <NavBar />
+              <Navbar />
               <Routes>
                 <Route path="/" element={<ClassHome />} />
                 <Route path="/classes" element={<ClassHome />} />
@@ -304,7 +304,7 @@ function App() {
           <GoogleOAuthProvider clientId="616231612574-unh76pn0grtjqdj5ggqg2fq7b6rti4gi.apps.googleusercontent.com">
             <div className="App">
               {/* < NavBar /> */}
-              <NavBar />
+              <Navbar />
               <Routes>
                 <Route path="/" element={<ClassHome />} />
                 <Route path="/classHome" element={<RedirectLegacy />} />

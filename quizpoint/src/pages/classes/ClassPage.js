@@ -7,7 +7,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { user } from '../../components/firebase/fb.user.js'
 import React, { useState, useEffect } from 'react'
-import './ClassPage.css'
 // database
 import { db } from '../../services/firebase'
 import { alert } from '../../services/Alert'
