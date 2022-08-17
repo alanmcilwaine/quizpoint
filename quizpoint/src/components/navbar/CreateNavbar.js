@@ -28,11 +28,22 @@ const CreateNavbar = (props) => {
                 { name: 'Report', href: '/tcs/reporting', current: false },
             ]
     }
-      
+
+
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
 
+    function updateCurrentInNavigationArray(itemClicked) {
+        navigation.forEach(item => {
+            if (item.current) {
+                item.current = false
+            }
+            console.log(item)
+        }
+        )
+        itemClicked.current = true;
+    }
     return (
         <Disclosure as="nav" className="bg-primary-100 ">
             {({ open }) => (
@@ -64,13 +75,13 @@ const CreateNavbar = (props) => {
                                     {/* Generate a new navigation button for each in array navigation */}
                                     {navigation.map((item) => (
                                     <a
+                                        onClick = {() => updateCurrentInNavigationArray(item)}
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
                                         item.current ? 'font-bold underline underline-offset-8' : ' hover:underline underline-offset-8 font-medium',
                                         'px-4 py-2 text-sm  border-r last:border-0 m-0 text-white',
                                         )}
-                                        aria-current={item.current ? 'page' : undefined}
                                     >
                                         {item.name}
                                     </a>
@@ -141,6 +152,9 @@ const CreateNavbar = (props) => {
                     <div className="px-4 pt-2 pb-3 space-y-1">
                     {navigation.map((item) => (
                         <Disclosure.Button
+
+                        onClick = {() => updateCurrentInNavigationArray()}
+
                         key={item.name}
                         as="a"
                         href={item.href}
