@@ -79,8 +79,8 @@ const CreateNavbar = (props) => {
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                        item.current ? 'font-bold underline underline-offset-8' : ' hover:underline underline-offset-8 font-medium',
-                                        'px-4 py-2 text-sm  border-r last:border-0 m-0 text-white',
+                                        item.current ? 'font-bold' : 'font-medium',
+                                        'px-4 py-2 text-sm m-0 last:mr-0 border-r last:border-0 text-white relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[1px] after:w-full after:translate-y-1 after:opacity-0 hover:after:translate-y-0 hover:after:opacity-100 after:transition after:ease-in-out after:duration-200',
                                         )}
                                     >
                                         {item.name}
@@ -96,7 +96,7 @@ const CreateNavbar = (props) => {
                         <div className="flex items-end">
                             <Menu as="div" className="relative">
                             <div className="flex align-center ">
-                                <Menu.Button>
+                                <Menu.Button className="p-0">
                                 <span className="sr-only">Open user menu</span>
                                 <img className="w-12 h-12 rounded-lg" src={user.picture} alt="Profile Picture"/>
                                 </Menu.Button>
