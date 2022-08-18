@@ -30,7 +30,7 @@ function QuizPerformance(props) {
       },
     ]
   };
-  return (<div className="doughnut-chart"><Doughnut data={data} /></div>)
+  return (<Doughnut data={data} />)
 }
 
 

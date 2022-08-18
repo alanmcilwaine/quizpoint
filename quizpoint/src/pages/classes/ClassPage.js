@@ -32,6 +32,7 @@ import QuizPerformance from '../../components/classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
 import InviteQR from "../../services/InviteQR"
 import ClassProgress from "../../services/ClassProgress"
+import QuizCards from "../../components/cards/QuizCards"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -102,20 +103,11 @@ export default function ClassPage() {
 
                             if (!data.students) {
                                 addQuizTurnedInCard(quizTurnedIn.map((qz) =>
-                                    <div className="quiz-card">
-                                        <Card sx={{ width: 280, height: 310 }}>
-                                            <CardContent>
-                                                <Typography variant="h6">
-                                                    {qz.name}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
-                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
-                                            </CardActions>
-                                        </Card>
-                                    </div>
+                                <>
+                                    <QuizCards name={qz.name} user={user}/>
+                                </>
                                 ))
+
                                 addQuizCard(quizActive.map((qz) =>
                                     <div className="quiz-card">
                                         <Card sx={{ width: 280, height: 310 }}>
@@ -126,7 +118,7 @@ export default function ClassPage() {
                                             </CardContent>
                                             <CardActions>
                                                 <QuizPerformance correct={0} incorrect={0} total={1} />
-                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
+                                                {user.role  === 'teacher' ? <p>An error occured</p> : null}
                                                 <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                             </CardActions>
                                         </Card>
@@ -235,8 +227,10 @@ export default function ClassPage() {
                         <hr></hr>
                         <div className="quizcompleted">
                             <h2>Quizzes Completed</h2>
-                            <div className="quiz-grid">
-                                {quizTurnedCards}
+                            <div className="flex justify-center">
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {quizTurnedCards}
+                                </div>
                             </div>
                         </div>
                     </div>
