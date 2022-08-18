@@ -9,16 +9,16 @@ import axios from 'axios'
 
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
-import { storage } from "../services/firebase.js"
+import { storage } from "../../services/firebase.js"
 
 // user model
-import { user } from '../components/firebase/fb.user.js';
+import { user } from '../../components/firebase/fb.user.js';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 // styling
 import './Quiz.css'
 // firebase and db stuff
-import { db } from '../services/firebase'
+import { db } from '../../services/firebase'
 import { ref, onValue, set, update, get, child, remove } from "firebase/database";
 import { ref as sRef, uploadBytes } from "firebase/storage";
 import Swal from 'sweetalert2';

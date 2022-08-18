@@ -33,7 +33,7 @@ import Stack from '@mui/material/Stack';
 
 // responsive design
 import { useMediaQuery } from 'react-responsive'
-
+import ClassCards from '../../components/cards/ClassCards'
 let foundClasses = []
 
 
@@ -46,6 +46,7 @@ export default function Classes() {
     const shouldFade = true;
 
     useEffect(() => {
+
         if (loading === true) {
             document.title = ' Classes | QuizPoint'
             console.log('Loaded')

@@ -226,7 +226,7 @@ export default function ClassPage() {
                     <div className="class-body">
                         {isTabletOrMobile ? null : returnTeacherActions()}
                         <div className="quizassigned">
-                            <h2>Quizzes Assigned</h2>
+                            <h2 className="text-2xl text-white font-medium">Quizzes Assigned</h2>
                             <div className="flex justify-center">
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {quizCards}
@@ -235,7 +235,7 @@ export default function ClassPage() {
                         </div>
                         <hr></hr>
                         <div className="quizcompleted">
-                            <h2>Quizzes Completed</h2>
+                            <h2 className="text-2xl text-white font-medium">Quizzes Completed</h2>
                             <div className="flex justify-center">
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {quizTurnedCards}

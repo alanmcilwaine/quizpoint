@@ -10,7 +10,7 @@ import './errorpage.css'
 /**======================
  **   Media service Imports
  *========================**/
-import logo from '../media/appicon-itt6.svg'
+import logo from '../../media/appicon-itt6.svg'
 /**======================
  **   Bootstrap? Imports
  *! Needs to be refactored to MUI

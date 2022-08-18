@@ -29,12 +29,12 @@ import { getDatabase, ref, onValue } from "firebase/database";
  *========================**/
 import { LogOut } from './services/Login'
 import ClassHome from './pages/classes/ClassHome'
-import LandingPage from "./home/LandingPage";
+import LandingPage from "./pages/login/LandingPage";
 import ClassPage from './pages/classes/ClassPage'
 import UserPage from './User/UserPage'
-import Quiz from './quizzes/Quiz'
+import Quiz from './pages/quiz/Quiz'
 import TeachingHome from './teachingsuite/Dashboard'
-import NotFoundPage from './main/404'
+import NotFoundPage from './components/feedback/404'
 import Invite from './services/invite'
 import Navbar from './components/navbar/Navbar'
 

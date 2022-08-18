@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 /**======================
  **   Data service Imports
  *========================**/
-import { user } from '../../components/firebase/fb.user'
+import { user } from '../firebase/fb.user'
 /**======================
  **   MUI Imports
  *========================**/
