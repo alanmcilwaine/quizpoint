@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../services/firebase'
 // components from libs
 import { ref, onValue } from "firebase/database";
-import './ClassHome.css'
 // material ui
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -34,7 +33,7 @@ import Stack from '@mui/material/Stack';
 
 // responsive design
 import { useMediaQuery } from 'react-responsive'
-
+import ClassCards from '../../components/cards/ClassCards'
 let foundClasses = []
 
 
@@ -47,6 +46,7 @@ export default function Classes() {
     const shouldFade = true;
 
     useEffect(() => {
+
         if (loading === true) {
             document.title = ' Classes | QuizPoint'
             console.log('Loaded')
@@ -166,29 +166,7 @@ export default function Classes() {
         let classCards
         if (enrolled === true) {
             classCards = foundClasses.map((classInfo) =>
-                <div class="class-cards-class">
-                    <Card sx={{ width: 280, height: 310 }} className="class-cards-element" onClick={() => navigate('/class/' + classInfo.code)}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                height="120"
-                                image="https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/12/Gradient_builder_2.jpg"
-                                alt="green iguana"
-                            />
-                            <CardContent>
-                                <Typography variant="h5" component="div">
-                                </Typography>
-                                <Typography variant="h4">
-                                    {classInfo.className}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className="class-card-footer">
-                                <Typography variant="h6" component="p">{classInfo.classCreator}</Typography>
-                            </CardActions>
-                        </CardActionArea>
-                    </Card>
-
-                </div>
+                <><ClassCards classInfo={classInfo}/></>
             );
         } else {
             classCards = <div>

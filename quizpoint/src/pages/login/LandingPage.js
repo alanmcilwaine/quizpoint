@@ -11,15 +11,15 @@ import { useState, useEffect } from 'react';
 /**======================
  **   Data Service/Auth model Imports
  *========================**/
-import { newSignInModel, LoginFunction } from '../services/Login'
+import { newSignInModel, LoginFunction } from '../../services/Login'
 import { useGoogleLogin } from '@react-oauth/google';
 
 /**======================
  **   Image and media Imports
  *========================**/
-import logo from './media/appicon-itt6.svg'
-import googleButton from './media/googleButton.svg'
-import schoolMedia from './media/background.jpg'
+import logo from '../../media/appicon-itt6.svg'
+import googleButton from '../../media/googleButton.svg'
+import schoolMedia from '../../media/background.jpg'
 
 /**======================
  **   MUI Imports
@@ -31,7 +31,6 @@ import SyncLoader from "react-spinners/SyncLoader";
 /**======================
  **   Stylesheet Imports
  *========================**/
-import './LandingPage.css';
 
 /**==============================================
  **              LandingPage

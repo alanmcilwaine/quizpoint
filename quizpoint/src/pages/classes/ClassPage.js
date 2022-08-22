@@ -7,7 +7,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { user } from '../../components/firebase/fb.user.js'
 import React, { useState, useEffect } from 'react'
-import './ClassPage.css'
 // database
 import { db } from '../../services/firebase'
 import { alert } from '../../services/Alert'
@@ -33,6 +32,7 @@ import QuizPerformance from '../../components/classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
 import InviteQR from "../../services/InviteQR"
 import ClassProgress from "../../services/ClassProgress"
+import QuizCards from "../../components/cards/QuizCards"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -103,35 +103,33 @@ export default function ClassPage() {
 
                             if (!data.students) {
                                 addQuizTurnedInCard(quizTurnedIn.map((qz) =>
-                                    <div className="quiz-card">
-                                        <Card sx={{ width: 280, height: 310 }}>
-                                            <CardContent>
-                                                <Typography variant="h6">
-                                                    {qz.name}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
-                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
-                                            </CardActions>
-                                        </Card>
-                                    </div>
+                                <>
+                                    {console.log(qz)}
+                                    {console.log("adding new quiz")}
+                                    <QuizCards quiz={qz} user={user} status="completed" page="ClassPage" graphType="doughnut"/>
+                                </>
                                 ))
+
                                 addQuizCard(quizActive.map((qz) =>
-                                    <div className="quiz-card">
-                                        <Card sx={{ width: 280, height: 310 }}>
-                                            <CardContent>
-                                                <Typography variant="h6">
-                                                    {qz.name}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <QuizPerformance correct={0} incorrect={0} total={1} />
-                                                {user.role === 'teacher' ? <p>An error occured</p> : null}
-                                                <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
+                                <>
+                                                                    {console.log(user.quizzes)}
+                                    {console.log("adding new quiz")}
+                                    <QuizCards quiz={qz} user={user} status="assigned" page="ClassPage" graphType="bar"/>
+                                </>
+                                    // <div className="quiz-card">
+                                    //     <Card sx={{ width: 280, height: 310 }}>
+                                    //         <CardContent>
+                                    //             <Typography variant="h6">
+                                    //                 {qz.name}
+                                    //             </Typography>
+                                    //         </CardContent>
+                                    //         <CardActions>
+                                    //             <QuizPerformance correct={0} incorrect={0} total={1} />
+                                    //             {user.role  === 'teacher' ? <p>An error occured</p> : null}
+                                    //             <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
+                                    //         </CardActions>
+                                    //     </Card>
+                                    // </div>
                                 ))
                             } else {
                                 addQuizTurnedInCard(quizTurnedIn.map((qz) =>
@@ -228,16 +226,20 @@ export default function ClassPage() {
                     <div className="class-body">
                         {isTabletOrMobile ? null : returnTeacherActions()}
                         <div className="quizassigned">
-                            <h2>Quizzes Assigned</h2>
-                            <div className="quiz-grid">
-                                {quizCards}
+                            <h2 className="text-2xl text-white font-medium">Quizzes Assigned</h2>
+                            <div className="flex justify-center">
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {quizCards}
+                                </div>
                             </div>
                         </div>
                         <hr></hr>
                         <div className="quizcompleted">
-                            <h2>Quizzes Completed</h2>
-                            <div className="quiz-grid">
-                                {quizTurnedCards}
+                            <h2 className="text-2xl text-white font-medium">Quizzes Completed</h2>
+                            <div className="flex justify-center">
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {quizTurnedCards}
+                                </div>
                             </div>
                         </div>
                     </div>
