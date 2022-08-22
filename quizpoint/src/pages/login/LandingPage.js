@@ -74,28 +74,21 @@ export default function LandingPage() {
 
     // return JSX
     return (
-        <div id="landingPage" className="loginPage" style={{ backgroundImage: `url(${schoolMedia})` }}>
-            <div className="loginContainer">
-                <div className="logo"><img src={logo} alt="QuizPoint Logo"></img></div>
-                <div className="loginText"><h1>QuizPoint</h1></div>
-                <div className="loginButtons">
-                    <Button variant="light" size="lg" className="googleLoginButton" onClick={() => triggerLogin()} id="authButton"><img src={googleButton}></img>Sign In with Google</Button>
-                    <>
-                        <Backdrop
-                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                            open={loading}
-                        >
-                            <h1>QuizPoint is loading</h1>
-                            {/* cool hash loader */}
-                            <SyncLoader color={color} loading={loading} size={5} speedMultiplier={0.5} />
-
-                        </Backdrop>
-                    </>                </div>
-                <div className='loginFooter'>
-                    <p>Copyright 2022</p>
-                    <p>Created by Max Webb and Alan McIlwaine</p>
+        <div className="flex flex-row w-screen h-screen">
+            <div className="md:order-1 md:basis-2/3 bg-blue-200 flex w-screen flex-col justify-center items-center">
+                <div className="md:h-2/5 md:w-2/3 h-3/5 w-4/5 flex gap-10 flex-column justify-center">
+                    <div>
+                        <p className="text-start font-medium text-3xl text-black py-2">Sign In</p>
+                        <p className="w-full">Have a problem? <a href="" className="underline underline-offset-8">Email us for support</a></p>
+                    </div>
+                    <button className="flex hover:shadow-lg md:w-96 max-w-lg" onClick={() => triggerLogin()}><img className="w-8 m-0 h-fit inline" src={googleButton}/><p className="flex justify-center items-center w-full h-8">Sign In With Google</p></button>
                 </div>
-
+            </div>
+            <div className="md:order-2 md:basis-1/3 bg-red-300 flex-col hidden md:block">
+                <div className="flex flex-row items-center w-full h-full">
+                    <img className="w-20 h-20 px-1" src={logo}/>
+                    <div className="text-4xl font-medium relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">QuizPoint</div>
+                </div>
             </div>
         </div>
     )
