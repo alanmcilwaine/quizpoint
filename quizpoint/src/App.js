@@ -41,7 +41,7 @@ import NavBar from './components/navbar/NavBar'
 /**======================
  *?   Teaching Suite components
  *========================**/
-import Students from "./teachingsuite/Students";
+import Students from "./pages/tcs/Students";
 import Classes from "./teachingsuite/Classes";
 import Quizzes from "./teachingsuite/Quizzes";
 import Reporting from "./teachingsuite/Reporting";
