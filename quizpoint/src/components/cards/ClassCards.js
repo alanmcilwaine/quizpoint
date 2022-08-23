@@ -5,10 +5,16 @@ const ClassCards = (props) => {
     console.log(props.classInfo)
     return (
         <>    
-    <div className="bg-blue-200 w-[21rem] h-[24rem] rounded-lg border-slate-300 border">
-        <p>ClassName: {props.classInfo.className}</p>
-        <p>ClassTeacher {props.classInfo.classCreator}</p>
-        <button onClick={() => navigate('/class/' + props.classInfo.code)}>Go to class</button>
+    <div className="bg-blue-200 w-[21rem] h-[23rem] rounded-lg border-slate-300 border">
+        <div className="w-auto h-20 rounded-t-lg">
+            <p className="flex justify-center items-center text-medium font-medium text-2xl w-full h-full">{props.classInfo.className}</p>
+
+        </div>
+        <div className="h-auto">
+            <button onClick={() => navigate('/class/' + props.classInfo.code)}>Go to class</button>
+            <p className="flex items-end">Created By: {props.classInfo.classCreator}</p>
+        </div>
+
     </div>
     </>
 
