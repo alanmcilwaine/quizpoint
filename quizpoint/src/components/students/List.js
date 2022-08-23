@@ -102,9 +102,9 @@ export default function List({ type, toSearch, uidArray }) {
 
     return (
         <div className="">
-            <div className="h-auto  ml-0 py-6 sm:px-6  grid grid-cols-2 gap-0">
+            <div className="h-auto  ml-0 py-6   grid grid-cols-2 gap-0">
 
-                <div className="flex flex-col max-w-2xl">
+                <div className="flex flex-col max-w-lg">
                     <div className="-my-2 overflow-x-auto ">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
