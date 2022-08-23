@@ -75,7 +75,7 @@ export default function LandingPage() {
     // return JSX
     return (
         <div className="flex flex-row w-screen h-screen">
-            <div className="md:order-1 md:basis-3/5 bg-blue-200 flex w-screen flex-col justify-center items-center">
+            <div className="md:order-1 md:basis-3/5 bg-slate-50 flex w-screen flex-col justify-center items-center">
                 <div className="md:h-2/5 md:w-2/3 h-3/5 w-4/5 flex gap-10 flex-column justify-center">
                     <div>
                         <img src={logo} alt="logo" className="w-20 h-20 md:hidden block" />

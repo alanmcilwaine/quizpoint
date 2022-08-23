@@ -30,7 +30,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-
+import Heading from '../../components/construct/Heading';
 // responsive design
 import { useMediaQuery } from 'react-responsive'
 import ClassCards from '../../components/cards/ClassCards'
@@ -120,44 +120,6 @@ export default function Classes() {
                 >
                     <CircularProgress color="inherit" />
                 </Backdrop>
-                <div className="class-home">
-                    <div className="class-header">
-                        <h1>Your Classes</h1>
-                    </div>
-                    <div className="class-body">
-                        <div className="class-cards">
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>
-                            <Stack spacing={1}>
-                                <Skeleton variant="rectangular" width={300} height={200} />
-                            </Stack>                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
         );
 
@@ -173,45 +135,50 @@ export default function Classes() {
                 <p class="class-join-a-class-alert">You need to join a class, ask your teacher for an invite link.</p>
             </div>
         }
-        if (isTabletOrMobile) {
-            return (
-                <Fade in={shouldFade}>
-                    <div className="class-home">
-                        <div className="class-header">
-                            <h1>Your Classes</h1>
-                            <hr></hr>
-                        </div>
-                        <div className="class-body">
-                            <div className="class-cards-mobile-home">
-                                {classCards}
-                            </div>
-
-                        </div>
-
+        return (
+            <Fade in={shouldFade}>
+                <div className="flex justify-center py-12">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+                            {classCards}
                     </div>
-                </Fade>
-            )
-        }
-        else {
+                </div>
+            </Fade>
+        )
+        // if (isTabletOrMobile) {
+        //     return (
+        //         <Fade in={shouldFade}>
+        //             <div className="class-home">
+        //                 <div className="class-header">
+        //                 </div>
+        //                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        //                     <div className="class-cards-mobile-home">
+        //                         {classCards}
+        //                     </div>
 
-            return (
-                <Fade in={shouldFade}>
-                    <div className="class-home">
-                        <div className="class-header">
-                            <h1>Your Classes</h1>
-                            <hr></hr>
-                        </div>
-                        <div className="class-body">
-                            <div className="class-cards">
-                                {classCards}
-                            </div>
+        //                 </div>
 
-                        </div>
+        //             </div>
+        //         </Fade>
+        //     )
+        // }
+        // else {
 
-                    </div>
-                </Fade>
-            )
-        }
+        //     return (
+        //         <Fade in={shouldFade}>
+        //             <div className="class-home">
+        //                 <div className="class-header">
+        //                 </div>
+        //                 <div className="class-body">
+        //                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        //                         {classCards}
+        //                     </div>
+
+        //                 </div>
+
+        //             </div>
+        //         </Fade>
+        //     )
+        // }
     }
 
 

@@ -49,7 +49,7 @@ const CreateNavbar = (props) => {
         itemClicked.current = true;
     }
     return (
-        <Disclosure as="nav" className="bg-slate-100">
+        <Disclosure as="nav" className="bg-indigo-900">
             {({ open }) => (
                 <>
                     <div className="mx-auto px-3 py-2 sm:px-6 lg:px-8 max-w-[85%]">
@@ -74,7 +74,7 @@ const CreateNavbar = (props) => {
                             {/* Main Desktop Content */}
                             <div className="flex-1 flex items-center content-center justify-center sm:items-stretch">
                                 {/* Logo */}
-                                <div className="hidden sm:block bg-primary-100 rounded-lg">
+                                <div className="hidden sm:block bg-indigo-900 rounded-lg">
                                     <div className="flex space-x-4 border-slate-300 border p-2 rounded-lg shadow-md">
                                         {/* Generate a new navigation button for each in array navigation */}
                                         {navigation.map((item) => (

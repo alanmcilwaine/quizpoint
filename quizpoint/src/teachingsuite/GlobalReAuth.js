@@ -50,7 +50,7 @@ export default function GlobalReAuthTeacher(_locationPost) {
 
     return (
         <div className="flex flex-row w-screen h-screen overflow-y-hidden">
-            <div className="md:order-1 md:basis-2/3 bg-blue-200 flex w-screen flex-col justify-center items-center">
+            <div className="md:order-1 md:basis-2/3 bg-slate-50 flex w-screen flex-col justify-center items-center">
                 <div className="md:h-2/5 md:w-2/3 h-3/5 w-4/5 flex gap-10 flex-column justify-center">
                     <div>
                         <p className="text-start font-medium text-3xl text-black py-2">We need to confirm your identity.</p>
@@ -59,7 +59,7 @@ export default function GlobalReAuthTeacher(_locationPost) {
                     <button className="flex hover:shadow-lg md:w-96 max-w-lg" onClick={() => login()}><img className="w-8 m-0 h-fit inline" src={googleButton} alt="Login Button" /><p className="flex justify-center items-center w-full h-8">Sign In With Google</p></button>
                 </div>
             </div>
-            <div className="md:order-2 md:basis-1/3 bg-red-300 flex-col hidden md:block">
+            <div className="md:order-2 md:basis-1/3 bg-slate-50 flex-col hidden md:block">
                 <div className="flex flex-row items-center w-full h-full">
                     <img className="w-20 h-20 px-1" src={logo} alt="logo" />
                     <div className="text-4xl font-medium relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">QuizPoint</div>
