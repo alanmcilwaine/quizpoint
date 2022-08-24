@@ -35,7 +35,7 @@ function QuizPerformance(props) {
         labels: {
           boxWidth: 20,
           padding: 6,
-          color: 'white',
+          color: 'black',
         },
       },
     },
@@ -55,12 +55,12 @@ function QuizPerformance(props) {
         backgroundColor: [
           '#16a34a',
           '#dc2626',
-          '#dbeafe',
+          '#cbd5e1',
         ],
         hoverBackgroundColor: [
           '#15803d',
           '#b91c1c',
-          '#bfdbfe',
+          '#94a3b8',
         ],
       },
     ]
@@ -69,8 +69,8 @@ function QuizPerformance(props) {
   if (props.type === "bar") { 
     let barPercentage = (quizInfo.correct / quizInfo.total) * 100;
     return (
-      <div className ="w-5/6 bg-blue-100 h-16 rounded-md">
-        <div className ={`bg-emerald-600 h-16 text-lg underline underline-offset-4 font-medium text-blue-100 items-center flex justify-center leading-none rounded-md rounded-r-none`} style={{width: `${barPercentage}%`}}>{Math.round(Number(barPercentage))}%</div>
+      <div className ="w-5/6 bg-slate-300 h-16 rounded-md">
+        <div className ={`bg-emerald-600 h-16 text-lg underline underline-offset-4 font-medium text-zinc-50 items-center flex justify-center leading-none rounded-md rounded-r-none`} style={{width: `${barPercentage}%`}}>{Math.round(Number(barPercentage))}%</div>
       </div>
     )
   } else {

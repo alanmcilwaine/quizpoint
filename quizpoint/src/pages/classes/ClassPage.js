@@ -33,6 +33,7 @@ import { Doughnut } from 'react-chartjs-2';
 import InviteQR from "../../services/InviteQR"
 import ClassProgress from "../../services/ClassProgress"
 import QuizCards from "../../components/cards/QuizCards"
+import Heading from "../../components/construct/Heading"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -189,7 +190,6 @@ export default function ClassPage() {
         }
     }, [loading])
 
-    //! I CANNOT GET THIS WORKING, Allan did you want to have a try?
     if (loading === true) {
 
         function returnTeacherActions() {
@@ -200,16 +200,21 @@ export default function ClassPage() {
                     classArray.push(studentID)
                 }
                 return (
-                    <div class="quick-actions">
-                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <div className="flex basis-1/6 w-2/5 pb-4 flex-row bg-white justify-center rounded-b-lg mb-4">
+                            <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
+                            <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
+                            <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
+                            <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
+                            <InviteQR classObject={classObject}></InviteQR>
+                    </div>
+                        /* <ButtonGroup variant="contained" aria-label="outlined primary button group">
                             <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
                             <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
                             <Button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></Button>
 
                             <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                             <InviteQR classObject={classObject}></InviteQR>
-                        </ButtonGroup>
-                    </div>
+                        </ButtonGroup> */
                 )
             } else if (user.role === undefined) {
                 return
@@ -219,25 +224,28 @@ export default function ClassPage() {
         return (
             <Fade in={shouldFade}>
                 <div className="class-page">
-                    <div className="class-header">
-                        <h1>{classObject.className}</h1>
-                        <hr></hr>
+                    <div className="flex w-full h-56 justify-center flex-col items-center ">
+                        <div className="w-2/5 basis-5/6 flex bg-white justify-center shadow flex-col items-center rounded-t-lg mt-4">
+                            <p className="text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</p>
+                        </div>
+                        {isTabletOrMobile ? null : returnTeacherActions()}
+
+                        {/* <h1>{classObject.className}</h1> */}
                     </div>
                     <div className="class-body">
-                        {isTabletOrMobile ? null : returnTeacherActions()}
+
                         <div className="quizassigned">
-                            <h2 className="text-2xl text-white font-medium">Quizzes Assigned</h2>
+                            <Heading text={"Assigned"} />
                             <div className="flex justify-center">
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
                                     {quizCards}
                                 </div>
                             </div>
                         </div>
-                        <hr></hr>
                         <div className="quizcompleted">
-                            <h2 className="text-2xl text-white font-medium">Quizzes Completed</h2>
+                            <Heading text={"Completed"} />
                             <div className="flex justify-center">
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
                                     {quizTurnedCards}
                                 </div>
                             </div>

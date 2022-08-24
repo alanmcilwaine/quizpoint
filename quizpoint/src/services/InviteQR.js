@@ -89,7 +89,7 @@ export default function InviteQR(props) {
     }
     return (
         <>
-            <Button variant="contained" onClick={() => setDialog(true)}>QR</Button>
+            <button variant="contained" onClick={() => setDialog(true)}>QR</button>
             <QRInvite></QRInvite>
         </>
 

@@ -141,7 +141,7 @@ export default function AssignQuiz(props) {
                     <Button onClick={() => setQuizToAssign(selectedQzId)}>Assign</Button>
                 </DialogActions>
             </Dialog >
-            <Button onClick={() => setDialog(true)}><p>Assign Quiz</p></Button>
+            <button onClick={() => setDialog(true)}><p>Assign Quiz</p></button>
         </>
     )
 
