@@ -26,7 +26,7 @@ import schoolMedia from '../../media/background.jpg'
 import Button from 'react-bootstrap/Button';
 import Backdrop from '@mui/material/Backdrop';
 import SyncLoader from "react-spinners/SyncLoader";
-import pannelsInformal from "../../media/pannelsInformal.png";
+import pannelsInformal from "../../media/pannelsInformal-nocolor.png";
 /**======================
  **   Stylesheet Imports
  *========================**/
