@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 QuizPoint
+ * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
  * All rights reserved.
  */
 
@@ -20,7 +20,6 @@ import { useGoogleLogin } from '@react-oauth/google';
 import logo from '../../media/appicon-itt6.svg'
 import googleButton from '../../media/googleButton.svg'
 import schoolMedia from '../../media/background.jpg'
-
 /**======================
  **   MUI Imports
  *========================**/
@@ -78,15 +77,18 @@ export default function LandingPage() {
             <div className="md:order-1 md:basis-3/5 bg-slate-50 flex w-screen flex-col justify-center items-center">
                 <div className="md:h-2/5 md:w-2/3 h-3/5 w-4/5 flex gap-10 flex-column justify-center">
                     <div>
-                        <img src={logo} alt="logo" className="w-20 h-20 md:hidden block" />
-                        <p className="text-start font-medium text-3xl text-black py-2">Sign In</p>
+                        <div className="flex flex-row items-center mb-2">
+                            <img className="w-20 h-20" src={logo} />
+                            <div className="text-4xl font-medium relative after:absolute ml-4 after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">QuizPoint</div>
+                        </div>
+                        <p className="text-start font-medium text-3xl text-black py-2">Sign in to Hutt Valley High School</p>
                         <p className="w-full">Have a problem? <a href="" className="underline underline-offset-8">Email us for support</a></p>
                     </div>
-                    <button className="flex hover:shadow-lg md:w-96 max-w-lg" onClick={() => triggerLogin()}><img className="w-8 m-0 h-fit inline" src={googleButton}/><p className="flex justify-center items-center w-full h-8">Sign In With Google</p></button>
+                    <button className="flex hover:shadow-lg md:w-96 max-w-lg" onClick={() => triggerLogin()}><img className="w-8 m-0 h-fit inline" src={googleButton} /><p className="flex justify-center items-center w-full h-8">Sign In With Google</p></button>
                 </div>
             </div>
             <div className="md:order-2 md:basis-2/5 bg-indigo-800 flex-col hidden md:block h-screen">
-                <img className="h-screen float-right" src={pannelsInformal}/>
+                <img className="h-screen float-right" src={pannelsInformal} />
                 {/* <div className="flex flex-row items-center w-full h-full">
                     <img className="w-20 h-20 mx-3" src={logo}/>
                     <div className="text-4xl font-medium relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">QuizPoint</div>
