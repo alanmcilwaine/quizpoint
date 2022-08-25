@@ -74,41 +74,6 @@ export default function History({ type, id }) {
     return (
         <>
             <button onClick={() => triggerProcess()}>Generate Report</button>
-            {student ?
-                <div id="studentInformation" ref={pdfRef} className="inline-flex space-x-4 items-center justify-start" style={{ width: 1280, height: 56, }}>
-                    {student.picture ? <img className="w-20 h-20 rounded-lg" src={'http://www.gravatar.com/avatar'} alt="Profile Image" /> : <img className="w-20 h-20 rounded-lg" src={student.picture} alt="Profile" />}
-                    <div className="inline-flex flex-col space-y-2 items-start justify-start" style={{ width: 951, height: 56, }}>
-                        <p className="text-2xl font-bold leading-7 text-gray-900" style={{ width: 951, }}>{student.name}</p>
-                        <div className="inline-flex space-x-6 items-center justify-start" style={{ width: 951, height: 20, }}>
-                            <div className="flex space-x-1.5 items-center justify-start">
-                                <p className="text-sm font-medium leading-tight text-gray-500"> {student.studentID}</p>
-                            </div>
-                            <div className="flex space-x-1.5 items-center justify-start">
-                                <div className="relative w-1/4 h-full" />
-                                <p className="text-sm font-medium leading-tight text-gray-500"><a href={'mailto:' + student.email}>{student.email}</a></p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div className="flex space-x-3 items-center justify-end">
-                        <div className="flex space-x-2 items-center justify-center py-2 px-4 bg-white shadow border rounded-md border-gray-300">
-                            <img className="w-5 h-full rounded-lg" src="https://via.placeholder.com/20x20" alt="Icon" />
-                            <p className="text-sm font-medium leading-tight text-gray-700">Edit</p>
-                        </div>
-                        <div className="flex space-x-2 items-center justify-center py-2 px-4 bg-white shadow border rounded-md border-gray-300">
-                            <img className="w-5 h-full rounded-lg" src="https://via.placeholder.com/20x20" alt="Icon" />
-                            <p className="text-sm font-medium leading-tight text-gray-700">View</p>
-                        </div>
-                        <div className="flex space-x-2 items-center justify-center py-2 px-4 bg-indigo-600 shadow rounded-md">
-                            <img className="w-1/4 h-full rounded-lg" src="https://via.placeholder.com/20x20" alt="Icon" />
-                            <p className="text-sm font-medium leading-tight text-white">Publish</p>
-                        </div>
-                    </div>
-                </div>
-                : null}
-
-
         </>
 
     )
