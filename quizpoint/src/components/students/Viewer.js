@@ -21,7 +21,7 @@ export default function Viewer({ uid }) {
     useEffect(() => {
 
         if (uid === '') {
-
+            document.title = 'Viewing all students | QuizPoint'
         } else {
             console.log(uid)
             setClasses([])
@@ -39,6 +39,8 @@ export default function Viewer({ uid }) {
                         console.log(snapshot.val())
                         setObject(snapshot.val())
                         let data = snapshot.val()
+                        document.title = `Viewing ${data.name} | QuizPoint`
+
                         Object.keys(data.classes).forEach(key => {
                             let classPath = ref(db, `/schools/hvhs/classes/${key}`)
                             onValue(classPath, (snapshot) => {
@@ -55,6 +57,7 @@ export default function Viewer({ uid }) {
                 });
             }
             retrieveUserData()
+
         }
     }, [uid, intialLoad]);
     return (

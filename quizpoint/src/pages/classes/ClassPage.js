@@ -13,6 +13,7 @@ import { alert } from '../../services/Alert'
 // components from libs
 import { ref, onValue } from "firebase/database";
 // compenets from ui
+import PDF from '../../components/pdf/PDF'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
@@ -104,19 +105,19 @@ export default function ClassPage() {
 
                             if (!data.students) {
                                 addQuizTurnedInCard(quizTurnedIn.map((qz) =>
-                                <>
-                                    {console.log(qz)}
-                                    {console.log("adding new quiz")}
-                                    <QuizCards quiz={qz} user={user} status="completed" page="ClassPage" graphType="doughnut"/>
-                                </>
+                                    <>
+                                        {console.log(qz)}
+                                        {console.log("adding new quiz")}
+                                        <QuizCards quiz={qz} user={user} status="completed" page="ClassPage" graphType="doughnut" />
+                                    </>
                                 ))
 
                                 addQuizCard(quizActive.map((qz) =>
-                                <>
-                                                                    {console.log(user.quizzes)}
-                                    {console.log("adding new quiz")}
-                                    <QuizCards quiz={qz} user={user} status="assigned" page="ClassPage" graphType="bar"/>
-                                </>
+                                    <>
+                                        {console.log(user.quizzes)}
+                                        {console.log("adding new quiz")}
+                                        <QuizCards quiz={qz} user={user} status="assigned" page="ClassPage" graphType="bar" />
+                                    </>
                                     // <div className="quiz-card">
                                     //     <Card sx={{ width: 280, height: 310 }}>
                                     //         <CardContent>
@@ -201,20 +202,21 @@ export default function ClassPage() {
                 }
                 return (
                     <div className="flex basis-1/6 w-2/5 pb-4 flex-row bg-white justify-center rounded-b-lg mb-4">
-                            <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
-                            <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
-                            <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
-                            <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
-                            <InviteQR classObject={classObject}></InviteQR>
+                        <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
+                        <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
+                        <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
+                        <PDF />
+                        <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
+                        <InviteQR classObject={classObject}></InviteQR>
                     </div>
-                        /* <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                            <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
-                            <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
-                            <Button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></Button>
+                    /* <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                        <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
+                        <Button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></Button>
+                        <Button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></Button>
 
-                            <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
-                            <InviteQR classObject={classObject}></InviteQR>
-                        </ButtonGroup> */
+                        <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
+                        <InviteQR classObject={classObject}></InviteQR>
+                    </ButtonGroup> */
                 )
             } else if (user.role === undefined) {
                 return
@@ -251,6 +253,7 @@ export default function ClassPage() {
                             </div>
                         </div>
                     </div>
+                    <PDF type={'class'} course={classObject} />
                 </div>
             </Fade>
         )

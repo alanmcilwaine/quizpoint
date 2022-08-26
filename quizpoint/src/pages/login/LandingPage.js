@@ -26,7 +26,7 @@ import schoolMedia from '../../media/background.jpg'
 import Button from 'react-bootstrap/Button';
 import Backdrop from '@mui/material/Backdrop';
 import SyncLoader from "react-spinners/SyncLoader";
-import pannelsInformal from "../../media/pannelsInformal-nocolor.png";
+import pannelsInformal from "../../media/pannelsInformal.png";
 /**======================
  **   Stylesheet Imports
  *========================**/
@@ -87,8 +87,8 @@ export default function LandingPage() {
                     <button className="flex hover:shadow-lg md:w-96 max-w-lg" onClick={() => triggerLogin()}><img className="w-8 m-0 h-fit inline" src={googleButton} /><p className="flex justify-center items-center w-full h-8">Sign In With Google</p></button>
                 </div>
             </div>
-            <div className="md:order-2 md:basis-2/5 bg-indigo-800 flex-col hidden md:block h-screen">
-                <img className="h-screen float-right" src={pannelsInformal} />
+            <div className="md:order-2 md:basis-2/5flex-col hidden md:block h-screen">
+                <img className="h-screen ml-0 float-right" src={pannelsInformal} />
                 {/* <div className="flex flex-row items-center w-full h-full">
                     <img className="w-20 h-20 mx-3" src={logo}/>
                     <div className="text-4xl font-medium relative after:absolute after:bg-gray-200 after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">QuizPoint</div>
