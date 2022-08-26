@@ -10,6 +10,7 @@ import Logo from '../../media/logo.svg'
 
 const CreateNavbar = (props) => {
     let navigation;
+    // eslint-disable-next-line default-case
     switch (props.role) {
         // Changes the navigation depending on the role of the user
         case 'teacherHome':
