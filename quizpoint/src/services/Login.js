@@ -187,6 +187,10 @@ function LogOut() {
   const auth = getAuth();
   signOut(auth).then(() => {
     localStorage.clear()
+    const logoutTimeout = setTimeout(function () {
+      window.location.replace('/')
+
+    }, 3000);
   }).catch((error) => {
     // An error happened.
   });
