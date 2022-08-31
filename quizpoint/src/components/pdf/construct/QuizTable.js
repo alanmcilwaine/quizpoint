@@ -43,6 +43,8 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import Heading from "../../construct/Heading";
+import Spinner from "../../construct/Spinner";
 
 
 export default function QuizTable({ quizId, type, students }) {
@@ -238,21 +240,11 @@ export default function QuizTable({ quizId, type, students }) {
                                     if (cell.value === undefined) {
                                         // return Empty Box with a color of orange and a tooltip
                                         return <TableCell {...cell.getCellProps()}><Tooltip title="Not Completed">
-                                            <CheckBoxOutlineBlankOutlinedIcon style={{ color: 'orange' }}></CheckBoxOutlineBlankOutlinedIcon>
+                                            <DoDisturbIcon style={{ color: 'red' }}></DoDisturbIcon>
                                         </Tooltip></TableCell>
 
-                                    } else if (cell.value === 'correct') {
-                                        // return a green checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Correct">
-                                            <CheckBoxOutlinedIcon style={{ color: 'green' }}></CheckBoxOutlinedIcon>
-                                        </Tooltip></TableCell>
-                                    } else if (cell.value === 'incorrect') {
-                                        // return a red checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Incorrect">
-                                            <IndeterminateCheckBoxOutlinedIcon style={{ color: 'red' }}></IndeterminateCheckBoxOutlinedIcon>
-                                        </Tooltip></TableCell>
-                                    }
-                                    else if (cell.value === 'complete') {
+
+                                    } else if (cell.value === 'complete') {
                                         // return a green checkbox with a tooltip
                                         return <TableCell {...cell.getCellProps()}><Tooltip title="Quiz Completed">
                                             <CheckCircleOutlineIcon style={{ color: 'green' }}></CheckCircleOutlineIcon>
@@ -301,9 +293,14 @@ export default function QuizTable({ quizId, type, students }) {
     }
     return (
         <>
-            {loading ? <p>Loading the quiz information</p> : <ReportTable />
+
+            {console.log(quizObject)}
+            <Heading text={`Quiz: ${quizObject.title}`} />
+            {loading ? <Spinner /> : <ReportTable />
+
             }
-            <p>{quizId} with {type}</p>
+            <hr></hr>
+
         </>
     )
 }

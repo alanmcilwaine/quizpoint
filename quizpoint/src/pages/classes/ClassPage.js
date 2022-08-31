@@ -159,6 +159,7 @@ export default function ClassPage() {
                                                     {qz.name}
                                                 </Typography>
                                             </CardContent>
+                                            {console.log(classObject)}
                                             <CardActions>
                                                 <QuizPerformance correct={0} incorrect={0} total={1} />
                                                 {user.role === 'teacher' ? <ClassProgress studentList={classObject.students}></ClassProgress> : null}
@@ -205,7 +206,7 @@ export default function ClassPage() {
                         <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
                         <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
                         <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
-                        <PDF />
+                        <button>At a glance</button>
                         <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                         <InviteQR classObject={classObject}></InviteQR>
                     </div>
