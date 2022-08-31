@@ -75,6 +75,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
  *========================**/
 import "./App.css";
 import Home from "./pages/tcs/Home";
+import Profile from "./pages/user/Profile";
 /**==============================================
  **              deepEqual
  @credit https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
@@ -200,7 +201,7 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/quiz/:quizId" element={<Quiz />} />
                 <Route path="/invite/:id" element={<Invite />} />
-                <Route path="/user/:id" element={<UserPage />} />
+                <Route path="/user/" element={<Profile />} />
                 {/* Teaching Suite routes */}
                 {localStorage.authToken ?
                   <>
@@ -256,7 +257,7 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/quiz/:quizId" element={<Quiz />} />
                 <Route path="/invite/:id" element={<Invite />} />
-                <Route path="/user/:id" element={<UserPage />} />
+                <Route path="/user" element={<Profile />} />
                 {/* Teaching Suite routes */}
                 {localStorage.authToken ?
                   <>
@@ -312,7 +313,7 @@ function App() {
                 <Route path="/class/:classId" element={<ClassPage />} />
                 <Route path="/invite/:id" element={<Invite />} />
                 <Route path="/quiz/:quizId" element={<Quiz />} />
-                <Route path="/user/:id" element={<UserPage />} />
+                <Route path="/user/" element={<Profile />} />
                 <Route path="/logout" element={<LogOut />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
