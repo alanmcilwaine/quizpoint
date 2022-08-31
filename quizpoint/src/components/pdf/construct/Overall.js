@@ -31,8 +31,11 @@ export default function Overall({ course }) {
                         }
 
                         console.log(studentList)
-
+                        let quiz
                         let quizzesAssignedToClass = snapshot.val().quizzes
+                        for (var quizId in quizzesAssignedToClass) {
+
+                        }
                         console.log(quizzesAssignedToClass)
                         for await (let [key, value] of Object.entries(quizzesAssignedToClass)) {
                             computeFurther(key);
