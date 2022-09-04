@@ -151,6 +151,7 @@ export default function ClassPage() {
                                     </div>
 
                                 ))
+
                                 addQuizCard(quizActive.map((qz) =>
                                     <div className="quiz-card">
                                         <Card sx={{ width: 280, height: 310 }}>
@@ -162,7 +163,7 @@ export default function ClassPage() {
                                             {console.log(classObject)}
                                             <CardActions>
                                                 <QuizPerformance correct={0} incorrect={0} total={1} />
-                                                {user.role === 'teacher' ? <ClassProgress studentList={classObject.students}></ClassProgress> : null}
+                                                {user.role === 'teacher' ? <ClassProgress studentList={data.students}></ClassProgress> : null}
                                                 <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
                                             </CardActions>
                                         </Card>
@@ -253,7 +254,6 @@ export default function ClassPage() {
                             </div>
                         </div>
                     </div>
-                    /* Creating a PDF file of the class object. */
                     {/* <PDF type={'class'} course={classObject} /> */}
                 </div>
             </Fade>
