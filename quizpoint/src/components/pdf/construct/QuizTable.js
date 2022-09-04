@@ -55,7 +55,7 @@ export default function QuizTable({ quizId, type, students }) {
     const [quizObject, setQuizObject] = useState({})
     let columns = [
         {
-            Header: 'Student Information',
+            Header: 'Completion Report',
             columns: [
                 {
                     Header: 'Name',
@@ -222,7 +222,7 @@ export default function QuizTable({ quizId, type, students }) {
                         <TableRow {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
                                 // I.e Question 1, Student Name, etc
-                                <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
+                                <TableCell {...column.getHeaderProps()}><b>{column.render('Header')}</b></TableCell>
                             ))}
                         </TableRow>
                     ))}

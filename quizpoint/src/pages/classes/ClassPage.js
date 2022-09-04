@@ -13,7 +13,7 @@ import { alert } from '../../services/Alert'
 // components from libs
 import { ref, onValue } from "firebase/database";
 // compenets from ui
-import PDF from '../../components/pdf/PDF'
+import Viewer from '../../components/pdf/Viewer'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
@@ -207,6 +207,7 @@ export default function ClassPage() {
                         <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
                         <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
                         <button>At a glance</button>
+                        <Viewer type={'class'} course={classObject}></Viewer>
                         <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                         <InviteQR classObject={classObject}></InviteQR>
                     </div>
@@ -254,7 +255,8 @@ export default function ClassPage() {
                             </div>
                         </div>
                     </div>
-                    <PDF type={'class'} course={classObject} />
+                    /* Creating a PDF file of the class object. */
+                    {/* <PDF type={'class'} course={classObject} /> */}
                 </div>
             </Fade>
         )

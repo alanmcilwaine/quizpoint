@@ -192,7 +192,7 @@ export default function ClassProgress(props) {
 
     return (
         <>
-            <Button variant="contained" onClick={() => collateData()}>View</Button>
+            <button onClick={() => collateData()}>View</button>
             <Dialog
                 open={!loading}
                 fullWidth={true}
