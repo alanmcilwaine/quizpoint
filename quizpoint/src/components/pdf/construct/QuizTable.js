@@ -294,11 +294,13 @@ export default function QuizTable({ quizId, type, students }) {
     return (
         <>
 
-            {console.log(quizObject)}
-            <Heading text={`Quiz: ${quizObject.title}`} />
-            {loading ? <Spinner /> : <ReportTable />
+            <div className='ml-2 mr-2 mt-2'>
+                {console.log(quizObject)}
+                <p className='text-xl font-bold	text-center'>{`${quizObject.title}`}</p>
+                {loading ? <Spinner /> : <ReportTable />
 
-            }
+                }
+            </div>
             <hr></hr>
 
         </>
