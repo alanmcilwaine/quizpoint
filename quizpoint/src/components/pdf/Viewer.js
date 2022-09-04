@@ -49,7 +49,7 @@ export default function Viewer({ type, course }) {
                     </div>
                 </div>
                 : null}
-            <button onClick={() => setDialog(true)}>Viewer</button>
+            <button onClick={() => setDialog(true)}>Open Report</button>
         </>
     )
 }

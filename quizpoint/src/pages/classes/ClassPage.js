@@ -202,11 +202,9 @@ export default function ClassPage() {
                     classArray.push(studentID)
                 }
                 return (
-                    <div className="flex basis-1/6 w-2/5 pb-4 flex-row bg-white justify-center rounded-b-lg mb-4">
+                    <div className="flex basis-1/6 w-3/5 pb-4 flex-row bg-white justify-center rounded-b-lg mb-4">
                         <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
-                        <button onClick={() => { navigate('/tcs/reports/class/' + classId) }} ><p>View Report</p></button>
                         <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
-                        <button>At a glance</button>
                         <Viewer type={'class'} course={classObject}></Viewer>
                         <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                         <InviteQR classObject={classObject}></InviteQR>
@@ -229,7 +227,7 @@ export default function ClassPage() {
             <Fade in={shouldFade}>
                 <div className="class-page">
                     <div className="flex w-full h-56 justify-center flex-col items-center ">
-                        <div className="w-2/5 basis-5/6 flex bg-white justify-center shadow flex-col items-center rounded-t-lg mt-4">
+                        <div className="w-3/5 basis-5/6 flex bg-white justify-center shadow flex-col items-center rounded-t-lg mt-4">
                             <p className="text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</p>
                         </div>
                         {isTabletOrMobile ? null : returnTeacherActions()}
