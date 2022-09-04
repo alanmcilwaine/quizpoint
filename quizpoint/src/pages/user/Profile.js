@@ -8,9 +8,9 @@ import { user } from '../../components/firebase/fb.user'
 export default function Profile() {
 
     return (
-        <>
+        <div className='bg-gray-200'>
             <ProfileHeader name={user.name} id={user.studentId} image={user.picture} email={user.email} school={'hvhs.school.nz'} />
-        </>
+        </div>
 
     )
 }
