@@ -12,7 +12,7 @@
 // React and Firebase loads
 import { useParams, useNavigate } from "react-router-dom"
 import React, { useState } from 'react'
-
+import Heading from '../components/construct/Heading'
 // database
 import { db } from '../services/firebase'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -45,30 +45,62 @@ import "@pathofdev/react-tag-input/build/index.css";
 //  *?  What does it do? Component for creating a quiz
 //  *========================================================================**/
 function CreateQuiz() {
+    const [answers, setAnswers] = useState([{}])
+    const addAnswer = () => {
+        answers.push({1: '1'})
+        console.log(answers)
+    }
+    const removeAnswer = () => {
+
+    }
+
     const addQuestion = () => {
 
     }
     let { id } = useParams();
     let quiz = [];
     return (
-        <div className="items-center flex flex-col">
-            <label for="first_name" className="block mb-2 p-2 text-md font-medium text-black">Quiz Name</label>
-            <input type="text" id="first_name" placeholder="Basic facts test" class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/2 h-16 p-2.5 " required></input>
-
-            <label for="first_name" className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
-            <input type="text" id="first_name" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/2 h-16 p-2.5 " required></input>
-            <div className="my-6">
-                <label for="first_name" className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                <input type="text" id="first_name" placeholder="What is the meaning of life..?" class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/2 h-16 p-2.5 " required></input>
-
-                <label for="first_name" className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
-                <input type="text" id="first_name" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/2 h-16 p-2.5 " required></input>
-
-                <label for="first_name" className="block mb-2 p-2 text-md font-medium text-black">Correct Answer</label>
-                <input type="text" id="first_name" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/2 h-16 p-2.5 " required></input>
-                <button>Add Question</button>
+        <>
+            <Heading text={"Create Quiz"}></Heading>
+            <div className="items-center flex flex-col mt-8">
+                <label for="Quiz Name" className="block mb-2 p-2 text-md font-medium text-black">Quiz Name</label>
+                <input type="text" placeholder="Basic facts test" class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                <label for="Quiz Description" className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
+                <input type="text" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                <button>Save Quiz</button>
             </div>
-        </div>
+            <div className="flex flex-row my-4 justify-center">
+                <div className="order-1 basis-1/4">
+                    <label for="Question Name" className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
+                    <input type="text" placeholder="What is the meaning of life..?" class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+
+                    <label for="Answers" className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
+                    <input type="text" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+
+                    <label for="Correct Answers" className="block mb-2 p-2 text-md font-medium text-black">Correct Answer</label>
+                    <input type="text" placeholder="..." class=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                    <button>Add Question</button>
+                </div>
+                <div className="order-2 pt-4">
+                    <table className="table-auto border-separate border-spacing-8 border border-slate-400 rounded-lg">
+                        <thead>
+                            <tr className="p-4">
+                                <th>Question Name</th>
+                                <th>Answers</th>
+                                <th>Correct Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="m-4 p-4 text-black">
+                                <td>Placeholder question name</td>
+                                <td>Placeholder question answers</td>
+                                <td>Placeholder correct answer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </>
     );
 }
 

@@ -54,6 +54,7 @@ export default function Quiz() {
 
         })
     }, [])
+
     function recordQuizResultInActive() {
         console.log("recordQuizResultInActive(): Called ")
         get(quizInStudentPath).then((snapshot) => {
@@ -269,6 +270,3 @@ export default function Quiz() {
         </div>
     )
 }
-
-
-
