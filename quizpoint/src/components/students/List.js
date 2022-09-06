@@ -96,7 +96,7 @@ export default function List({ type, toSearch, uidArray }) {
     const handleInputChange = (e) => {
         var dm = e.target.value;
         var str = dm.toLowerCase();
-        var debug = allStudents.filter(x => x["name"].toLowerCase().includes(str));
+        var debug = allStudents.filter(x => x["name"].includes(str));
         setSearch(debug);
     };
 
@@ -116,7 +116,11 @@ export default function List({ type, toSearch, uidArray }) {
                                             </th>
                                         </tr>
                                         <tr>
-                                            <input type="text" onChange={handleInputChange} placeholder="Search for a student." className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" />
+                                            <td>
+                                                <input type="text" onChange={handleInputChange} placeholder="Search for a student." className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" />
+
+
+                                            </td>
 
                                         </tr>
                                     </thead>

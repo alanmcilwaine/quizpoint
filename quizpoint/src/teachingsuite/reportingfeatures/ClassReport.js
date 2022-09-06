@@ -221,7 +221,7 @@ export default function StudentReport() {
                                     }
                                     else if (cell.value === 'complete') {
                                         // user has completed quiz
-                                        return <TableCell {...cell.getCellProps()}>
+                                        return <TableCell style={{ backgroundColor: "green" }} {...cell.getCellProps()}>
                                             Complete
                                         </TableCell>
                                     }
@@ -295,24 +295,24 @@ export default function StudentReport() {
 
                                     } else if (cell.value === 'correct') {
                                         // return a green checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Correct">
+                                        return <TableCell style={{ backgroundColor: "green" }}  {...cell.getCellProps()}><Tooltip title="Correct">
                                             <CheckBoxOutlinedIcon style={{ color: 'green' }}></CheckBoxOutlinedIcon>
                                         </Tooltip></TableCell>
                                     } else if (cell.value === 'incorrect') {
                                         // return a red checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Incorrect">
+                                        return <TableCell style={{ backgroundColor: "red" }}  {...cell.getCellProps()}><Tooltip title="Incorrect">
                                             <IndeterminateCheckBoxOutlinedIcon style={{ color: 'red' }}></IndeterminateCheckBoxOutlinedIcon>
                                         </Tooltip></TableCell>
                                     }
                                     else if (cell.value === 'complete') {
                                         // return a green checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Quiz Completed">
+                                        return <TableCell style={{ backgroundColor: "green" }}  {...cell.getCellProps()}><Tooltip title="Quiz Completed">
                                             <CheckCircleOutlineIcon style={{ color: 'green' }}></CheckCircleOutlineIcon>
                                         </Tooltip></TableCell>
                                     }
                                     else if (cell.value === 'incomplete') {
                                         // return a red checkbox with a tooltip
-                                        return <TableCell {...cell.getCellProps()}><Tooltip title="Not Completed">
+                                        return <TableCell {...cell.getCellProps()} style={{ backgroundColor: "red" }} ><Tooltip title="Not Completed">
                                             <DoDisturbIcon style={{ color: 'red' }}></DoDisturbIcon>
                                         </Tooltip></TableCell>
                                     } else {

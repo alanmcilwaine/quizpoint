@@ -7,8 +7,9 @@ import PDF from './PDF'
 import { useReactToPrint } from 'react-to-print';
 
 export default function Viewer({ type, course }) {
-    const [open, setDialog] = useState(false)
+    const [open, setDialog] = useState(true)
     const componentRef = useRef();
+    const [msg, setMsg] = useState('We may be still loading your report, please wait.')
     const [pageTitle, setTitle] = useState(document.title)
     let ogTitle = document.title
     var today = new Date();
@@ -24,6 +25,9 @@ export default function Viewer({ type, course }) {
             setTitle(ogTitle)
         }
         document.title = pageTitle
+        let timeOut = setTimeout(function () {
+            setMsg('')
+        }, 10000)
     }, [open])
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -41,6 +45,10 @@ export default function Viewer({ type, course }) {
                             <button onClick={() => setDialog(false)}>Close Viewer</button>
                             <button onClick={() => handlePrint()}>Export Report</button>
                         </div>
+                        <div className='mt-2 flex justify-center items-center mb-2'>
+                            {msg}
+                        </div>
+
                         <div ref={componentRef} className={'bg-white'}>
                             <PDF type={type} course={course} />
                         </div>
@@ -49,7 +57,6 @@ export default function Viewer({ type, course }) {
                     </div>
                 </div>
                 : null}
-            <button onClick={() => setDialog(true)}>Open Report</button>
         </>
     )
 }
