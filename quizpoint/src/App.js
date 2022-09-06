@@ -48,7 +48,7 @@ import Reporting from "./teachingsuite/Reporting";
 import RedirectLegacy from './services/RedirectLegacy'
 import TeacherStudent from "./User/UserPageTeacher";
 import CreateClass from "./teachingsuite/CreateClass";
-import CreateQuiz from "./teachingsuite/CreateQuiz";
+import CreateQuiz from "./pages/tcs/quizzes/CreateQuiz";
 import EditQuiz from "./teachingsuite/EditQuiz";
 import ClassReport from "./teachingsuite/reportingfeatures/ClassReport";
 import StudentReport from "./teachingsuite/reportingfeatures/StudentReport";
