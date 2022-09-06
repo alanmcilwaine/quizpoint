@@ -76,6 +76,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import "./App.css";
 import Home from "./pages/tcs/Home";
 import Profile from "./pages/user/Profile";
+import Course from "./pages/tcs/create/Course";
 /**==============================================
  **              deepEqual
  @credit https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
@@ -187,7 +188,7 @@ function App() {
       // return full components, with full access
       return (
         <ReactPWAInstallProvider enableLogging>
-          <GoogleOAuthProvider clientId="616231612574-unh76pn0grtjqdj5ggqg2fq7b6rti4gi.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId=" ">
             <div className="App">
               <Snackbar open={openDialog} autoHideDuration={6000}>
                 <SnackbarContent message="I love snacks." action={action} />
@@ -211,7 +212,7 @@ function App() {
                     <Route path="/tcs/teachers/:type" element={<Teachers />} />
 
                     <Route path="/tcs/classes" element={<Classes />} />
-                    <Route path="/tcs/classes/create/:id" element={<CreateClass />} />
+                    <Route path="/tcs/classes/create/:id" element={<Course />} />
                     <Route path="/tcs/quizzes" element={<Quizzes />} />
                     <Route path="/tcs/quizzes/create/:id" element={<CreateQuiz />} />
                     <Route path="/tcs/quizzes/import" element={< InputGoogleForm />} />

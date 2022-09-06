@@ -35,6 +35,7 @@ import InviteQR from "../../services/InviteQR"
 import ClassProgress from "../../services/ClassProgress"
 import QuizCards from "../../components/cards/QuizCards"
 import Heading from "../../components/construct/Heading"
+import Reports from "../../components/reports/Reports.js"
 // array for
 export default function ClassPage() {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
@@ -206,7 +207,8 @@ export default function ClassPage() {
                     <div className="flex basis-1/6 w-3/5 pb-4 flex-row bg-white justify-center rounded-b-lg mb-4">
                         <AssignQuiz classList={classArray} classId={classId}></AssignQuiz>
                         <button onClick={() => { navigate('/tcs/students/' + classId) }} ><p>View Students</p></button>
-                        <Viewer type={'class'} course={classObject}></Viewer>
+                        <Reports context={'class'} data={classObject} />
+
                         <GenerateInvite classObject={classObject} classId={classId}></GenerateInvite>
                         <InviteQR classObject={classObject}></InviteQR>
                     </div>
