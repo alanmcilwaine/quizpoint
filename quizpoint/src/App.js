@@ -203,6 +203,7 @@ function App() {
                 <Route path="/quiz/:quizId" element={<Quiz />} />
                 <Route path="/invite/:id" element={<Invite />} />
                 <Route path="/user/" element={<Profile />} />
+                <Route path="/alantesting/" element={<CreateQuiz />} />
                 {/* Teaching Suite routes */}
                 {localStorage.authToken ?
                   <>
