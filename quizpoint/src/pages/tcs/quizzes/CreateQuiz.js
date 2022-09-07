@@ -13,6 +13,7 @@
 import { useParams, useNavigate } from "react-router-dom"
 import React, { useState } from 'react'
 import Heading from '../../../components/construct/Heading'
+import CreateQuizTable from '../../../components/quizzes/CreateQuizTable'
 // database
 import { db } from '../../../services/firebase'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -46,93 +47,88 @@ import "@pathofdev/react-tag-input/build/index.css";
 //  *========================================================================**/
 function CreateQuiz(props) {
     const [answers, setAnswers] = useState('')
+    const [questions, setQuestions] = useState([])
+    const [questionName, setQuestionName] = useState('')
     const [submittedAnswers, setSubmittedAnswers] = useState([])
     const [updateDOM, setUpdateDOM] = useState([])
     let submitAnswers = []
-    const addAnswer = () => {
-    }
-    const removeAnswer = (answer) => {
-        console.log(answer)
-    }
-    const updateAnswer = () => {
 
-    }
-
-    const addQuestion = () => {
-
-    }
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        submittedAnswers.push({ text: answers, correct: false})
-        setAnswers('');
-        return (
-            <input type="text" id="disabled-input" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Disabled input" disabled></input>
+    const handler = {
+        submitQuestion: (e) => {
+            e.preventDefault();
+            questions.push({title: questionName, choices: submittedAnswers})
+            handler.reset()
+            console.log("Questions:")
+            console.log(questions)
+        },
+        submitAnswer: (e) => {
+            e.preventDefault()
+            submittedAnswers.push({ text: answers, correct: false})
+            setAnswers('');
+            return (
+                <input type="text" id="disabled-input" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Disabled input" disabled></input>
+            )
+        },
+        questionChange: (e) => {
+            setQuestionName(e.target.value);
+        },
+        answerChange: (e) => {
+            setAnswers(e.target.value);
+        },
+        reset: (e) => {
+            setAnswers('')
+            setQuestionName('')
+            setSubmittedAnswers([])
+        }
+    }
 
-        )
-    }
-    const handleChange = (e) => {
-        setAnswers(e.target.value);
-    }
-    let { id } = useParams();
-    let quiz = [];
     return (
         <>
             <Heading text={"Create Quiz"}></Heading>
-            <div className="items-center flex flex-col mt-8">
-                <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name</label>
-                <input type="text" placeholder="Basic facts test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
-                <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
-                <input type="text" placeholder="..." className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
-                <button>Save Quiz</button>
-            </div>
-            <div className="flex flex-row my-4 justify-center">
-                <div className="order-1 basis-1/3">
-                        <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                        <input type="text" placeholder="What is the meaning of life..?" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
-                        <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" placeholder="Add an answer" value={answers} onChange={handleChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
-                            <button className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border">Add Answer</button>
-                        </form>
-                        {submittedAnswers.map((answer, index) => {
-                            if (Object.keys(answer).length === 0) { return }
-                            {console.log(submittedAnswers)}
-                            return (
-                                <>
-                                    <div className="flex flex-row">
-                                        <input disabled type="text" aria-label="disabled input" value={answer.text} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-none w-3/5 h-16 p-2.5 " required></input>
-                                        <button onClick={() => {submittedAnswers.splice(index, 1); setUpdateDOM(Math.random(2)) }} className="h-16 p-2.5 w-1/5 rounded-none shadow-none border">Delete</button>
-                                        <button onClick={() => {answer.correct = !answer.correct; setUpdateDOM(Math.random(2)) }} className={classNames(
-                                            answer.correct ? 'bg-green-500' : 'bg-red-500', "h-16 p-2.5 w-1/5 rounded-none shadow-none border",
-                                        )}></button>
-                                    </div>
-                                </>
-
-                            )
-                        })}
-                        <button>Add Question</button>
+            <div>
+                <button className="absolute left-72">Save Quiz</button>
+                <div className="items-center flex flex-col mt-8">
+                    <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name</label>
+                    <input type="text" placeholder="Basic facts test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                    <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
+                    <input type="text" placeholder="..." className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
                 </div>
-                <div className="order-2 pt-4">
-                    <table className="table-auto border-separate border-spacing-8 border border-slate-400 rounded-lg">
-                        <thead>
-                            <tr className="p-4">
-                                <th>Question Name</th>
-                                <th>Answers</th>
-                                <th>Correct Answer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="m-4 p-4 text-black odd:bg-white even:bg-slate-50">
-                                <td>Placeholder question name</td>
-                                <td>Placeholder question answers</td>
-                                <td>Placeholder correct answer</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="flex flex-row my-4 justify-center">
+                    <div className="order-1 basis-1/5">
+                            <form id="questionForm" onSubmit={handler.submitQuestion}></form>
+                            <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
+                            <input type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                            <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
+                            <form id="answerForm" onSubmit={handler.submitAnswer}></form>
+                            <div className="flex flex-row">
+                                <input type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
+                                <button form="answerForm" className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border"><p className="flex justify-center items-center text-3xl">+</p></button>
+                            </div>
+                            {submittedAnswers.map((answer, index) => {
+                                if (Object.keys(answer).length === 0) { return }
+                                return (
+                                    <>
+                                        <div className="flex flex-row" id={index}>
+                                            <input disabled type="text" aria-label="disabled input" value={answer.text} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-none w-3/5 h-16 p-2.5 " required></input>
+                                            <button onClick={() => {submittedAnswers.splice(index, 1); setUpdateDOM(Math.random(100)) }} className="h-16 p-2.5 w-1/5 rounded-none shadow-none border"><p className="text-3xl">-</p></button>
+                                            <button onClick={() => {answer.correct = !answer.correct; setUpdateDOM(Math.random(100)) }} className={classNames(
+                                                answer.correct ? 'bg-green-500' : 'bg-red-500', "h-16 p-2.5 w-1/5 rounded-none shadow-none border",
+                                            )}></button>
+                                        </div>
+                                    </>
+
+                                )
+                            })}
+                            <button className="my-8" form="questionForm">Add Question</button>
+                    </div>
+                    <div className="order-2 basis-3/5">
+                        <label className="block mb-2 p-2 text-md font-medium text-black">Questions</label>
+                        <CreateQuizTable question={questions}/>
+                    </div>
                 </div>
             </div>
         </>
