@@ -19,7 +19,7 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import Pdf from "react-to-pdf";
 import * as html2canvas from 'html2canvas';
 
-export default function PDF({ type, student, data, course }) {
+export default function PDF({ type, student, data, course, context }) {
     const componentRef = useRef();
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -31,7 +31,7 @@ export default function PDF({ type, student, data, course }) {
     if (type === 'class') {
         console.log(course.quizzes)
         quizTable = Object.keys(course.quizzes).map(key =>
-            <QuizTable quizId={key} type="completion" students={course.students} />
+            <QuizTable quizId={key} type={context} students={course.students} />
         )
     }
 

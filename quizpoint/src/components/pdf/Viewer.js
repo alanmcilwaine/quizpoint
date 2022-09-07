@@ -6,7 +6,7 @@ import { useState, useRef, useEffect, setState } from 'react'
 import PDF from './PDF'
 import { useReactToPrint } from 'react-to-print';
 
-export default function Viewer({ type, course, state }) {
+export default function Viewer({ type, course, state, context }) {
     const [open, setDialog] = useState(true)
     const componentRef = useRef();
     const [msg, setMsg] = useState('We may be still loading your report, please wait.')
@@ -53,7 +53,7 @@ export default function Viewer({ type, course, state }) {
                         </div>
 
                         <div ref={componentRef} className={'bg-white'}>
-                            <PDF type={type} course={course} />
+                            <PDF type={type} context={context} course={course} />
                         </div>
 
 

@@ -189,6 +189,90 @@ export default function QuizTable({ quizId, type, students }) {
                     }
                 })
 
+            } else if (type === 'notcomplete') {
+                // set up table data
+
+                // student array contains all user ids to view
+                let studentArray = studentList
+                // setup path to quiz object
+                let quizRef = ref(db, `/schools/hvhs/quizzes/${currentQuiz}`)
+                // get quizReference first (always need most updated data)
+                onValue(quizRef, (snapshot) => {
+                    // if data does not exist, we need to error handle
+                    if (snapshot.val() === null || snapshot.val() === undefined) {
+                    } else {
+                        setQuizObject(snapshot.val())
+                        // for each student
+                        async function computeStudents() {
+                            for await (let [key, value] of Object.entries(students)) {
+                                // set up path to that students object
+                                let pathRef = ref(db, `/schools/hvhs/users/${key}/`);
+                                // on read of user object, get the data (need most updated data)
+                                onValue(pathRef, (snapshot) => {
+                                    // if data does not exist, we need to error handle
+                                    if (snapshot.val() === null || undefined) {
+                                        return
+                                    } else {
+                                        // set up the users information
+                                        let dataForUser = {
+                                            name: snapshot.val().name,
+                                            studentId: snapshot.val().studentID
+                                        }
+
+                                        if (snapshot.val().quizzes.turnedin[currentQuiz]) {
+                                            console.log('turned in' + dataForUser.name)
+                                            let route = snapshot.val().quizzes.turnedin[currentQuiz]
+                                            if (route.details.progress === route.numofquestions) {
+                                                dataForUser.completed = 'complete'
+                                            } else {
+                                                // they have not completed it
+                                                dataForUser.completed = 'incomplete'
+                                            }
+                                            // set a reference to prevent me from writng it out all the time
+                                            // for each question
+                                            // finished here, push to table
+                                            if (dataForUser.completed === 'incomplete') {
+                                                console.log(dataForUser)
+                                                tableData.push(dataForUser)
+                                            }
+                                        } else {
+                                            console.log('turned in' + dataForUser.name)
+                                            let route = snapshot.val().quizzes.active[currentQuiz]
+                                            if (!route) {
+
+                                            } else {
+                                                if (route.details.progress === route.numofquestions) {
+                                                    dataForUser.completed = 'complete'
+                                                } else {
+                                                    // they have not completed it
+                                                    dataForUser.completed = 'incomplete'
+                                                }
+                                            }
+                                            // set a reference to prevent me from writng it out all the time
+                                            // for each question
+                                            // finished here, push to table
+                                            if (dataForUser.completed === 'incomplete') {
+                                                console.log(dataForUser)
+                                                tableData.push(dataForUser)
+                                            }
+
+                                        }
+
+
+
+                                    }
+                                })
+                            }
+                        }
+                        computeStudents()
+                        const holdYourHorses = setTimeout(function () {
+                            console.log(tableData)
+                            setLoading(false)
+
+                        }, 5000)
+                    }
+                })
+
             }
         }
     }, [loading, tableData])
