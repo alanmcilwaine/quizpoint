@@ -188,7 +188,7 @@ function App() {
       // return full components, with full access
       return (
         <ReactPWAInstallProvider enableLogging>
-          <GoogleOAuthProvider clientId=" ">
+          <GoogleOAuthProvider clientId="616231612574-unh76pn0grtjqdj5ggqg2fq7b6rti4gi.apps.googleusercontent.com">
             <div className="App">
               <Snackbar open={openDialog} autoHideDuration={6000}>
                 <SnackbarContent message="I love snacks." action={action} />
