@@ -56,7 +56,7 @@ export default function Reports({ context, data }) {
                 </div>
                 : null}
             {openViewer ?
-                <Viewer type={context} context={selectedOption} course={data}></Viewer>
+                <Viewer type={context} context={selectedOption} state={openViewer} course={data}></Viewer>
                 : null}
             <button onClick={() => setDialog(true)}>Reports</button>
         </>
