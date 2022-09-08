@@ -127,7 +127,12 @@ function CreateQuiz(props) {
                     </div>
                     <div className="order-2 basis-3/5">
                         <label className="block mb-2 p-2 text-md font-medium text-black">Questions</label>
-                        <CreateQuizTable question={questions}/>
+                        {questions[0] === undefined ? <CreateQuizTable hasQuestion={false}/> : <CreateQuizTable hasQuestion={true} question={questions}/>}
+                        {/* {questions.map((question, index) => {
+                            if (Object.keys(question).length === 0) { return }
+                            console.log(question)
+                            return <CreateQuizTable hasQuestion={true} question={questions}/>
+                        })} */}
                     </div>
                 </div>
             </div>
