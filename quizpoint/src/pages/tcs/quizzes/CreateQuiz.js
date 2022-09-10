@@ -11,7 +11,7 @@
 
 // React and Firebase loads
 import { useParams, useNavigate } from "react-router-dom"
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Heading from '../../../components/construct/Heading'
 import CreateQuizTable from '../../../components/quizzes/CreateQuizTable'
 // database
@@ -49,9 +49,12 @@ function CreateQuiz(props) {
     const [answers, setAnswers] = useState('')
     const [questions, setQuestions] = useState([])
     const [questionName, setQuestionName] = useState('')
+    const [quizName, setQuizName] = useState('')
+    const [description, setDescription] = useState('')
     const [submittedAnswers, setSubmittedAnswers] = useState([])
     const [updateDOM, setUpdateDOM] = useState([])
-    let submitAnswers = []
+
+
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -60,8 +63,19 @@ function CreateQuiz(props) {
     const handler = {
         submitQuestion: (e) => {
             e.preventDefault();
-            questions.push({title: questionName, choices: submittedAnswers})
-            handler.reset()
+            let answerList = []
+            console.log(submittedAnswers)
+            console.log(submittedAnswers.length)
+            for (let i = 0; i < submittedAnswers.length; i++) {
+                console.log(i)
+                if (submittedAnswers[i].correct) {
+                    answerList.push(submittedAnswers[i].text)
+                }
+            }
+            console.log(submittedAnswers[0].correct)
+            console.log(answerList)
+            questions.push({name: questionName, choices: submittedAnswers, type:"multichoice", answer: answerList})
+            handler.resetQuestion()
             console.log("Questions:")
             console.log(questions)
         },
@@ -73,46 +87,66 @@ function CreateQuiz(props) {
                 <input type="text" id="disabled-input" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Disabled input" disabled></input>
             )
         },
+        submitQuiz: (e) => {
+            e.preventDefault()
+            let submitQuiz = []
+            console.log(e)
+            console.log(description)
+            submitQuiz.push({title: quizName, description: description, questions: questions})
+            console.log(submitQuiz)
+        },
+        descriptionChange: (e) => {
+            setDescription(e.target.value)
+            console.log(description)
+        },
         questionChange: (e) => {
             setQuestionName(e.target.value);
         },
         answerChange: (e) => {
             setAnswers(e.target.value);
         },
-        reset: (e) => {
+        quizChange: (e) => {
+            setQuizName(e.target.value);
+            console.log(quizName)
+        },
+        resetQuestion: (e) => {
             setAnswers('')
             setQuestionName('')
             setSubmittedAnswers([])
-        }
+        },
+        resetPage: (e) => {
+
+        },
     }
 
     return (
         <>
             <Heading text={"Create Quiz"}></Heading>
             <div>
-                <button className="absolute left-72">Save Quiz</button>
+            <form id="quizForm" onSubmit={handler.submitQuiz}></form>
+                <button form="quizForm" className="absolute left-72">Save Quiz</button>
                 <div className="items-center flex flex-col mt-8">
-                    <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name</label>
-                    <input type="text" placeholder="Basic facts test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                    <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name*</label>
+                    <input form="quizForm" type="text" placeholder="Basic facts test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5" value={quizName} onChange={handler.quizChange} required></input>
                     <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
-                    <input type="text" placeholder="..." className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                    <input onChange={handler.descriptionChange} value={description} type="text" placeholder="..." className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
                 </div>
                 <div className="flex flex-row my-4 justify-center">
                     <div className="order-1 basis-1/5">
                             <form id="questionForm" onSubmit={handler.submitQuestion}></form>
                             <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                            <input type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                            <input form="questionForm" type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
                             <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
                             <form id="answerForm" onSubmit={handler.submitAnswer}></form>
                             <div className="flex flex-row">
-                                <input type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
+                                <input form="answerForm" type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
                                 <button form="answerForm" className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border"><p className="flex justify-center items-center text-3xl">+</p></button>
                             </div>
                             {submittedAnswers.map((answer, index) => {
                                 if (Object.keys(answer).length === 0) { return }
                                 return (
                                     <>
-                                        <div className="flex flex-row" id={index}>
+                                        <div className="flex flex-row" key={index}>
                                             <input disabled type="text" aria-label="disabled input" value={answer.text} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-none w-3/5 h-16 p-2.5 " required></input>
                                             <button onClick={() => {submittedAnswers.splice(index, 1); setUpdateDOM(Math.random(100)) }} className="h-16 p-2.5 w-1/5 rounded-none shadow-none border"><p className="text-3xl">-</p></button>
                                             <button onClick={() => {answer.correct = !answer.correct; setUpdateDOM(Math.random(100)) }} className={classNames(
@@ -128,6 +162,7 @@ function CreateQuiz(props) {
                     <div className="order-2 basis-3/5">
                         <label className="block mb-2 p-2 text-md font-medium text-black">Questions</label>
                         {questions[0] === undefined ? <CreateQuizTable hasQuestion={false}/> : <CreateQuizTable hasQuestion={true} question={questions}/>}
+                        {console.log(questions)}
                         {/* {questions.map((question, index) => {
                             if (Object.keys(question).length === 0) { return }
                             console.log(question)
