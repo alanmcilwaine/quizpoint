@@ -54,7 +54,7 @@ function CreateQuiz(props) {
     const [submittedAnswers, setSubmittedAnswers] = useState([])
     const [updateDOM, setUpdateDOM] = useState([])
 
-
+    let { id } = useParams()
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -88,12 +88,24 @@ function CreateQuiz(props) {
             )
         },
         submitQuiz: (e) => {
+            let submitQuiz;
             e.preventDefault()
-            let submitQuiz = []
             console.log(e)
             console.log(description)
-            submitQuiz.push({title: quizName, description: description, questions: questions})
+            questions.map((question, index) => {
+                questions[index].choices.map((choice, newIndex) => {
+                    questions[index].choices[newIndex] = choice.text
+                    
+                })
+                questions[index].answer.map ((answer, newerIndex) => {
+                    questions[index].answer[newerIndex] = {value: answer}
+                })
+            })
+
+            console.log(questions)
+            submitQuiz = {title: quizName, description: description, questions: questions}
             console.log(submitQuiz)
+            set(dbRef(db, 'schools/hvhs/quizzes/' + id), submitQuiz);
         },
         descriptionChange: (e) => {
             setDescription(e.target.value)

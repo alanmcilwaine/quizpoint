@@ -90,7 +90,8 @@ function CreateQuizTable(props) {
                                     <tr className="bg-gray-100 border-b" key={index}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">{index + 1}</td>
                                         <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
-                                            {props.question[index].title}
+                                            {console.log(props.question)}
+                                            {props.question[index].name}
                                         </td>
                                         <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
                                             <Dropdown question={question} type="choice"/>
