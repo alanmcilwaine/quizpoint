@@ -1,32 +1,95 @@
-// /*
-//  * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
-//  * All rights reserved.
-//  */
+/*
+ * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
+ * All rights reserved.
+ */
 
 
-// // Base imports from react
-// import axios from 'axios'
+// Base imports from react
+import axios from 'axios'
 
-// import React, { useState, useEffect } from 'react'
-// import { useParams, useNavigate } from "react-router-dom"
-// import { storage } from "../../services/firebase.js"
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from "react-router-dom"
+import { storage } from "../../services/firebase.js"
 
-// // user model
-// import { user } from '../../components/firebase/fb.user.js';
-// import Button from '@mui/material/Button';
-// import ButtonGroup from '@mui/material/ButtonGroup';
-// // firebase and db stuff
-// import { db } from '../../services/firebase'
-// import { ref, onValue, set, update, get, child, remove } from "firebase/database";
-// import { ref as sRef, uploadBytes } from "firebase/storage";
-// import Swal from 'sweetalert2';
+// user model
+import { user } from '../../components/firebase/fb.user.js';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+// firebase and db stuff
+import { db } from '../../services/firebase'
+import { ref, onValue, set, update, get, child, remove } from "firebase/database";
+import { ref as sRef, uploadBytes } from "firebase/storage";
+import Swal from 'sweetalert2';
 
 
 // /**========================================================================
 //  *                             Quiz Module
 //  *========================================================================**/
 export default function Quiz() {
-    
+    const [quiz, setQuiz] = useState(   )
+    // 0 = loading 1 = loaded
+    const [loadingStatus, setLoadingStatus] = useState(true)
+
+    let { quizId } = useParams()
+    let path = {
+        quiz: ref(db, `/schools/hvhs/quizzes/${quizId}`),
+        user: ref(db, `/schools/hvhs/quizzes/${quizId}`)
+    }
+    let handler = {
+        handInQuiz: (e) => {
+
+        }
+    }
+
+    useEffect(() => {
+        // grab quiz from db
+        onValue(path.quiz, (snapshot) => {
+            setQuiz(snapshot.val());
+            setLoadingStatus(false)
+            console.log("Quiz Id: " + quizId + " Quiz Path: " + path.quiz)
+            console.log("Quiz: ")
+            console.log(snapshot.val())
+            setLoadingStatus(false)
+        })
+    }, [])
+
+    // if quiz isn't loaded, show blank screen
+    if (loadingStatus) return
+    return(
+        <div className="p-12">
+            
+            <h1 className="font-medium text-4xl text-center pb-2">{quiz.title} </h1>
+            <h2 className="font-medium text-2xl text-center">{quiz.description}</h2>
+            {quiz.questions.map((question, indexFirst) => {
+                console.log(question)
+                return(
+                    <div className="flex justify-center">
+                        <div className="bg-gray-50 border-4 border-dashed w-3/5 my-8 p-8 min-h-[100px] rounded-lg">
+                            <div className="font-medium text-3xl pb-8 flex flex-row">{indexFirst + 1 }.       { question.name}
+                            </div>
+                            <div className="flex flex-col">
+                                <form id="questionForm"></form>
+                                {question.choices.map((choice, indexSecond) => {
+                                    return (
+                                        <>
+                                            <div className="flex items-center pl-4 my-2 rounded border bg-white shadow-sm hover:shadow-lg border-gray-200 dark:border-gray-700">
+                                            <input id={`bordered-radio-${indexSecond}`} type="radio" value="" name={`radio-${indexFirst}`} className="w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"></input>
+                                            <label for={`bordered-radio-${indexSecond}`} className="py-4 ml-2 w-full text-md font-medium text-black">{choice}</label>
+                                            </div>
+                                        </>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+
+            <div className="flex justify-center">
+                <button className="bg-white border-2 py-4 px-12" onClick={() => {handler.handInQuiz}}>Hand In</button>
+            </div>
+        </div>
+    )
 }
 // export default function Quiz() {
 //     const [quiz, setQuiz] = useState()
