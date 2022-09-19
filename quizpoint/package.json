@@ -45,6 +45,7 @@
     "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.0.0",
+    "react-drag-drop-files": "^2.3.7",
     "react-firebase-hooks": "^5.0.3",
     "react-gapi-auth2": "^1.0.4",
     "react-google-login": "^5.2.2",

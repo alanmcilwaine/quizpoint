@@ -31,6 +31,7 @@ const CreateNavbar = (props) => {
                 { name: 'Classes', href: '/tcs/classes', current: false },
                 { name: 'Quizzes', href: '/tcs/quizzes', current: false },
                 { name: 'Report', href: '/tcs/reporting', current: false },
+                { name: 'Settings', href: '/tcs/setup', current: false },
             ]
     }
 

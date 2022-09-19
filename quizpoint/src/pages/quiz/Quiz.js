@@ -68,17 +68,17 @@ export default function Quiz() {
 
     // if quiz isn't loaded, show blank screen
     if (loadingStatus) return
-    return(
+    return (
         <div className="p-12">
-            
+
             <h1 className="font-medium text-4xl text-center pb-2">{quiz.title} </h1>
             <h2 className="font-medium text-2xl text-center">{quiz.description}</h2>
             {quiz.questions.map((question, indexFirst) => {
                 console.log(question)
-                return(
+                return (
                     <div className="flex justify-center">
                         <div className="bg-gray-50 border-4 border-dashed w-3/5 my-8 p-8 min-h-[100px] rounded-lg">
-                            <div className="font-medium text-3xl pb-8 flex flex-row">{indexFirst + 1 }.       { question.name}
+                            <div className="font-medium text-3xl pb-8 flex flex-row">{indexFirst + 1}.       {question.name}
                             </div>
                             <div className="flex flex-col">
                                 <form id="questionForm"></form>
@@ -162,7 +162,7 @@ export default function Quiz() {
 //                     if (`${quizSave[quizId].answers[key].status}` === "incorrect") {
 //                         wrongAnswers++
 //                     }
-//                     quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }  
+//                     quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }
 //                 }
 //                 console.log("Saving Result")
 //                 update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/active'), quizSave)
@@ -198,7 +198,7 @@ export default function Quiz() {
 //                                     if (`${quizSave[quizId].answers[key].status}` === "incorrect") {
 //                                         wrongAnswers++
 //                                     }
-//                                     quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }  
+//                                     quizSave[quizId].score = { correct: correctAnswers, incorrect: wrongAnswers, total: quiz.questions.length }
 //                                 }
 //                                 update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/turnedin'), quizSave).then(() => {
 //                                     // update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/turnedin/', { notEnrolled: false }))
@@ -210,14 +210,14 @@ export default function Quiz() {
 //                             }
 //                         })
 
-                        
+
 //                     } else if (result.isDenied) {
 //                         console.log("Quiz Not Completed")
 //                     }
 //                 })
 //             }else {
 //                 setCurrentQuestion(currentQuestion + 1);
-//                 return 
+//                 return
 //             }
 
 //         },
@@ -253,7 +253,7 @@ export default function Quiz() {
 //                     // Correct Answer
 //                     if (quiz.questions[currentQuestion].answer == answer) {
 //                         chosenAnswers.answers[currentQuestion] = { input: answer, question: quiz.questions[currentQuestion].name, status: "correct" };
-                        
+
 //                         // Wrong Answer
 //                     } else if (quiz.questions[currentQuestion].answer != answer) {
 //                         chosenAnswers.answers[currentQuestion] = { input: answer, question: quiz.questions[currentQuestion].name, status: "incorrect" };

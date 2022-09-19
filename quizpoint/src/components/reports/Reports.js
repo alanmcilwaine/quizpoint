@@ -7,7 +7,7 @@ import Viewer from "../pdf/Viewer"
 
 export default function Reports({ context, data }) {
     const [openViewer, setViewer] = useState(false)
-    const [openDialog, setDialog] = useState(true)
+    const [openDialog, setDialog] = useState(false)
     const REPORTOPTIONS = [
         { label: 'Generic (complete, not complete)', type: 'completion' },
         { label: 'Not Complete', type: 'notcomplete' },

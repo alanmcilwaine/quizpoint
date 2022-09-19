@@ -32,7 +32,7 @@ import { useMediaQuery } from 'react-responsive';
 import QuizPerformance from '../../components/classes/QuizPerformance';
 import { Doughnut } from 'react-chartjs-2';
 import InviteQR from "../../services/InviteQR"
-import ClassProgress from "../../services/ClassProgress"
+import ClassProgress from "../../components/reports/ClassProgress"
 import QuizCards from "../../components/cards/QuizCards"
 import Heading from "../../components/construct/Heading"
 import Reports from "../../components/reports/Reports.js"

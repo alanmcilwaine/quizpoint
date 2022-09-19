@@ -2,9 +2,9 @@
  * Copyright (c) 2022 Bounce developed by alanmcilwaine and maxwebbnz
  * All rights reserved.
  */
-import { ref, onValue } from "firebase/database";
 import { useState } from 'react';
-import { db } from './firebase'
+import { ref, onValue } from "firebase/database";
+import { db } from "../../services/firebase";
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -95,7 +95,7 @@ export default function ClassProgress(props) {
 
     let columns = [
         {
-            Header: 'QuizPoint Completion Table',
+            Header: 'Progress in class.',
 
             columns: [
                 {
@@ -103,7 +103,7 @@ export default function ClassProgress(props) {
                     accessor: 'name',
                 },
                 {
-                    Header: 'Status',
+                    Header: 'Completed/Not Completed',
                     accessor: 'completed',
                 },
 
@@ -135,7 +135,7 @@ export default function ClassProgress(props) {
                         <TableRow {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
                                 // I.e Question 1, Student Name, etc
-                                <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
+                                <TableCell {...column.getHeaderProps()}> <b>{column.render('Header')}</b></TableCell>
                             ))}
                         </TableRow>
                     ))}
@@ -218,7 +218,6 @@ export default function ClassProgress(props) {
                 </AppBar>
                 <DialogTitle id="alert-dialog-title">
                     {"Class Progress"}
-                    <IconButton onClick={() => collateData()}><RotateLeftOutlinedIcon /></IconButton>
                 </DialogTitle>
                 <DialogContent>
                     <Tabs>
