@@ -1,0 +1,25 @@
+.createClass {
+    background-color: white;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 90%;
+    border-radius: 2px;
+    padding-left: 2%;
+}
+
+.createClass-container {
+    display: grid;
+    width: 100%;
+    grid-gap: 7%;
+    padding-bottom: 30%;
+}
+
+.createClass-body {
+    display: grid;
+    gap: 5%;
+    grid-template-columns: 1fr 2fr;
+}
+
+.createClass-googleClassroomBump {
+    text-align: center;
+}

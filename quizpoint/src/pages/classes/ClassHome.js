@@ -128,7 +128,7 @@ export default function Classes() {
         let classCards
         if (enrolled === true) {
             classCards = foundClasses.map((classInfo) =>
-                <><ClassCards classInfo={classInfo}/></>
+                <><ClassCards classInfo={classInfo} /></>
             );
         } else {
             classCards = <div>
@@ -139,7 +139,7 @@ export default function Classes() {
             <Fade in={shouldFade}>
                 <div className="flex justify-center py-12">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-                            {classCards}
+                        {classCards}
                     </div>
                 </div>
             </Fade>

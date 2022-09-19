@@ -6,12 +6,12 @@ import React, { useState, useEffect } from 'react'
 import Viewer from './Viewer';
 import { ref, onValue, set, update } from "firebase/database";
 import { db } from '../../services/firebase'
-const rows = []
 
 export default function List({ type, toSearch, uidArray }) {
     const [allStudents, setStudentList] = useState([])
     const [selectedUID, setSelectedUID] = useState('')
     const [loading, setLoading] = useState(true)
+    const [rows, setRows] = useState([])
     useEffect(() => {
         if (loading) {
             loadData()
@@ -43,13 +43,15 @@ export default function List({ type, toSearch, uidArray }) {
                         } else {
                             // console.log(data[key])
                             // push to placeholder array
-                            rows.push({
+                            let datas = {
                                 id: key,
                                 name: data[key].name,
                                 studentID: data[key].studentID,
                                 uid: data[key].uid
-                            })
-                            allStudents.push(data[key])
+                            }
+                            setStudentList(oldArray => [...oldArray, data[key]]);
+                            setRows(oldArray => [...oldArray, datas]);
+
                         }
                     });
                     console.log(rows)
@@ -76,13 +78,15 @@ export default function List({ type, toSearch, uidArray }) {
                         // wait for data
                         onValue(pathRef, (sn) => {
                             console.log(sn.val())
-                            rows.push({
+                            let datas = {
                                 id: sn.key,
                                 name: sn.val().name,
                                 studentID: sn.val().studentID,
-                                uid: sn.uid
-                            })
-                            allStudents.push(sn.val())
+                                uid: sn.val().uid
+                            }
+                            setStudentList(oldArray => [...oldArray, sn.val()]);
+                            setRows(oldArray => [...oldArray, datas]);
+
 
                         })
 
@@ -96,7 +100,8 @@ export default function List({ type, toSearch, uidArray }) {
     const handleInputChange = (e) => {
         var dm = e.target.value;
         var str = dm.toLowerCase();
-        var debug = allStudents.filter(x => x["name"].includes(str));
+        console.log(str)
+        var debug = rows.filter(x => x.name.toLowerCase === str);
         setSearch(debug);
     };
 

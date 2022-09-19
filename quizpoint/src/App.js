@@ -77,6 +77,8 @@ import "./App.css";
 import Home from "./pages/tcs/Home";
 import Profile from "./pages/user/Profile";
 import Course from "./pages/tcs/create/Course";
+import Settings from "./pages/setup/Settings";
+import Class from "./pages/tcs/report/Class";
 /**==============================================
  **              deepEqual
  @credit https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
@@ -220,10 +222,10 @@ function App() {
                     <Route path="/tcs/quizzes/edit/:id" element={<EditQuiz />} />
                     <Route path="/tcs/reporting" element={<Reporting />} />
                     <Route path="/tcs/reporting/:field" element={<Reporting />} />
-                    <Route path="/tcs/reports/class/:id" element={<ClassReport />} />
+                    <Route path="/tcs/reports/class/:id" element={<Class />} />
                     <Route path="/tcs/reports/student/:id" element={<StudentReport />} />
                     <Route path="/tcs/globalreauth/:path" element={<GlobalReAuthTeacher />} />
-                    {user.role === 'hod' && <Route path="/tcs/setup" element={<Setup />} />}
+                    {user.role === 'hod' || user.role === 'teacher' && <Route path="/tcs/setup" element={<Settings />} />}
 
                     <Route path="/tcs" element={<TeachingHome />} />
                   </>
