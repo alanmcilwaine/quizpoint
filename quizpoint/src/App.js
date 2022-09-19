@@ -42,7 +42,7 @@ import Navbar from './components/navbar/Navbar'
  *?   Teaching Suite components
  *========================**/
 import Students from "./pages/tcs/Students";
-import Classes from "./teachingsuite/Classes";
+import Classes from "./pages/tcs/Classes";
 import Quizzes from "./teachingsuite/Quizzes";
 import Reporting from "./teachingsuite/Reporting";
 import RedirectLegacy from './services/RedirectLegacy'
