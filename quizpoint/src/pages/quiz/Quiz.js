@@ -26,7 +26,8 @@ import Swal from 'sweetalert2';
 //  *                             Quiz Module
 //  *========================================================================**/
 export default function Quiz() {
-    const [quiz, setQuiz] = useState()
+    const [quiz, setQuiz] = useState(   )
+    const [answers, setAnswers] = useState([])
     // 0 = loading 1 = loaded
     const [loadingStatus, setLoadingStatus] = useState(true)
 
@@ -37,7 +38,12 @@ export default function Quiz() {
     }
     let handler = {
         handInQuiz: (e) => {
-
+            console.log("hi")
+        },
+        updateAnswer: (e, indexOfQuestion, indexOfAnswer) => {
+            console.log(indexOfQuestion, indexOfAnswer)
+            answers.splice(indexOfQuestion, 1, indexOfAnswer)
+            console.log(answers)
         }
     }
 
@@ -45,13 +51,20 @@ export default function Quiz() {
         // grab quiz from db
         onValue(path.quiz, (snapshot) => {
             setQuiz(snapshot.val());
+            for (let i=0; i<snapshot.val().questions.length; i++) {
+                answers.push(null)
+            }
             setLoadingStatus(false)
             console.log("Quiz Id: " + quizId + " Quiz Path: " + path.quiz)
             console.log("Quiz: ")
             console.log(snapshot.val())
+            console.log("Answers");
+            console.log(answers)
             setLoadingStatus(false)
         })
-    }, [])
+    }, [
+
+    ])
 
     // if quiz isn't loaded, show blank screen
     if (loadingStatus) return
@@ -70,11 +83,25 @@ export default function Quiz() {
                             <div className="flex flex-col">
                                 <form id="questionForm"></form>
                                 {question.choices.map((choice, indexSecond) => {
+                                    let randomId = choice + Math.random(10)
                                     return (
                                         <>
-                                            <div className="flex items-center pl-4 my-2 rounded border bg-white shadow-sm hover:shadow-lg border-gray-200 dark:border-gray-700">
-                                                <input id={`bordered-radio-${indexSecond}`} type="radio" value="" name={`radio-${indexFirst}`} className="w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"></input>
-                                                <label for={`bordered-radio-${indexSecond}`} className="py-4 ml-2 w-full text-md font-medium text-black">{choice}</label>
+                                            {/* <div className="flex items-center pl-4 my-2 rounded border bg-white shadow-sm hover:shadow-lg border-gray-200 dark:border-gray-700">
+                                            <input id={`bordered-radio-${indexFirst}`} type="radio" value="" name={`radio-${indexFirst}`} className="w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2">
+
+                                            </input>
+
+                                            </div> */}
+                                            {console.log(choice)}
+                                            <div className="relative peer-checked:bg-indigo-800">
+                                                <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond)}}></input>
+                                                <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg peer-checked:bg-indigo-800 peer-checked:text-white transition delay-75">{choice}</label>
+                                                {/* <div className="w-4 h-4 rounded-full my-auto peer-checked:scale-[200%] relative transition scale-0 delay-100 bg-indigo-800">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                    </svg>
+                                                </div> */}
+
                                             </div>
                                         </>
                                     )
@@ -86,7 +113,7 @@ export default function Quiz() {
             })}
 
             <div className="flex justify-center">
-                <button className="bg-white border-2 py-4 px-12" onClick={() => handler.handInQuiz}>Hand In</button>
+                <button className="bg-white border-2 py-4 px-12">Hand In</button>
             </div>
         </div>
     )
