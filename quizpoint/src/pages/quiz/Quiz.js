@@ -35,27 +35,40 @@ export default function Quiz() {
     let { quizId } = useParams()
     let path = {
         quiz: ref(db, `/schools/hvhs/quizzes/${quizId}`),
-        user: ref(db, `/schools/hvhs/quizzes/${quizId}`)
+        user: ref(db, `/schools/hvhs/users/${quizId}`)
     }
     let handler = {
         handInQuiz: (e) => {
-            console.log("hi")
         },
         updateAnswer: (e, indexOfQuestion, indexOfAnswer) => {
             let isAnswerCorrect = "";
-            console.log(answers)
+            //Check if answer inputted is correct 
             for (let i = 0; i < quiz.questions[indexOfQuestion].answer.length; i++) {
-                if (quiz.questions[indexOfQuestion].choices[indexOfAnswer] == quiz.questions[indexOfQuestion].answer[i]) {
-                    console.log(quiz.questions[indexOfQuestion].choices[indexOfAnswer] + " " + quiz.questions[indexOfQuestion].answer[i])
-                    console.log("correct")
+                if (quiz.questions[indexOfQuestion].choices[indexOfAnswer] == quiz.questions[indexOfQuestion].answer[i].value) {
                     isAnswerCorrect = 'correct'
+                    console.log(isAnswerCorrect)
+                    i = quiz.questions[indexOfQuestion].answer.length;
                 } else {
-                    console.log("incorrect")
                     isAnswerCorrect = 'incorrect'
+                    console.log(isAnswerCorrect)
+                }
+            }
+            answers.splice(indexOfQuestion, 1, {input: quiz.questions[indexOfQuestion].choices[indexOfAnswer], question: quiz.questions[indexOfQuestion].name, status: isAnswerCorrect})
+            //Tally correct and incorrect answers
+            let correctTally = 0;
+            let incorrectTally = 0;
+            for (let i = 0; i < answers.length; i++) {
+                if (answers[i].status === "correct") {
+                    correctTally++;
+                }
+                if (answers[i].status === "incorrect") {
+                    incorrectTally++;
                 }
             }
             uploadAnswers.details = { code: quizId, name: quiz.title}
-            answers.splice(indexOfQuestion, 1, {input: quiz.questions[indexOfQuestion].choices[indexOfAnswer], question: quiz.questions[indexOfQuestion].name, status: isAnswerCorrect})
+            uploadAnswers.answers = answers
+            uploadAnswers.score = { total: quiz.questions.length, correct: correctTally, incorrect: incorrectTally }
+            update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/active/' + quizId), uploadAnswers);
         }
     }
 
@@ -64,14 +77,9 @@ export default function Quiz() {
         onValue(path.quiz, (snapshot) => {
             setQuiz(snapshot.val());
             for (let i=0; i<snapshot.val().questions.length; i++) {
-                answers.push(null)
+                answers.push("Not Answered")
             }
             setLoadingStatus(false)
-            console.log("Quiz Id: " + quizId + " Quiz Path: " + path.quiz)
-            console.log("Quiz: ")
-            console.log(snapshot.val())
-            console.log("Answers");
-            console.log(answers)
             setLoadingStatus(false)
         })
     }, [
@@ -82,11 +90,9 @@ export default function Quiz() {
     if (loadingStatus) return
     return (
         <div className="p-12">
-
             <h1 className="font-medium text-4xl text-center pb-2">{quiz.title} </h1>
             <h2 className="font-medium text-2xl text-center">{quiz.description}</h2>
             {quiz.questions.map((question, indexFirst) => {
-                console.log(question)
                 return (
                     <div className="flex justify-center">
                         <div className="bg-gray-50 border-4 border-dashed w-3/5 my-8 p-8 min-h-[100px] rounded-lg">
@@ -97,30 +103,34 @@ export default function Quiz() {
                             </div>
                             <div className="flex flex-col">
                                 <form id="questionForm"></form>
-                                {question.choices.map((choice, indexSecond) => {
-                                    let randomId = choice + Math.random(10)
-                                    return (
-                                        <>
-                                            {/* <div className="flex items-center pl-4 my-2 rounded border bg-white shadow-sm hover:shadow-lg border-gray-200 dark:border-gray-700">
-                                            <input id={`bordered-radio-${indexFirst}`} type="radio" value="" name={`radio-${indexFirst}`} className="w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2">
-
-                                            </input>
-
-                                            </div> */}
-                                            {console.log(choice)}
-                                            <div className="relative peer-checked:bg-indigo-800 my-1">
-                                                <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond)}}></input>
-                                                <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
-                                                {/* <div className="w-4 h-4 rounded-full my-auto peer-checked:scale-[200%] relative transition scale-0 delay-100 bg-indigo-800">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                                    </svg>
-                                                </div> */}
-
-                                            </div>
-                                        </>
-                                    )
-                                })}
+                                {console.log(question)}
+                                {question.type === "multichoice" || question.inputtype === "multichoice" && 
+                                    question.choices.map((choice, indexSecond) => {
+                                        let randomId = choice + Math.random(10)
+                                        return (
+                                            <>
+                                                <div className="relative peer-checked:bg-indigo-800 my-1">
+                                                    <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond)}}></input>
+                                                    <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                </div>
+                                            </>
+                                        )
+                                    })
+                                }
+                                {question.type === "imageupload" || question.inputtype === "imageupload" && 
+                                    <>
+                                        <div>
+                                            <input type="file" id="file" name="file" accept="image/*" onChange={(e) => {
+                                                let file = e.target.files[0];
+                                                let storagePath = 'schools/hvhs/users/' + user.uid + '/quizzes/active/' + quizId + '/' + indexFirst + '/QUIZPOINT_QUIZ_' + quizId + '_' + indexFirst;
+                                                let storageRef = sRef(storage, storagePath);
+                                                    uploadBytes(storageRef, file).then((snapshot) => {
+                                                    console.log("Uploaded Image to " + storagePath);
+                                                })
+                                            }}/>
+                                        </div>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>
