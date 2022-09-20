@@ -18,9 +18,10 @@ import { useParams, useNavigate } from "react-router-dom"
 import React, { useState, useCallback } from 'react'
 import Heading from '../../../components/construct/Heading'
 import CreateQuizTable from '../../../components/quizzes/CreateQuizTable'
+import { v4 } from 'uuid'
 // database
-import { db } from '../../../services/firebase'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db, storage } from '../../../services/firebase'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import { set } from "firebase/database";
 import { ref as dbRef } from "firebase/database";
 import Compressor from 'compressorjs';
@@ -54,6 +55,7 @@ function CreateQuiz(props) {
     const [answers, setAnswers] = useState('')
     const [questions, setQuestions] = useState([])
     const [questionName, setQuestionName] = useState('')
+    const [image, setImage] = useState(null)
     const [quizName, setQuizName] = useState('')
     const [description, setDescription] = useState('')
     const [submittedAnswers, setSubmittedAnswers] = useState([])
@@ -79,7 +81,14 @@ function CreateQuiz(props) {
             }
             console.log(submittedAnswers[0].correct)
             console.log(answerList)
-            questions.push({ name: questionName, choices: submittedAnswers, type: "multichoice", answer: answerList })
+
+            if (image !== null) {
+                let imageName = (image.name + v4())
+                let imageRef = ref(storage, `/schools/hvhs/quizzes/${id}/${questions.length}/${imageName}`)
+                handler.uploadImage(imageRef, answerList)
+            } else {
+                questions.push({ name: questionName, choices: submittedAnswers, type: "multichoice", answer: answerList})
+            }                
             handler.resetQuestion()
             console.log("Questions:")
             console.log(questions)
@@ -88,9 +97,11 @@ function CreateQuiz(props) {
             e.preventDefault()
             submittedAnswers.push({ text: answers, correct: false })
             setAnswers('');
+            console.log(submittedAnswers)
             return (
                 <input type="text" id="disabled-input" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Disabled input" disabled></input>
             )
+            
         },
         submitQuiz: (e) => {
             let submitQuiz;
@@ -106,11 +117,11 @@ function CreateQuiz(props) {
                     questions[index].answer[newerIndex] = { value: answer }
                 })
             })
-
             console.log(questions)
             submitQuiz = { title: quizName, description: description, questions: questions }
             console.log(submitQuiz)
             set(dbRef(db, 'schools/hvhs/quizzes/' + id), submitQuiz);
+            window.location.reload()
         },
         descriptionChange: (e) => {
             setDescription(e.target.value)
@@ -126,10 +137,27 @@ function CreateQuiz(props) {
             setQuizName(e.target.value);
             console.log(quizName)
         },
+        uploadImage: (imageRef, answerList) => {
+            if (image === null) return;
+            uploadBytes(imageRef, image).then(() => {
+                setImage(null)
+                getDownloadURL(ref(storage, imageRef))
+                .then((url) => {
+                    // `url` is the download URL
+                    questions.push({ name: questionName, choices: submittedAnswers, type: "multichoice", answer: answerList, image: url})
+                    setUpdateDOM(Math.random(10))
+                })
+                .catch((error) => {
+                    questions.push({ name: questionName, choices: submittedAnswers, type: "multichoice", answer: answerList, image: "Error: Retry"})
+                    console.log(error)
+                })
+            })
+        },
         resetQuestion: (e) => {
             setAnswers('')
             setQuestionName('')
             setSubmittedAnswers([])
+            setImage(null)
         },
         resetPage: (e) => {
 
@@ -153,13 +181,26 @@ function CreateQuiz(props) {
                 <div className="flex flex-row my-4 justify-center">
                     <div className="order-1 basis-1/5">
                         <form id="questionForm" onSubmit={handler.submitQuestion}></form>
+                        {/* Question Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                        <input form="questionForm" type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                        <input form="questionForm" type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+
+                        {/* Insert Image */}
+                        <input className="cursor-pointer w-4/5 h-16 p-2.5 " type="file" id="addImage" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}></input>
+
+                        {/* Answer Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
                         <form id="answerForm" onSubmit={handler.submitAnswer}></form>
+                        
                         <div className="flex flex-row">
                             <input form="answerForm" type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
-                            <button form="answerForm" className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border"><p className="flex justify-center items-center text-3xl">+</p></button>
+                            {/* Addition Icon */}
+                            <button form="answerForm" className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="block w-6 h-6">
+                                <path fillRule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
+                            </svg>
+
+                            </button>
                         </div>
                         {submittedAnswers.map((answer, index) => {
                             if (Object.keys(answer).length === 0) { return }

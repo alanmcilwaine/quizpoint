@@ -15,6 +15,7 @@ function CreateQuizTable(props) {
         props.question.splice(index, 1)
         setUpdateDOM(Math.random(1000))
     }
+    // Hasn't made a question yet, will display an empty table
     if (!props.hasQuestion) {
         return(
             <div className="flex flex-col">
@@ -59,6 +60,7 @@ function CreateQuizTable(props) {
         </div>
         )
     }
+    // Has made a question, will display a table with the questions
     return(
         <div className="flex flex-col">
             <div className="sm:-mx-6 lg:-mx-8">
@@ -72,6 +74,9 @@ function CreateQuizTable(props) {
                             </th>
                             <th scope="col" className="text-sm font-medium text-black px-6 py-4 text-left">
                                 Name:
+                            </th>
+                            <th scope="col" className="text-sm font-medium text-black px-6 py-4 text-left">
+                                Image:
                             </th>
                             <th scope="col" className="text-sm font-medium text-black px-6 py-4 text-left">
                                 Answers:
@@ -88,17 +93,26 @@ function CreateQuizTable(props) {
                             {props.question.map((question, index) => {
                                 return (
                                     <tr className="bg-gray-100 border-b" key={index}>
+                                        {/* Index of Question */}
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">{index + 1}</td>
+                                        {/* Name of Question */}
                                         <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
                                             {console.log(props.question)}
                                             {props.question[index].name}
                                         </td>
+                                        {/* Image of Question */}
+                                        <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
+                                            {props.question[index].image !== undefined && <a href={props.question[index].image} target="_blank">View</a>}
+                                        </td>
+                                        {/* Answers of Question */}
                                         <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
                                             <Dropdown question={question} type="choice"/>
                                         </td>
+                                        {/* Correct Answers of Question */}
                                         <td className="text-sm text-black px-6 py-4 whitespace-nowrap">
                                             <Dropdown question={question} type="answer"/>
                                         </td>
+                                        {/* Edit Section */}
                                         <td scope="col" className="text-red-600 px-6 py-4 text-left"><a onClick={() => {deleteRow(index)}}>Delete</a></td>
                                     </tr>
                                 )
