@@ -103,8 +103,9 @@ export default function Quiz() {
                             </div>
                             <div className="flex flex-col">
                                 <form id="questionForm"></form>
+                                {/* Format for older quizzes created in quizpoint */}
                                 {console.log(question)}
-                                {question.type === "multichoice" || question.inputtype === "multichoice" && 
+                                {question.type === "multichoice" && 
                                     question.choices.map((choice, indexSecond) => {
                                         let randomId = choice + Math.random(10)
                                         return (
@@ -117,6 +118,21 @@ export default function Quiz() {
                                         )
                                     })
                                 }
+                                {/* format for google forms */}
+                                {question.inputtype === "multichoice" && 
+                                    question.choices.map((choice, indexSecond) => {
+                                        let randomId = choice + Math.random(10)
+                                        return (
+                                            <>
+                                                <div className="relative peer-checked:bg-indigo-800 my-1">
+                                                    <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond)}}></input>
+                                                    <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                </div>
+                                            </>
+                                        )
+                                    })
+                                }
+                                {/* Images  */}
                                 {question.type === "imageupload" || question.inputtype === "imageupload" && 
                                     <>
                                         <div>
