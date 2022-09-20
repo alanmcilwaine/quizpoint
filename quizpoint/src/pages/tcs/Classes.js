@@ -32,6 +32,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Heading from '../../components/construct/Heading.js';
+import Banner from '../../components/feedback/Banner.js';
 
 
 /**========================================================================
@@ -261,6 +262,7 @@ export default function Classes() {
         return (
             <Fade in={shouldFade}>
                 <div className="class-home">
+                    <Banner header="We are rebuilding!" text="We are currently in the progress of redesiging our site." />
                     <Heading text={"Classes"} />
                     <div className="class-header mt-5">
                         <p className="text-3xl text-center">Your Classes</p>
