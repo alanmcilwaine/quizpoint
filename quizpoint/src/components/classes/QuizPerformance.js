@@ -71,10 +71,15 @@ function QuizPerformance(props) {
   };
   //Render a bar chart is type is bar
   if (props.type === "bar") {
-    let barPercentage = (quizInfo.correct / quizInfo.total) * 100;
+    let barPercentage = ((quizInfo.correct + quizInfo.incorrect) / quizInfo.total) * 100;
     return (
       <div className="w-5/6 bg-slate-300 h-16 rounded-md">
-        <div className={`bg-emerald-600 h-16 text-lg underline underline-offset-4 font-medium text-zinc-50 items-center flex justify-center leading-none rounded-md rounded-r-none`} style={{ width: `${barPercentage}%` }}>{Math.round(Number(barPercentage))}%</div>
+        {barPercentage === 0 ? 
+                <div className={`bg-gray-500 h-16 text-lg underline underline-offset-4 font-medium text-zinc-50 w-full items-center flex justify-center leading-none rounded-md`}>Not Started</div>
+                :
+                <div className={`bg-emerald-600 h-16 text-lg underline underline-offset-4 font-medium text-zinc-50 items-center flex justify-center leading-none rounded-md rounded-r-none`} style={{ width: `${barPercentage}%` }}>{Math.round(Number(barPercentage))}%</div>
+        }
+
       </div>
     )
   } else {

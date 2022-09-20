@@ -109,6 +109,10 @@ export default function ClassPage() {
                                     <>
                                         {console.log(qz)}
                                         {console.log("adding new quiz")}
+                                        {/* if (user.quizzes.turnedin[qz.code].score === undefined) {
+                                //             update(ref(db, 'schools/hvhs/users/' + user.uid + '/quizzes/active/' + quizId), chosenAnswers);
+                                
+                            } */}
                                         <QuizCards quiz={qz} user={user} status="completed" page="ClassPage" graphType="doughnut" />
                                     </>
                                 ))

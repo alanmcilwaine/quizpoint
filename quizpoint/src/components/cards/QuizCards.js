@@ -16,10 +16,16 @@ const QuizCards = (props) => {
     let quizPath = props.user.quizzes;
     if (props.status === "completed") {
         console.log(props.user.quizzes.turnedin[quizCode].score)
-    } else {
+    }
+    if (props.status === "assigned") {
+        if (props.user.quizzes.active[quizCode] === undefined) {
+            props.user.quizzes.active[quizCode] = {details: {code: quizCode, name: props.quiz.name}, score: {correct: 0, incorrect: 0, total: 1}}
+        }
+        if (props.user.quizzes.active[quizCode].score.total === 0) {
+            props.user.quizzes.active[quizCode].score.total = 1
+        }
         console.log(props.user.quizzes.active[quizCode].score)
     }
-
 
     return (
         <div className="bg-slate-100 shadow-md w-[21rem] h-[23rem] rounded-lg border-slate-300 border">

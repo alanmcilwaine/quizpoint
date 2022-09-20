@@ -28,6 +28,7 @@ import Swal from 'sweetalert2';
 export default function Quiz() {
     const [quiz, setQuiz] = useState(   )
     const [answers, setAnswers] = useState([])
+    const [uploadAnswers, setUploadAnswers] = useState({ answers: {}, details: {}, score: {} })
     // 0 = loading 1 = loaded
     const [loadingStatus, setLoadingStatus] = useState(true)
 
@@ -41,9 +42,20 @@ export default function Quiz() {
             console.log("hi")
         },
         updateAnswer: (e, indexOfQuestion, indexOfAnswer) => {
-            console.log(indexOfQuestion, indexOfAnswer)
-            answers.splice(indexOfQuestion, 1, indexOfAnswer)
+            let isAnswerCorrect = "";
             console.log(answers)
+            for (let i = 0; i < quiz.questions[indexOfQuestion].answer.length; i++) {
+                if (quiz.questions[indexOfQuestion].choices[indexOfAnswer] == quiz.questions[indexOfQuestion].answer[i]) {
+                    console.log(quiz.questions[indexOfQuestion].choices[indexOfAnswer] + " " + quiz.questions[indexOfQuestion].answer[i])
+                    console.log("correct")
+                    isAnswerCorrect = 'correct'
+                } else {
+                    console.log("incorrect")
+                    isAnswerCorrect = 'incorrect'
+                }
+            }
+            uploadAnswers.details = { code: quizId, name: quiz.title}
+            answers.splice(indexOfQuestion, 1, {input: quiz.questions[indexOfQuestion].choices[indexOfAnswer], question: quiz.questions[indexOfQuestion].name, status: isAnswerCorrect})
         }
     }
 
@@ -78,7 +90,10 @@ export default function Quiz() {
                 return (
                     <div className="flex justify-center">
                         <div className="bg-gray-50 border-4 border-dashed w-3/5 my-8 p-8 min-h-[100px] rounded-lg">
-                            <div className="font-medium text-3xl pb-8 flex flex-row">{indexFirst + 1}.       {question.name}
+                            <div className="  pb-8 flex flex-row justify-between">
+                                <p className="text-3xl font-medium">{question.name}</p>
+                                <p className="text-xl underline underline-offset-8 font-light">{(indexFirst + 1) + `/` + (quiz.questions.length)}</p>
+
                             </div>
                             <div className="flex flex-col">
                                 <form id="questionForm"></form>
@@ -93,9 +108,9 @@ export default function Quiz() {
 
                                             </div> */}
                                             {console.log(choice)}
-                                            <div className="relative peer-checked:bg-indigo-800">
+                                            <div className="relative peer-checked:bg-indigo-800 my-1">
                                                 <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond)}}></input>
-                                                <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg peer-checked:bg-indigo-800 peer-checked:text-white transition delay-75">{choice}</label>
+                                                <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
                                                 {/* <div className="w-4 h-4 rounded-full my-auto peer-checked:scale-[200%] relative transition scale-0 delay-100 bg-indigo-800">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -113,7 +128,7 @@ export default function Quiz() {
             })}
 
             <div className="flex justify-center">
-                <button className="bg-white border-2 py-4 px-12">Hand In</button>
+                <button className="">Hand In Quiz</button>
             </div>
         </div>
     )
