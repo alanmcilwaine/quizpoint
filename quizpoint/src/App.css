@@ -36,6 +36,6 @@ body::-webkit-scrollbar-thumb {
 /* Global CSS (containers, buttons etc) */
 @layer base {
     button {
-        @apply px-6 py-3 bg-blue-100 rounded-md font-medium shadow-md;
+        @apply px-6 py-3 bg-indigo-700 text-white rounded-md font-medium shadow-md;
     }
 }

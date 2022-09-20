@@ -129,34 +129,34 @@ export default function Quizzes() {
             } else {
                 // just some JSX!
                 return (
-                    <div className="class-card" key={index}>
-                        <Card className="class-card-content">
-                            <CardContent>
-                                <h6>{quizData.title}</h6>
-                            </CardContent>
-                            <CardActions>
-                                <ButtonGroup size="small" variant="text" color="primary" aria-label="text primary button group">
-                                    {/* <Button><AssessmentOutlinedIcon /></Button> */}
-                                    <Tooltip title={"Edit " + quizData.title} >
-                                        <Button onClick={() => navigate('/tcs/quizzes/edit/' + quizData.code)}><EditOutlinedIcon /></Button>
+                    <div className="bg-slate-100 shadow-md w-[21rem] h-[23rem] rounded-lg border-slate-300 border">
+                        <div className="w-auto h-20 rounded-t-lg">
+                            <div className="flex bg-indigo-800 rounded-t-lg shadow-md justify-center items-center min-h-[5rem] text-white text-center font-medium text-lg border-b-[1px]">{quizData.title}</div>
+                        </div>
+                        <div className="h-auto">
+                            <div className="flex justify-center items-center min-h-[10rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="block w-24 h-24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
 
-                                    </Tooltip>
-                                </ButtonGroup>
-                            </CardActions>
-                        </Card>
+                            </div>
+                            <div className="flex h-20 pt-2 align-middle justify-center items-center rounded-b-lg ">
+                                <button className="overflow-hidden bg-indigo-700 before:bg-primary-100 before:bottom-0 before:left-0 before:h-full before:w-full before:-translate-x-full hover:before:translate-x-0 before:transition before:ease-in-out before:duration-500"><p className="relative z-0 text-white transition ease-in-out duration-500">Edit to be added soon</p></button>
+                            </div>
+                        </div>
                     </div>
                 )
             }
 
         })
         return (
-            <div className='quizpage'>
-                <div className="quiz-header">
+            <div className='flex justify-center flex-col items-center'>
+                <div className="quiz-header py-8">
                     <h2>Quizzes created by your school</h2>
                     <button className="generic-button sml" onClick={() => navigate('/tcs/quizzes/create/' + generatePushID())} >Create Quiz</button>
                     <button className="generic-button sml" onClick={() => navigate('/tcs/quizzes/import/')}>Import Quiz</button>
                 </div>
-                <div className="quiz-cards">
+                <div className="justify-center grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {quizCards}
                 </div>
 

@@ -140,7 +140,21 @@ export default function ClassPage() {
                                 ))
                             } else {
                                 addQuizTurnedInCard(quizTurnedIn.map((qz) =>
-                                    <div className="quiz-card">
+                                <>
+                                    <div className="bg-slate-100 shadow-md w-[21rem] h-[23rem] rounded-lg border-slate-300 border">
+                                        <div className="w-auto h-20 rounded-t-lg">
+                                            <div className="flex bg-indigo-800 rounded-t-lg shadow-md  px-2 justify-center text-center items-center min-h-[5rem] text-white font-medium text-lg border-b-[1px]">{qz.name}</div>
+                                        </div>
+                                        <div className="h-auto">
+                                            <div className="flex justify-center items-center min-h-[10rem]">
+                                            <QuizPerformance correct={user.quizzes.turnedin[qz.code].score.correct} incorrect={user.quizzes.turnedin[qz.code].score.incorrect} total={user.quizzes.turnedin[qz.code].score.total} />
+                                            </div>
+                                            <div className="flex h-20 pt-2 align-middle justify-center items-center rounded-b-lg ">
+                                                {user.role === 'teacher' ? <ClassProgress quizId={qz.code} studentList={data.students}></ClassProgress> : null}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* <div className="quiz-card">
                                         <Card sx={{ width: 280, height: 310 }}>
                                             <CardContent>
                                                 <Typography variant="h6">
@@ -153,26 +167,12 @@ export default function ClassPage() {
 
                                             </CardActions>
                                         </Card>
-                                    </div>
-
+                                    </div> */}
+                                </>
                                 ))
 
                                 addQuizCard(quizActive.map((qz) =>
-                                    <div className="quiz-card">
-                                        <Card sx={{ width: 280, height: 310 }}>
-                                            <CardContent>
-                                                <Typography variant="h6">
-                                                    {qz.name}
-                                                </Typography>
-                                            </CardContent>
-                                            {console.log(classObject)}
-                                            <CardActions>
-                                                <QuizPerformance correct={0} incorrect={0} total={1} />
-                                                {user.role === 'teacher' ? <ClassProgress studentList={data.students}></ClassProgress> : null}
-                                                <Button size="small" onClick={() => navigate(`/quiz/${qz.code}`)}><p class="start-quiz-button">Start Quiz</p></Button>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
+                                    <QuizCards quiz={qz} user={user} status="assigned" page="ClassPage" graphType="bar" />
                                 ))
 
                             }
@@ -234,8 +234,8 @@ export default function ClassPage() {
             <Fade in={shouldFade}>
                 <div className="class-page">
                     <div className="flex w-full h-56 justify-center flex-col items-center ">
-                        <div className="w-3/5 basis-5/6 flex bg-white justify-center shadow flex-col items-center rounded-t-lg mt-4">
-                            <p className="text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</p>
+                        <div className="w-3/5 basis-5/6 flex md:bg-white justify-center lg:shadow flex-col lg:mb-0 mb-4 items-center rounded-t-lg mt-4">
+                            <p className="text-5xl md:text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</p>
                         </div>
                         {isTabletOrMobile ? null : returnTeacherActions()}
 

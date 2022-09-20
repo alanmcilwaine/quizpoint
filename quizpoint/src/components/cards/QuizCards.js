@@ -30,7 +30,7 @@ const QuizCards = (props) => {
     return (
         <div className="bg-slate-100 shadow-md w-[21rem] h-[23rem] rounded-lg border-slate-300 border">
             <div className="w-auto h-20 rounded-t-lg">
-                <div className="flex bg-indigo-800 rounded-t-lg shadow-md justify-center items-center min-h-[5rem] text-white font-medium text-lg border-b-[1px]">{props.quiz.name}</div>
+                <div className="flex bg-indigo-800 rounded-t-lg shadow-md justify-center items-center min-h-[5rem] text-white text-center font-medium text-lg border-b-[1px]">{props.quiz.name}</div>
             </div>
             <div className="h-auto">
                 <div className="flex justify-center items-center min-h-[10rem]">

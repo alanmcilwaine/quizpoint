@@ -29,6 +29,7 @@ export default function Quiz() {
     const [answers, setAnswers] = useState([])
     const [uploadAnswers, setUploadAnswers] = useState({ answers: {}, details: {}, score: {} })
     const [uploadURL, setuploadURL] = useState('')
+    const [previousAnswers, setPreviousAnswers] = useState([])
     // 0 = loading 1 = loaded
     const [loadingStatus, setLoadingStatus] = useState(true)
 
@@ -138,26 +139,44 @@ export default function Quiz() {
         // grab quiz from db
         onValue(path.quiz, (snapshot) => {
             setQuiz(snapshot.val());
-            for (let i=0; i<snapshot.val().questions.length; i++) {
+            for (let i=0; i< snapshot.val().questions.length; i++) {
                 answers.push("Not Answered")
+                previousAnswers.push("Not Answered")
             }
-            setLoadingStatus(false)
-            setLoadingStatus(false)
+            get(path.activeUserQuiz).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log("snapshot does exist")
+                    for (let i=0; i<snapshot.val().answers.length; i++) {
+                        answers.splice(i, 1, snapshot.val().answers[i])
+                        previousAnswers.splice(i, 1, snapshot.val().answers[i])
+                    }
+                    console.log(previousAnswers)
+                    console.log(answers)
+                } else {
+                    console.log("Snapshot does not exist")
+                    previousAnswers.splice(0, 1, "iuhieuhf8u32829y2hfu2h")
+                }
+                setLoadingStatus(false)
+            })
         })
+
+
     }, [
 
     ])
-
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
     // if quiz isn't loaded, show blank screen
     if (loadingStatus) return
     return (
-        <div className="p-12">
+        <div className="md:p-12 p-4">
             <h1 className="font-medium text-4xl text-center pb-2">{quiz.title} </h1>
             <h2 className="font-medium text-2xl text-center">{quiz.description}</h2>
             {quiz.questions.map((question, indexFirst) => {
                 return (
-                    <div className="flex justify-center">
-                        <div className="bg-gray-50 border-4 border-dashed w-3/5 my-8 p-8 min-h-[100px] rounded-lg">
+                    <div className="flex md:justify-center">
+                        <div className="bg-gray-50 md:border-4 md:border-dashed md:w-3/5 w-full my-8 md:p-8 min-h-[100px] rounded-lg">
                             <div className="  pb-8 flex flex-row justify-between">
                                 <p className="text-3xl font-medium">{question.name}</p>
                                 <p className="text-xl underline underline-offset-8 font-light">{(indexFirst + 1) + `/` + (quiz.questions.length)}</p>
@@ -178,7 +197,12 @@ export default function Quiz() {
                                             <>
                                                 <div className="relative peer-checked:bg-indigo-800 my-1">
                                                     <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond, false)}}></input>
-                                                    <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    {choice == previousAnswers[indexFirst].input &&   
+                                                        <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-300 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    }
+                                                    {choice != previousAnswers[indexFirst].input &&   
+                                                        <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    }
                                                 </div>
                                             </>
                                         )
@@ -192,7 +216,12 @@ export default function Quiz() {
                                             <>
                                                 <div className="relative peer-checked:bg-indigo-800 my-1">
                                                     <input value={choice} type="radio" name={indexFirst} id={randomId} className="hidden peer" onChange={(e) => {handler.updateAnswer(e, indexFirst, indexSecond, false)}}></input>
-                                                    <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    {choice == previousAnswers[indexFirst].input &&   
+                                                        <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-300 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    }
+                                                    {choice != previousAnswers[indexFirst].input &&   
+                                                        <label htmlFor={randomId} className="flex gap-4 p-4 text-lg font-medium rounded-lg cursor-pointer  peer-checked:bg-indigo-800 peer-checked:text-white border-dashed bg-neutral-200 peer-checked:border-0 transition delay-75">{choice}</label>
+                                                    }
                                                 </div>
                                             </>
                                         )
