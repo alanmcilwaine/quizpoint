@@ -174,19 +174,19 @@ function CreateQuiz(props) {
                 <button form="quizForm" className="absolute left-72">Save Quiz</button>
                 <div className="items-center flex flex-col mt-8">
                     <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name*</label>
-                    <input form="quizForm" type="text" placeholder="Basic facts test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5" value={quizName} onChange={handler.quizChange} required></input>
+                    <input form="quizForm" type="text" placeholder="e.g: Basic Facts Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5" value={quizName} onChange={handler.quizChange} required></input>
                     <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
-                    <input onChange={handler.descriptionChange} value={description} type="text" placeholder="..." className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                    <input onChange={handler.descriptionChange} value={description} type="text" placeholder="e.g: Standard 91032 Level 3 NCEA Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
                 </div>
                 <div className="flex flex-row my-4 justify-center">
                     <div className="order-1 basis-1/5">
                         <form id="questionForm" onSubmit={handler.submitQuestion}></form>
                         {/* Question Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                        <input form="questionForm" type="text" placeholder="What is the meaning of life..?" value={questionName} onChange={handler.questionChange} className=" border text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                        <input form="questionForm" type="text" placeholder="e.g: What is 5 + 5" value={questionName} onChange={handler.questionChange} className=" border text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
 
                         {/* Insert Image */}
-                        <input className="cursor-pointer w-4/5 h-16 p-2.5 " type="file" id="addImage" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}></input>
+                        <input form="questionForm" className="cursor-pointer w-4/5 h-16 p-2.5 " type="file" id="addImage" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}></input>
 
                         {/* Answer Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
