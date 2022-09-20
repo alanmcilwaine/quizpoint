@@ -23,6 +23,7 @@ import Button from "@mui/material/Button";
  **   Stylesheet Imports
  *========================**/
 import './Invite.css'
+import Heading from "../components/construct/Heading";
 
 
 /**========================================================================
@@ -123,11 +124,16 @@ export default function Invite() {
     } else {
         // return class info and button to join
         return (
-            <div className="invite-container">
-                <h2>You've been invited to {classObject.className} by {classObject.classCreator}</h2>
-                <h3>{classObject.classDescription}</h3>
-                <Button variant="contained" onClick={joinClass}>Join Class</Button>
-            </div>
+            <>
+                <Heading text={"You've been invited to " + classObject.className + ' by  ' + classObject.classCreator}></Heading>
+
+                <div className="invite-container">
+                    <p className="text-3xl">Click Join Class to enrol yourself.</p>
+                    <h3>{classObject.classDescription}</h3>
+                    <button onClick={joinClass}>Join Class</button>
+                </div >
+            </>
+
         )
     }
 

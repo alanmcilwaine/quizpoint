@@ -34,6 +34,7 @@ import Heading from '../../components/construct/Heading';
 // responsive design
 import { useMediaQuery } from 'react-responsive'
 import ClassCards from '../../components/cards/ClassCards'
+import Banner from '../../components/feedback/Banner.js';
 let foundClasses = []
 
 
@@ -138,11 +139,12 @@ export default function Classes() {
         return (
             <Fade in={shouldFade}>
                 <div className="flex justify-center py-12">
+
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
                         {classCards}
                     </div>
                 </div>
-            </Fade>
+            </Fade >
         )
         // if (isTabletOrMobile) {
         //     return (

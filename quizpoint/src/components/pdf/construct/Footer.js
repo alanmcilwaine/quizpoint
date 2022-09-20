@@ -10,7 +10,7 @@ export default function Footer() {
 
     return (
         <>
-            <div className="relative" >
+            <div className="fixed bottom-0" >
                 <div className="inline-flex items-start justify-center bg-gray-200" style={{ width: '250mm', }}>
                     <div className="flex items-center justify-between px-1 py-6" style={{ height: 100, }}>
                         <div className="inline-flex flex-col items-start justify-start" style={{ height: 80, }}>
