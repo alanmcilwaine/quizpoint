@@ -174,29 +174,29 @@ function CreateQuiz(props) {
                 <button form="quizForm" className="absolute left-72">Save Quiz</button>
                 <div className="items-center flex flex-col mt-8">
                     <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Name*</label>
-                    <input form="quizForm" type="text" placeholder="e.g: Basic Facts Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5" value={quizName} onChange={handler.quizChange} required></input>
+                    <input title="Quiz Name" form="quizForm" type="text" placeholder="e.g: Basic Facts Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5" value={quizName} onChange={handler.quizChange} required></input>
                     <label className="block mb-2 p-2 text-md font-medium text-black">Quiz Description</label>
-                    <input onChange={handler.descriptionChange} value={description} type="text" placeholder="e.g: Standard 91032 Level 3 NCEA Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
+                    <input  title="Quiz Description" onChange={handler.descriptionChange} value={description} type="text" placeholder="e.g: Standard 91032 Level 3 NCEA Test" className=" border border-indigo-800 text-indigo-800 text-sm rounded-lg w-1/3 h-16 p-2.5 " required></input>
                 </div>
                 <div className="flex flex-row my-4 justify-center">
                     <div className="order-1 basis-1/5">
                         <form id="questionForm" onSubmit={handler.submitQuestion}></form>
                         {/* Question Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Question Name</label>
-                        <input form="questionForm" type="text" placeholder="e.g: What is 5 + 5" value={questionName} onChange={handler.questionChange} className=" border text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
+                        <input title="Question Name" form="questionForm" type="text" placeholder="e.g: What is 5 + 5" value={questionName} onChange={handler.questionChange} className=" border text-sm rounded-lg w-4/5 h-16 p-2.5 " required></input>
 
                         {/* Insert Image */}
-                        <input form="questionForm" className="cursor-pointer w-4/5 h-16 p-2.5 " type="file" id="addImage" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}></input>
+                        <input title="Insert Image" form="questionForm" className="cursor-pointer w-4/5 h-16 p-2.5 " type="file" id="addImage" accept="image/*" onChange={(e) => {setImage(e.target.files[0])}}></input>
 
-                        {/* Answer Name */}
+                         {/* Answer Name */}
                         <label className="block mb-2 p-2 text-md font-medium text-black">Answers</label>
                         <form id="answerForm" onSubmit={handler.submitAnswer}></form>
                         
                         <div className="flex flex-row">
-                            <input form="answerForm" type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
+                            <input title="Answers" form="answerForm" type="text" placeholder="Add an answer" value={answers} onChange={handler.answerChange} name="answers" className="border border-indigo-800 text-indigo-800 text-sm rounded-tl-lg rounded-bl-lg w-3/5 h-16 p-2.5 " required></input>
                             {/* Addition Icon */}
                             <button form="answerForm" className="h-16 p-2.5 w-1/5 rounded-r-lg rounded-none shadow-none border flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="block w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="block w-6 h-6" alt="Add">
                                 <path fillRule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
                             </svg>
 

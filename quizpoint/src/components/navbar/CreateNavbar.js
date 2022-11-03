@@ -70,7 +70,7 @@ const CreateNavbar = (props) => {
                             </div>
 
                             <div className=" items-start hidden sm:block">
-                                <a href="/classes"><img className="w-auto h-12" src={Logo} alt="Logo" /></a>
+                                <a href="/classes"><img className="w-auto h-12" src={Logo} alt="Quizpoint Logo" /></a>
                             </div>
 
                             {/* Main Desktop Content */}

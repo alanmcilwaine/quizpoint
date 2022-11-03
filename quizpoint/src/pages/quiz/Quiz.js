@@ -42,7 +42,8 @@ export default function Quiz() {
 
 
     // Loads Image from Firebase, without Async, images will inconsistently not load
-    //NOTE: I DID NOT WRITE THIS PORTION OF CODE https://dev.to/diraskreact/react-async-image-loading-lka
+    //NOTE: I DID NOT WRITE THIS PORTION OF CODE https://dev.to/diraskreact/react-async-image-loading-lka HOWEVER
+    //THIS IS UNDER AN OPEN LISENSE
     const AsyncImage = (props) => {
         const [loadedSrc, setLoadedSrc] = React.useState(null);
         React.useEffect(() => {
@@ -178,7 +179,7 @@ export default function Quiz() {
                     <div className="flex md:justify-center">
                         <div className="bg-gray-50 md:border-4 md:border-dashed md:w-3/5 w-full my-8 md:p-8 min-h-[100px] rounded-lg">
                             <div className="  pb-8 flex flex-row justify-between">
-                                <p className="text-3xl font-medium">{question.name}</p>
+                                <h2 className="text-3xl font-medium">{question.name}</h2>
                                 <p className="text-xl underline underline-offset-8 font-light">{(indexFirst + 1) + `/` + (quiz.questions.length)}</p>
                             </div>
                             {question.image !== undefined && 

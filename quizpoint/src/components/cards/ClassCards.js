@@ -7,11 +7,11 @@ const ClassCards = (props) => {
         <>    
     <div className="bg-slate-500 w-[21rem] h-[23rem] rounded-lg p-4 shadow-md">
         <div className="w-auto h-20 rounded-t-lg flex basis-1/3 flex-col">
-            <p className="flex justify-start items-center text-medium font-medium text-3xl w-full h-full text-white">{props.classInfo.className}</p>
+            <h1 className="flex justify-start items-center text-medium font-medium text-3xl w-full h-full text-white">{props.classInfo.className}</h1>
             <p className="flex text-white text-xl">{props.classInfo.classCreator}</p>
         </div>
         <div className="h-2/3 flex basis-2/3 items-end">
-            <button className="p-8 h-24 w-full border-slate-400 border-3 bg-slate-100 text-slate-800" onClick={() => navigate('/class/' + props.classInfo.code)}><p className="text-xl underline underline-offset-8">Open Class</p></button>
+            <button className="p-8 h-24 w-full border-slate-400 border-3 bg-slate-100 text-slate-800" onClick={() => navigate('/class/' + props.classInfo.code)}><u className="text-xl underline underline-offset-8">Open Class</u></button>
         </div>
 
     </div>

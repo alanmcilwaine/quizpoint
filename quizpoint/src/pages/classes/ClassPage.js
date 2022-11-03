@@ -235,7 +235,7 @@ export default function ClassPage() {
                 <div className="class-page">
                     <div className="flex w-full h-56 justify-center flex-col items-center ">
                         <div className="w-3/5 basis-5/6 flex md:bg-white justify-center lg:shadow flex-col lg:mb-0 mb-4 items-center rounded-t-lg mt-4">
-                            <p className="text-5xl md:text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</p>
+                            <h1 className="text-5xl md:text-4xl tracking-tight font-bold text-gray-900">{classObject.className}</h1>
                         </div>
                         {isTabletOrMobile ? null : returnTeacherActions()}
 
