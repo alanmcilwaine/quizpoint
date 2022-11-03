@@ -1,4 +1,5 @@
 # QuizPoint
+NOTE: To install external components, please type npm install
 
 QuizPoint is a education platform that allows schools to test and educate students on relevant topics that they need testing on.
 This platform then selfmarks the quizzes, and can generate reports for teachers that are easy to use and read.
