@@ -145,8 +145,10 @@ export default function Quiz() {
                 previousAnswers.push("Not Answered")
             }
             get(path.activeUserQuiz).then((snapshot) => {
-                if (snapshot.exists()) {
+                console.log(snapshot)
+                if (snapshot.answers) {
                     console.log("snapshot does exist")
+                    console.log(snapshot.val())
                     for (let i=0; i<snapshot.val().answers.length; i++) {
                         answers.splice(i, 1, snapshot.val().answers[i])
                         previousAnswers.splice(i, 1, snapshot.val().answers[i])
