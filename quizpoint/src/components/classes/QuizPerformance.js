@@ -55,7 +55,7 @@ function QuizPerformance(props) {
     labels: ['Correct', 'Incorrect', 'Unanswered'],
     datasets: [
       {
-        data: [quizInfo.correct, quizInfo.incorrect, (quizInfo.total - quizInfo.correct + quizInfo.incorrect)],
+        data: [quizInfo.correct, quizInfo.incorrect, (quizInfo.total - (quizInfo.correct + quizInfo.incorrect))],
         backgroundColor: [
           '#16a34a',
           '#dc2626',
